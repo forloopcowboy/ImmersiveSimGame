@@ -1,0 +1,17 @@
+{
+    "name": "DoorSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7fb004bddba04fa28f9da0be725b4db9",
+        "GUID:daa5b2a852af442584431e0ec47c9908"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
