@@ -23,25 +23,24 @@ namespace Game.InteractionSystem
             {
                 throw new NullReferenceException("Inventory is null. Initialize it in the inspector or assign it in code.");
             }
-
-            StartCoroutine(UpdateText());
+            
         }
-    
-        private IEnumerator UpdateText()
-        {
-            while (true)
-            {
-                if (Interactor.TryPeekInteractionQueue(out InteractableObject item))
-                {
-                    ActionUIController.SetText(item.itemName, item.interactionText, item.shortcut);
-                    ActionUIController.Show();
-                }
-                else
-                {
-                    ActionUIController.Hide();
-                }
 
-                yield return new WaitForSeconds(0.25f);
+        private void Update()
+        {
+            UpdateText();
+        }
+
+        private void UpdateText()
+        {
+            if (Interactor.TryPeekInteractionQueue(out InteractableObject item))
+            {
+                ActionUIController.SetText(item.itemName, item.interactionText, item.shortcut);
+                ActionUIController.Show();
+            }
+            else
+            {
+                ActionUIController.Hide();
             }
         }
     }
