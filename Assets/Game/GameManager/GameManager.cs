@@ -14,9 +14,9 @@ namespace Game.GameManager
         private static GameManager _instance;
         public static GameManager Singleton => _instance;
 
-        public UnityAction onPause;
-        public UnityAction onResume;
-        public UnityAction onLoadingFinished;
+        public UnityEvent onPause;
+        public UnityEvent onResume;
+        public UnityEvent onLoadingFinished;
 
         private void Start()
         {

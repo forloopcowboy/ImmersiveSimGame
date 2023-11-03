@@ -56,11 +56,6 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
             HandleCharacterInput();
             HandleItemInput();
         }
