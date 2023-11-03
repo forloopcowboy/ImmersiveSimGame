@@ -1535,7 +1535,7 @@ PrefabInstance:
     - target: {fileID: 6402260580069897150, guid: 2486a179a115f044290aa728da5deea7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.528891
+      value: -14.52887
       objectReference: {fileID: 0}
     - target: {fileID: 6440139922173560111, guid: 2486a179a115f044290aa728da5deea7,
         type: 3}
@@ -3932,6 +3932,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 458724896675744995, guid: fafcb90cf1657df4192e7282e413a148,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 580708993918487769, guid: fafcb90cf1657df4192e7282e413a148,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4064,6 +4069,7 @@ SceneRoots:
   - {fileID: 1033148305}
   - {fileID: 1836216357}
   - {fileID: 313076326}
+  - {fileID: 2390422641257145315}
   - {fileID: 461148135}
   - {fileID: 141776710}
   - {fileID: 1089875351}
@@ -4072,7 +4078,6 @@ SceneRoots:
   - {fileID: 871072786}
   - {fileID: 1175928718}
   - {fileID: 1731855611}
-  - {fileID: 2390422641257145315}
   - {fileID: 164640011}
   - {fileID: 1215550585}
   - {fileID: 2141353385}
