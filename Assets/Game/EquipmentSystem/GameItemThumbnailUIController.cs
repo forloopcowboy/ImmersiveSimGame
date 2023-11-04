@@ -1,4 +1,6 @@
 using System;
+using Game.InteractionSystem;
+using Game.Src.EventBusModule;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,7 +60,26 @@ namespace Game.EquipmentSystem
         
         public void OnClick()
         {
-            Debug.Log($"Clicked {GameItemInInventory.Item.name}");
+            if (GameItemInInventory == null)
+            {
+                throw new NullReferenceException("GameItemInInventory is null. Initialize it in the inspector or assign it in code.");
+            }
+            
+            if (GameItemInInventory.Item == null)
+            {
+                throw new NullReferenceException("GameItemInInventory.GameItem is null. Initialize it in the inspector or assign it in code.");
+            }
+            
+            if (GameItemInInventory.Item is UsableItemType usableItem)
+            {
+                usableItem.Use(GameItemInInventory.Inventory.gameObject);
+                GameItemInInventory.Quantity--;
+                SceneEventBus.Emit(new NotificationEvent(usableItem.useMessage.Replace("$itemName", GameItemInInventory.Item.ItemName)));
+            }
+            else
+            {
+                Debug.Log("Item is not usable.");
+            }
         }
     }
 }

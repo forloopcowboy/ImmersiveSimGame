@@ -301,11 +301,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameItemInInventory:
+    Inventory: {fileID: 0}
     Item: {fileID: 0}
     Quantity: 0
-  quantityText: {fileID: 0}
+  quantityText: {fileID: 5581597429028931219}
   itemThumbnailImage: {fileID: 8044157040173578034}
-  button: {fileID: 0}
+  button: {fileID: 5774710485745073957}
 --- !u!114 &5774710485745073957
 MonoBehaviour:
   m_ObjectHideFlags: 0

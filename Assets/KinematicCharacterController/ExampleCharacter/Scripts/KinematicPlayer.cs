@@ -1,6 +1,7 @@
 ﻿using Game.DoorSystem;
 using Game.EquipmentSystem;
 using Game.InteractionSystem;
+using Game.Src.EventBusModule;
 using KinematicCharacterController.Examples;
 using UnityEngine;
 
@@ -72,31 +73,27 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             {
                 if (!IsInventoryOpen && Inventory.TryToPickUpItem(out var item))
                 {
-                    Debug.Log($"Picked up {item.name}");
+                    SceneEventBus.Emit(new NotificationEvent($"Picked up {item.itemName}"));
                 }
                 else if (IsInventoryOpen && TryToGetSelectedItem(out var selectedItem))
                 {
-                    Debug.Log("Selected item is " + selectedItem.Item.ItemName);
+                    SceneEventBus.Emit(new NotificationEvent("Selected item is " + selectedItem.Item.ItemName));
                 }
                 else if (Interactor.TryToInteract<DoorController, string>(out var interactableObject, "default"))
                 {
-                    if (!interactableObject.isLocked)
-                    {
-                        Debug.Log("Door has been opened.");
-                    }
-                    else
+                    if (interactableObject.isLocked)
                     {
                         Debug.Log("Door is locked. Looking for key...");
                         var key = Inventory.ItemsInInventory.Find(item => item.Item is KeyItemType key && interactableObject.CanUnlock(key.password));
                         
                         if (key != null && key.Item is KeyItemType password)
                         {
-                            Debug.Log("Found key. Unlocking door...");
+                            SceneEventBus.Emit(new NotificationEvent($"Unlocking {interactableObject.itemName}..."));
                             interactableObject.Unlock(password);
                         }
                         else
                         {
-                            Debug.Log("No key found.");
+                            SceneEventBus.Emit(new NotificationEvent($"{interactableObject.itemName} is locked."));
                         }
                     }
                 }

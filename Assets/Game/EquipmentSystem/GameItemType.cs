@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.EquipmentSystem
 {
-    [CreateAssetMenu(fileName = "GameItemType", menuName = "GameItem/New GameItem Type", order = 0)]
+    [CreateAssetMenu(fileName = "GameItemType", menuName = "GameItem/New GameItemType", order = 0)]
     public class GameItemType : ScriptableObject
     {
         public Sprite ItemSprite;

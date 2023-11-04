@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Door is locked
+  m_text: Welcome to my game!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3452,6 +3452,7 @@ GameObject:
   - component: {fileID: 1415038040}
   - component: {fileID: 1415038039}
   - component: {fileID: 1415038038}
+  - component: {fileID: 1415038042}
   m_Layer: 5
   m_Name: NotificationUI
   m_TagString: Untagged
@@ -3542,6 +3543,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1415038042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415038037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de306dd36d944dada8366bf4e10066bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationUIContainer: {fileID: 1588191826}
+  notificationUI: {fileID: 326784434}
+  notificationDuration: 5
+  rollOutSpeed: 3
+  showNotification: 0
 --- !u!1 &1437692278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,7 +3611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.93333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3609,7 +3627,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 10
+  m_PixelsPerUnitMultiplier: 34.95
 --- !u!222 &1437692281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3755,9 +3773,9 @@ RectTransform:
   - {fileID: 1437692279}
   m_Father: {fileID: 1415038041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 35}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -120, y: 35}
   m_SizeDelta: {x: 220.8482, y: 38.212997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1588191827

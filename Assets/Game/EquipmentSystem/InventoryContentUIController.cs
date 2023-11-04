@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.InteractionSystem;
+using Game.Src.EventBusModule;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -154,6 +156,7 @@ namespace Game.EquipmentSystem
                         {
                             Debug.Log($"Item to select: {thumbnail.GameItemInInventory.Item.name}");
                             thumbnail.button.Select();
+                            SceneEventBus.Emit(new NotificationEvent(thumbnail.GameItemInInventory.Item.name));
                         }
                         else
                         {

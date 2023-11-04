@@ -41,7 +41,7 @@ namespace Game.EquipmentSystem
             var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == item.ItemType.GetInstanceID());
             if (itemInInventory == null)
             {
-                ItemsInInventory.Add(new GameItemInInventory {Item = item.ItemType, Quantity = 1});
+                ItemsInInventory.Add(new GameItemInInventory {Item = item.ItemType, Quantity = 1, Inventory = this});
             }
             else
             {
@@ -55,6 +55,7 @@ namespace Game.EquipmentSystem
     [Serializable]
     public class GameItemInInventory
     {
+        public GameItemInventory Inventory;
         public GameItemType Item;
         public int Quantity;
     }
