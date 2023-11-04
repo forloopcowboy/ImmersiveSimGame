@@ -57,10 +57,10 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         private void Update()
         {
             HandleCharacterInput();
-            HandleItemInput();
+            HandleInteractionInput();
         }
 
-        private void HandleItemInput()
+        private void HandleInteractionInput()
         {
             if (Input.GetKeyDown(KeyCode.I))
             {
@@ -80,13 +80,24 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 }
                 else if (Interactor.TryToInteract<DoorController, string>(out var interactableObject, "default"))
                 {
-                    if (interactableObject.isLocked)
+                    if (!interactableObject.isLocked)
                     {
                         Debug.Log("Door has been opened.");
                     }
                     else
                     {
-                        Debug.Log("Door is locked.");
+                        Debug.Log("Door is locked. Looking for key...");
+                        var key = Inventory.ItemsInInventory.Find(item => item.Item is KeyItemType key && interactableObject.CanUnlock(key.password));
+                        
+                        if (key != null && key.Item is KeyItemType password)
+                        {
+                            Debug.Log("Found key. Unlocking door...");
+                            interactableObject.Unlock(password);
+                        }
+                        else
+                        {
+                            Debug.Log("No key found.");
+                        }
                     }
                 }
                 else

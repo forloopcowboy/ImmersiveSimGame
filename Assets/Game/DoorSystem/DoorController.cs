@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using Game.InteractionSystem;
+using Game.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -12,10 +12,9 @@ namespace Game.DoorSystem
         public DoorLock doorLock;
         public bool startLocked;
         
-        public Vector3 direction;
         public float multiplier = 1f;
         
-        [SerializeField] private string doorKey = "default";
+        [SerializeField] private StringConstant doorKey;
         
         [ShowInInspector]
         public bool isLocked { get; private set; }
@@ -50,19 +49,30 @@ namespace Game.DoorSystem
             }
         }
         
+        /// <param name="key">Code to attempt to unlock with.</param>
+        /// <returns>True if can unlock OR requires no key, false if cannot unlock</returns>
+        public bool CanUnlock(string key)
+        {
+            if (!isLocked) return true;
+            if (doorKey == null) return true;
+            if (key == doorKey) return true;
+            
+            return false;
+        }
+        
         /// <summary>
         /// Returns true if the door is unlocked.
         /// </summary>
         /// <param name="key">Key needed to unlock it.</param>
         public bool Unlock(string key)
         {
-            if (isLocked && key != doorKey)
+            if (!CanUnlock(key))
             {
                 Debug.Log("Tried to unlock door but key was wrong.");
                 return false;
             }
 
-            if (isLocked)
+            if (isLocked && doorKey != null)
             {
                 StartCoroutine(WaitForDoorToClose());
                 Debug.Log("WOW! Unlocking door " + itemName);
