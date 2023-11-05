@@ -35,15 +35,19 @@ namespace Game.EquipmentSystem
             {
                 quantityText.transform.parent.gameObject.SetActive(false);
                 itemThumbnailImage.enabled = false;
-                return;
             }
-
-            if (GameItemInInventory.Quantity <= 0)
+            else
             {
-                Destroy(gameObject);
+                itemThumbnailImage.enabled = true;
+                quantityText.text = GameItemInInventory.Quantity.ToString();
+                itemThumbnailImage.sprite = GameItemInInventory.Item.ItemSprite;
             }
 
-            if (GameItemInInventory.Quantity > 1)
+            if (GameItemInInventory != null && GameItemInInventory.Quantity <= 0)
+            {
+                GameItemInInventory = null;
+            }
+            else if (GameItemInInventory?.Quantity > 1)
             {
                 quantityText.transform.parent.gameObject.SetActive(true);
             }
@@ -51,10 +55,6 @@ namespace Game.EquipmentSystem
             {
                 quantityText.transform.parent.gameObject.SetActive(false);
             }
-            
-            itemThumbnailImage.enabled = true;
-            quantityText.text = GameItemInInventory.Quantity.ToString();
-            itemThumbnailImage.sprite = GameItemInInventory.Item.ItemSprite;
         }
         
         public void OnClick()
@@ -62,8 +62,9 @@ namespace Game.EquipmentSystem
             if (GameItemInInventory.Item is EquipableItemType)
             {
                 SceneEventBus.Emit(new TryEquipItemEvent(GameItemInInventory));
+                GameItemInInventory.Inventory.HoldItem(GameItemInInventory);
             }
-            if (GameItemInInventory.Item is UsableItemType usableItemType)
+            else if (GameItemInInventory.Item is UsableItemType usableItemType)
             {
                 usableItemType.Use(GameItemInInventory.Inventory);
                 SceneEventBus.Emit(new NotificationEvent(usableItemType.useMessage.Replace("$itemName", usableItemType.ItemName)));

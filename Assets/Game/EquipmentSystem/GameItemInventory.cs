@@ -17,7 +17,8 @@ namespace Game.EquipmentSystem
     {
         [SerializeField]
         public List<GameItemInInventory> ItemsInInventory = new();
-        public List<GameItemInInventory> EquippedItems = new(10); // 10 slots for equipped items
+        public GameItemInInventory[] EquippedItems = new GameItemInInventory[10]; // 10 slots for equipped items
+        public GameItemInInventory activelyHeldItem = null;
         
         public Interactor interactor;
 
@@ -25,6 +26,8 @@ namespace Game.EquipmentSystem
         {
             if (!interactor) interactor = GetComponentInChildren<Interactor>();
             if (!interactor) throw new NullReferenceException("Interactor is null. Initialize it in the inspector or assign it in code.");
+            
+            EquippedItems = new GameItemInInventory[10]; // 10 slots for equipped items
         }
 
         public bool TryToPickUpItem(out GameItem item)
@@ -45,6 +48,11 @@ namespace Game.EquipmentSystem
                 EquippedItems[index] = item;
             }
             else Debug.LogWarning("Item is not equipable.");
+        }
+
+        public void HoldItem(GameItemInInventory item)
+        {
+            activelyHeldItem = item;
         }
 
         private void AddItemToInventory(GameItem item)

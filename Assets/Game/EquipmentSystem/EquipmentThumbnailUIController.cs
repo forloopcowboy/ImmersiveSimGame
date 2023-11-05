@@ -68,14 +68,22 @@ namespace Game.EquipmentSystem
 
             HandleEquipItemInput();
             
-            for (var i = 0; i < equippedItems.Count; i++)
+            for (var i = 0; i < EquippedUiItems.Length; i++)
             {
-                var item = equippedItems[i];
+                var item = i < equippedItems.Length ? equippedItems[i] : null;
                 var uiItem = EquippedUiItems[i];
+                
+                if (uiItem == null)
+                    continue;
                 
                 // Disable button functionality to control highlight image to show active equipped item.
                 uiItem.button.enabled = false;
                 uiItem.button.targetGraphic.enabled = false;
+                
+                if (item == Inventory.activelyHeldItem)
+                {
+                    uiItem.button.targetGraphic.enabled = true;
+                }
 
                 if (isListeningForNumberInput)
                 {
