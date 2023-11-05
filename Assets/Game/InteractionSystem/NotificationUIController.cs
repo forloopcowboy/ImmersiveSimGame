@@ -24,7 +24,7 @@ namespace Game.InteractionSystem
             
             notificationUIContainer.gameObject.SetActive(false);
             initialPosition = notificationUIContainer.position;
-            outOfScreenPosition = new Vector3(initialPosition.x, initialPosition.y - 280, initialPosition.z);
+            outOfScreenPosition = new Vector3(initialPosition.x - 280, initialPosition.y, initialPosition.z);
         }
 
         private void Update()

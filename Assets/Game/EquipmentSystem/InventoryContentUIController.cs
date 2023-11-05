@@ -134,10 +134,10 @@ namespace Game.EquipmentSystem
                         switch (_requestedDirection)
                         {
                             case InventoryIndexingDirection.DOWN:
-                                nextIndex = currentIndex - 1 < 0 ? thumbnails.Count - 1 : currentIndex - 1;
+                                nextIndex = Mathf.Min(currentIndex + 1, thumbnails.Count - 1);
                                 break;
                             case InventoryIndexingDirection.UP:
-                                nextIndex = currentIndex + 1 >= thumbnails.Count ? 0 : currentIndex + 1;
+                                nextIndex = Mathf.Max(currentIndex - 1, 0);
                                 break;
                             case InventoryIndexingDirection.NONE:
                                 break;

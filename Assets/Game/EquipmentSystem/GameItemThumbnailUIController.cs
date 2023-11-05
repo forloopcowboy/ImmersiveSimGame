@@ -30,16 +30,11 @@ namespace Game.EquipmentSystem
 
         private void Update()
         {
-            if (GameItemInInventory == null)
+            if (GameItemInInventory == null || GameItemInInventory.Item == null)
             {
-                throw new NullReferenceException("GameItemInInventory is null. Initialize it in the inspector or assign it in code.");
+                itemThumbnailImage.sprite = null;
             }
-            
-            if (GameItemInInventory.Item == null)
-            {
-                throw new NullReferenceException("GameItemInInventory.GameItem is null. Initialize it in the inspector or assign it in code.");
-            }
-            
+
             if (GameItemInInventory.Quantity <= 0)
             {
                 Destroy(gameObject);
@@ -60,25 +55,14 @@ namespace Game.EquipmentSystem
         
         public void OnClick()
         {
-            if (GameItemInInventory == null)
+            if (GameItemInInventory.Item is UsableItemType usableItemType)
             {
-                throw new NullReferenceException("GameItemInInventory is null. Initialize it in the inspector or assign it in code.");
-            }
-            
-            if (GameItemInInventory.Item == null)
-            {
-                throw new NullReferenceException("GameItemInInventory.GameItem is null. Initialize it in the inspector or assign it in code.");
-            }
-            
-            if (GameItemInInventory.Item is UsableItemType usableItem)
-            {
-                usableItem.Use(GameItemInInventory.Inventory.gameObject);
-                GameItemInInventory.Quantity--;
-                SceneEventBus.Emit(new NotificationEvent(usableItem.useMessage.Replace("$itemName", GameItemInInventory.Item.ItemName)));
+                usableItemType.Use(GameItemInInventory.Inventory.gameObject);
+                SceneEventBus.Emit(new NotificationEvent(usableItemType.useMessage.Replace("$itemName", usableItemType.ItemName)));
             }
             else
             {
-                Debug.Log("Item is not usable.");
+                Debug.Log($"{GameItemInInventory.Item.ItemName} is not usable.");
             }
         }
     }

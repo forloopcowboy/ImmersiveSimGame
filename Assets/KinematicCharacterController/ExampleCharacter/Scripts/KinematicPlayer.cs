@@ -75,9 +75,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 {
                     SceneEventBus.Emit(new NotificationEvent($"Picked up {item.itemName}"));
                 }
-                else if (IsInventoryOpen && TryToGetSelectedItem(out var selectedItem))
+                else if (IsInventoryOpen)
                 {
-                    SceneEventBus.Emit(new NotificationEvent("Selected item is " + selectedItem.Item.ItemName));
+                    // ignore
                 }
                 else if (Interactor.TryToInteract<DoorController, string>(out var interactableObject, "default"))
                 {
