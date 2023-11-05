@@ -17,6 +17,8 @@ namespace Game.EquipmentSystem
     {
         [SerializeField]
         public List<GameItemInInventory> ItemsInInventory = new();
+        public List<GameItemInInventory> EquippedItems = new(10); // 10 slots for equipped items
+        
         public Interactor interactor;
 
         private void Start()
@@ -34,6 +36,15 @@ namespace Game.EquipmentSystem
             }
 
             return found;
+        }
+        
+        public void EquipItem(GameItemInInventory item, int index)
+        {
+            if (item.Item is EquipableItemType equipableItem)
+            {
+                EquippedItems[index] = item;
+            }
+            else Debug.LogWarning("Item is not equipable.");
         }
 
         private void AddItemToInventory(GameItem item)

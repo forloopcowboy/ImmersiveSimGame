@@ -9,6 +9,6 @@ namespace Game.EquipmentSystem
         [InfoBox("The message to display when the item is used. Use $itemName to display the item name.")]
         public string useMessage = "used $itemName";
         
-        public abstract void Use(GameObject user);
+        public abstract void Use(GameItemInventory user);
     }
 }
