@@ -5351,6 +5351,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5774710485745073957, guid: 4ae25a9ed40e42b40b32935b8e8d1922,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774710485745073957, guid: 4ae25a9ed40e42b40b32935b8e8d1922,
+        type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
