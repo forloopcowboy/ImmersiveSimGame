@@ -59,6 +59,19 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         {
             HandleCharacterInput();
             HandleInteractionInput();
+            HandleMouseInput();
+        }
+
+        private void HandleMouseInput()
+        {
+            var currentlyHeldItem = Inventory.activelyHeldItem;
+            if (currentlyHeldItem != null && currentlyHeldItem.Item is UsableItemType equipableItem)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    equipableItem.Use(Inventory);
+                }
+            }
         }
 
         private void HandleInteractionInput()
