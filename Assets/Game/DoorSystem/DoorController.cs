@@ -11,9 +11,7 @@ namespace Game.DoorSystem
         public Rigidbody door;
         public DoorLock doorLock;
         public bool startLocked;
-        
-        public float multiplier = 1f;
-        
+
         [SerializeField] private StringConstant doorKey;
         
         [ShowInInspector]
@@ -35,6 +33,16 @@ namespace Game.DoorSystem
             {
                 Debug.Log("Not a valid key.");
             }
+        }
+
+        public void PushDoor(Transform source, float multiplier = 0.175f)
+        {
+            // if facing same direction as door forward, push with positive multiplier
+            // if facing opposite direction as door forward, push with negative multiplier
+            if (Vector3.Dot(source.forward, door.transform.forward) > 0)
+                door.AddRelativeTorque(door.transform.up * -multiplier, ForceMode.Impulse);
+            else
+                door.AddRelativeTorque(door.transform.up * multiplier, ForceMode.Impulse);
         }
         
         public void Lock()
@@ -80,8 +88,6 @@ namespace Game.DoorSystem
             
             isLocked = false;
             door.isKinematic = false;
-
-            door.AddRelativeTorque(door.transform.up * multiplier, ForceMode.Impulse);
 
             return true;
         }

@@ -92,22 +92,27 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 {
                     // ignore
                 }
-                else if (Interactor.TryToInteract<DoorController, string>(out var interactableObject, "default"))
+                else if (Interactor.TryToInteract<DoorController, string>(out var doorController, "default"))
                 {
-                    if (interactableObject.isLocked)
+                    if (doorController.isLocked)
                     {
                         Debug.Log("Door is locked. Looking for key...");
-                        var key = Inventory.ItemsInInventory.Find(item => item.Item is KeyItemType key && interactableObject.CanUnlock(key.password));
+                        var key = Inventory.ItemsInInventory.Find(item => item.Item is KeyItemType key && doorController.CanUnlock(key.password));
                         
                         if (key != null && key.Item is KeyItemType password)
                         {
-                            SceneEventBus.Emit(new NotificationEvent($"Unlocking {interactableObject.itemName}..."));
-                            interactableObject.Unlock(password);
+                            SceneEventBus.Emit(new NotificationEvent($"Unlocking {doorController.itemName}..."));
+                            doorController.Unlock(password);
+                            doorController.PushDoor(Character.transform);
                         }
                         else
                         {
-                            SceneEventBus.Emit(new NotificationEvent($"{interactableObject.itemName} is locked."));
+                            SceneEventBus.Emit(new NotificationEvent($"{doorController.itemName} is locked."));
                         }
+                    }
+                    else
+                    {
+                        doorController.PushDoor(Character.transform);
                     }
                 }
                 else

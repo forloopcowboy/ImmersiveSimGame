@@ -62,9 +62,7 @@ MonoBehaviour:
   door: {fileID: 7645797255500186152}
   doorLock: {fileID: 5611888260729074931}
   startLocked: 1
-  direction: {x: 0, y: 2.5, z: 0}
-  multiplier: 0.175
-  doorKey: default
+  doorKey: {fileID: 0}
 --- !u!1 &659411675485839457
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +349,7 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: 0
+    min: -110
     max: 110
     bounciness: 0.1
     bounceMinVelocity: 0.2
