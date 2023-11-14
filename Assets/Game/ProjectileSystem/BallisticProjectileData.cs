@@ -32,7 +32,7 @@ namespace Game.ProjectileSystem
                     obj.SetActive(true);
                     var rb = obj.GetComponentInChildren<Rigidbody>();
                     if (rb) {
-                      rb.velocity = Vector3.zero;
+                      if (!rb.isKinematic) rb.velocity = Vector3.zero;
                       rb.isKinematic = true;
                     }
                 },
@@ -41,11 +41,12 @@ namespace Game.ProjectileSystem
                     obj.SetActive(false);
                     var rb = obj.GetComponentInChildren<Rigidbody>();
                     if (rb) {
-                      rb.velocity = Vector3.zero;
+                      if (!rb.isKinematic) rb.velocity = Vector3.zero;
                       rb.isKinematic = true;
                     }
                 },
-                Destroy
+                Destroy,
+                10
             );
             
             var projectile = GameObjectPool.Singleton.Get(instanceId);

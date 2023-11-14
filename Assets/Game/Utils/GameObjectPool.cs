@@ -38,11 +38,12 @@ namespace Game.Utils
             Func<GameObject> createFunc,
             Action<GameObject> actionOnGet = null,
             Action<GameObject> actionOnRelease = null,
-            Action<GameObject> actionOnDestroy = null
+            Action<GameObject> actionOnDestroy = null,
+            int maxSize = 150
         )
         {
             if (!cache.ContainsKey(category)) 
-                Register(category, createFunc, actionOnGet, actionOnRelease, actionOnDestroy);
+                Register(category, createFunc, actionOnGet, actionOnRelease, actionOnDestroy, maxSize);
         }
         
         /// <summary>
@@ -53,7 +54,8 @@ namespace Game.Utils
             Func<GameObject> createFunc,
             Action<GameObject> actionOnGet = null,
             Action<GameObject> actionOnRelease = null,
-            Action<GameObject> actionOnDestroy = null
+            Action<GameObject> actionOnDestroy = null,
+            int maxSize = 150
         ) {
             Remove(category);
             
@@ -63,7 +65,8 @@ namespace Game.Utils
                     createFunc,
                     actionOnGet,
                     actionOnRelease,
-                    actionOnDestroy
+                    actionOnDestroy,
+                    maxSize: maxSize
                 )
             );
         }
