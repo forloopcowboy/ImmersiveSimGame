@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 544949461474834709}
   - component: {fileID: 4038420522937370489}
   - component: {fileID: 3793861103091790018}
+  - component: {fileID: 4343828681635063695}
   m_Layer: 0
   m_Name: Flames
   m_TagString: Untagged
@@ -80,6 +81,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4343828681635063695}
+        m_TargetAssemblyTypeName: Game.Utils.ObjectDisappear, Utils
+        m_MethodName: Disappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3793861103091790018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +115,46 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   targetParticleSystem: {fileID: 8029354972053076281}
+--- !u!114 &4343828681635063695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942523887969210960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f64f80cd6124b3a9dbbc07edae22130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 1
+  delay: 2
+  animateOnEnable: 0
+  disappearMode: 0
 --- !u!1 &8165936081707800941
 GameObject:
   m_ObjectHideFlags: 0

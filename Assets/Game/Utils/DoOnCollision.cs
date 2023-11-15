@@ -22,6 +22,12 @@ namespace Game.Utils
         {
             _iteration = iterations;
         }
+        
+        private void OnEnable()
+        {
+            _currentCount = 0;
+            _iteration = 1;
+        }
 
         private void OnCollisionEnter(Collision other)
         {

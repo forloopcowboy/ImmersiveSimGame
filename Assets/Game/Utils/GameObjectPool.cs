@@ -81,10 +81,10 @@ namespace Game.Utils
 
         public void Release(string category, GameObject obj)
         {
-            if (category != null && cache.ContainsKey(category)) 
+            if (category != null && cache.ContainsKey(category))
+            {
                 cache[category].Release(obj);
-
-            throw new IndexOutOfRangeException(
+            } else throw new IndexOutOfRangeException(
                 $"Could not find a pool for category {category}. Please register it using the Register() method.");
         }
 

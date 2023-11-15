@@ -5494,41 +5494,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames
       objectReference: {fileID: 0}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1612019728891657794}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Disappear
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Game.Utils.ObjectDisappear, Utils
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -5538,58 +5503,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3942523887969210960, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1612019728891657794}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390e397278d44c54e8d8ba9d7e93bf72, type: 3}
---- !u!1 &1612019728891657793 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3942523887969210960, guid: 390e397278d44c54e8d8ba9d7e93bf72,
-    type: 3}
-  m_PrefabInstance: {fileID: 1612019728891657792}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1612019728891657794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612019728891657793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f64f80cd6124b3a9dbbc07edae22130, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disappearCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  duration: 1
-  delay: 2
-  animateOnEnable: 0
-  disappearMode: 0
 --- !u!1001 &2390422641257145315
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,6 +18,12 @@ namespace Game.Utils.EventBusModule
         
         private int _currentCount = 0;
         private int _iteration = 1;
+
+        private void OnEnable()
+        {
+            _currentCount = 0;
+            _iteration = 1;
+        }
 
         private void OnTriggerEnter(Collider other)
         {

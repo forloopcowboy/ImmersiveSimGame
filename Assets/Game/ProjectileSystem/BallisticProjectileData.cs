@@ -1,6 +1,7 @@
 using System;
 using Game.EquipmentSystem;
 using Game.Utils;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.ProjectileSystem
@@ -9,6 +10,9 @@ namespace Game.ProjectileSystem
     public class BallisticProjectileData : AbstractProjectileData
     {
         public float launchSpeed;
+        public bool autoRepool = true;
+        [ShowIf("autoRepool")]
+        public float autoRepoolDelay = 5f;
 
         public override void Use(GameItemInventory user)
         {
@@ -60,7 +64,7 @@ namespace Game.ProjectileSystem
               rb.AddForce(spawnPoint.forward * launchSpeed, ForceMode.VelocityChange);
             }
             
-            GameObjectPool.Singleton.ReleaseIn(instanceId, projectile, 45f);
+            if (autoRepool) GameObjectPool.Singleton.ReleaseIn(instanceId, projectile, autoRepoolDelay);
         }
     }
 }

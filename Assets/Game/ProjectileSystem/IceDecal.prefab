@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2630160431870637882}
   - component: {fileID: 4077965076418762356}
+  - component: {fileID: 6940988855599163790}
   m_Layer: 0
   m_Name: IceDecal
   m_TagString: Untagged
@@ -56,3 +57,52 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 0.5}
   m_Size: {x: 1, y: 1, z: 1}
   m_FadeFactor: 1
+--- !u!114 &6940988855599163790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233216423728265415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f64f80cd6124b3a9dbbc07edae22130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6201248
+      value: 0.5370098
+      inSlope: -2.9334478
+      outSlope: -2.9334478
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07948641
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 20
+  delay: 0
+  animateOnEnable: 1
+  disappearMode: 0

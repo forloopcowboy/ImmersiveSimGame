@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Game.Utils
 {
@@ -16,9 +17,13 @@ namespace Game.Utils
         public bool animateOnEnable = false;
         public DisappearMode disappearMode = DisappearMode.Destroy;
 
+        // Handle decals
+        private DecalProjector _decalProjector;
+        
         private void OnEnable()
         {
-            transform.localScale = new Vector3(1,1,1);
+            SetScale(1);
+            _decalProjector = GetComponentInChildren<DecalProjector>();
             
             if (animateOnEnable)
             {
@@ -43,14 +48,14 @@ namespace Game.Utils
             while (timer < duration)
             {
                 float scale = disappearCurve.Evaluate(timer / duration);
-                transform.localScale = new Vector3(scale, scale, scale);
+                SetScale(scale);
 
                 timer += Time.deltaTime;
                 yield return null;
             }
 
             // Ensure the final scale is set
-            transform.localScale = Vector3.zero;
+            SetScale(0f);
 
             // Decide whether to destroy or disable the object
             if (disappearMode == DisappearMode.Destroy)
@@ -63,6 +68,15 @@ namespace Game.Utils
                 Debug.Log($"{name} Disabled");
                 gameObject.SetActive(false);
             }
+        }
+
+        private void SetScale(float scale)
+        {
+            var scale3d = new Vector3(scale, scale, scale);
+            
+            if (_decalProjector != null)
+                _decalProjector.size = scale3d;
+            else transform.localScale = scale3d;
         }
     }
 
