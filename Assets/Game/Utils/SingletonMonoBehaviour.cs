@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,8 +7,9 @@ namespace Game.Utils
     public class SingletonMonoBehaviour<T> : SerializedMonoBehaviour
         where T : Component
     {
-        public static bool IsInitialized => _instance != null;
+        public static bool IsInitialized = false;
         
+
         private static T _instance;
         public static T Singleton
         {

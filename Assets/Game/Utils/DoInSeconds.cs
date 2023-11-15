@@ -24,5 +24,10 @@ namespace Game.Utils
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
         }
+        
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
+        }
     }
 }

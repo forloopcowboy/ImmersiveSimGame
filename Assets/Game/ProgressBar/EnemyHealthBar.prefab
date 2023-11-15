@@ -291,7 +291,8 @@ MonoBehaviour:
   objectToCheck: {fileID: 0}
   raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 3145779
+    m_Bits: 3145777
+  offsetPercentage: 0.55
   onIsVisible:
     m_PersistentCalls:
       m_Calls:

@@ -21,9 +21,9 @@ namespace Game.Src.EventBusModule
         private List<Type> activeEventTypes => bus.GetActiveEvents();
 
         /** Emits an event to all handlers of TEvent. */
-        public static void Emit<TEvent>(TEvent @event) => Singleton.bus.Emit(@event);
+        public static void Emit<TEvent>(TEvent @event) => Singleton?.bus.Emit(@event);
         
         /** Subscribes to all events TEvent. @returns Action to unsubscribe. */
-        public static Action Subscribe<TEvent>(Action<TEvent> handler) => Singleton.bus.Subscribe(handler);
+        public static Action Subscribe<TEvent>(Action<TEvent> handler) => Singleton?.bus.Subscribe(handler);
     }
 }

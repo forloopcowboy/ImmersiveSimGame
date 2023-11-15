@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +19,8 @@ namespace Game.Utils
         {
             objectToCheck ??= transform;
             _mainCamera ??= Camera.main;
+
+            StartCoroutine(UpdateVisibility());
         }
 
         // Check if the object is visible from the Camera.main without obstructions
@@ -52,7 +55,7 @@ namespace Game.Utils
             // Check for obstructions using rays from the camera through each corner of the bounding box
             Bounds objectBounds = GetBoundingBox(objectTransform);
 
-            Vector3[] corners = new Vector3[8];
+            Vector3[] corners = new Vector3[9];
             corners[0] = Vector3.Lerp(objectBounds.min, objectBounds.center, offsetPercentage);
             corners[1] = Vector3.Lerp(new Vector3(objectBounds.min.x, objectBounds.min.y, objectBounds.max.z), objectBounds.center, offsetPercentage);
             corners[2] = Vector3.Lerp(new Vector3(objectBounds.min.x, objectBounds.max.y, objectBounds.min.z), objectBounds.center, offsetPercentage);
@@ -61,20 +64,20 @@ namespace Game.Utils
             corners[5] = Vector3.Lerp(new Vector3(objectBounds.max.x, objectBounds.min.y, objectBounds.max.z), objectBounds.center, offsetPercentage);
             corners[6] = Vector3.Lerp(new Vector3(objectBounds.max.x, objectBounds.max.y, objectBounds.min.z), objectBounds.center, offsetPercentage);
             corners[7] = Vector3.Lerp(objectBounds.max, objectBounds.center, offsetPercentage);
+            corners[8] = objectBounds.center;
 
             foreach (Vector3 corner in corners)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(mainCamera.transform.position, corner - mainCamera.transform.position, out hit, 700f, raycastLayer))
                 {
-                    if (objectTransform.name == "Capsule") Debug.Log($"Hit {hit.transform.name}. Looking for {objectTransform.name}");
-                    
                     // Draw a debug line to visualize the raycast
                     Debug.DrawLine(mainCamera.transform.position, hit.point, hit.transform.GetInstanceID() == objectTransform.GetInstanceID() ? Color.green : Color.red);
 
                     // If the hit object is not the object we are checking, there is an obstruction
                     if (hit.transform != objectTransform)
                     {
+                        Debug.Log($"Object is obstructed by {hit.transform.name}");
                         continue;
                     }
                     
@@ -105,17 +108,22 @@ namespace Game.Utils
         }
 
         // Example usage:
-        void Update()
+        IEnumerator UpdateVisibility()
         {
-            if (IsVisibleFromCamera(objectToCheck, _mainCamera, raycastLayerMask, offsetPercentage))
+            while (true)
             {
-                onIsVisible?.Invoke();
-                Debug.Log("Object is visible!");
-            }
-            else
-            {
-                onIsNotVisible?.Invoke();
-                Debug.Log("Object is not visible.");
+                if (IsVisibleFromCamera(objectToCheck, _mainCamera, raycastLayerMask, offsetPercentage))
+                {
+                    onIsVisible?.Invoke();
+                    Debug.Log("Object is visible!");
+                }
+                else
+                {
+                    onIsNotVisible?.Invoke();
+                    Debug.Log("Object is not visible.");
+                }
+                
+                yield return new WaitForSeconds(0.05f);
             }
         }
     }

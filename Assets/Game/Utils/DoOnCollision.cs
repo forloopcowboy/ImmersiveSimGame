@@ -13,8 +13,9 @@ namespace Game.Utils
         
         [InfoBox("Action to execute when the number of collisions is reached.")]
         public UnityEngine.Events.UnityEvent action;
+        public UnityEngine.Events.UnityEvent onReset;
         public UnityEngine.Events.UnityEvent<Collision> onCollision;
-        
+
         private int _currentCount = 0;
         private int _iteration = 1;
 
@@ -27,6 +28,8 @@ namespace Game.Utils
         {
             _currentCount = 0;
             _iteration = 1;
+            
+            onReset?.Invoke();
         }
 
         private void OnCollisionEnter(Collision other)

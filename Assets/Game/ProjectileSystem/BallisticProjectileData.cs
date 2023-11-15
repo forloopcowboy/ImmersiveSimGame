@@ -33,10 +33,12 @@ namespace Game.ProjectileSystem
                 },
                 obj =>
                 {
+                    obj.transform.SetParent(null);
                     obj.SetActive(true);
                     var rb = obj.GetComponentInChildren<Rigidbody>();
                     if (rb) {
                       if (!rb.isKinematic) rb.velocity = Vector3.zero;
+                      rb.detectCollisions = true;
                       rb.isKinematic = true;
                     }
                 },

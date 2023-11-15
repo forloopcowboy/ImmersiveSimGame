@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 372577728148438960}
   - component: {fileID: 3484301029598748226}
   - component: {fileID: 323496830462341919}
+  - component: {fileID: 6211057412891064367}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -159,6 +160,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   count: 1
+  iterations: 1
   action:
     m_PersistentCalls:
       m_Calls:
@@ -189,6 +191,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6211057412891064367}
+        m_TargetAssemblyTypeName: Game.HealthSystem.DamageComponent, HealthSystem
+        m_MethodName: DamageOnCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &323496830462341919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +217,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfaceTypeTag: {fileID: 0}
   prefab: {fileID: 1828176872806910, guid: 1723cf54253cf61458362d94bbf83003, type: 3}
+--- !u!114 &6211057412891064367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475214457611752613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdfad6469184dc19fdd943f191d6819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: d79ccbcf51c519741affff4aeeb1c924, type: 2}
 --- !u!1 &5979911010678653349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5109,9 +5136,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1143362546012034761}
     m_Modifications:
+    - target: {fileID: 1866692896978666, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_Name
       value: FireBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4209731392266258, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_LocalScale.x
