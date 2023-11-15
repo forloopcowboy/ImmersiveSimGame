@@ -5587,6 +5587,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 1
+  delay: 2
   animateOnEnable: 0
   disappearMode: 0
 --- !u!1001 &2390422641257145315

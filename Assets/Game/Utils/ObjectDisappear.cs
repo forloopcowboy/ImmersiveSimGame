@@ -12,6 +12,7 @@ namespace Game.Utils
     {
         public AnimationCurve disappearCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
         public float duration = 1.0f;
+        public float delay = 0f;
         public bool animateOnEnable = false;
         public DisappearMode disappearMode = DisappearMode.Destroy;
 
@@ -32,6 +33,11 @@ namespace Game.Utils
 
         private System.Collections.IEnumerator DisappearCoroutine()
         {
+            if (delay > 0.000001f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
+            
             float timer = 0f;
 
             while (timer < duration)

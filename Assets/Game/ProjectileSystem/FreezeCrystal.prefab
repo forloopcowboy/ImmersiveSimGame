@@ -567,6 +567,15 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.9183921
+      value: 0.63861775
+      inSlope: -0.03299599
+      outSlope: -0.03299599
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
       time: 1
       value: 0
       inSlope: 0
@@ -579,6 +588,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 2
+  delay: 1
   animateOnEnable: 0
   disappearMode: 1
 --- !u!1001 &8300479450460395212
