@@ -28,5 +28,32 @@ namespace Game.Utils
             Debug.Log("Transform not found with name: " + transformName);
             return null;
         }
+        
+        public static TComponent GetOrElseAddComponent<TComponent> (this GameObject gObj)
+            where TComponent : UnityEngine.Component
+        {
+            TComponent c = gObj.GetComponent<TComponent>();
+            if (c == null) c = gObj.gameObject.AddComponent<TComponent>();
+
+            return c;
+        }
+        
+        public static TComponent GetOrElseAddComponent<TComponent> (this Component gObj)
+            where TComponent : UnityEngine.Component
+        {
+            TComponent c = gObj.GetComponent<TComponent>();
+            if (c == null) c = gObj.gameObject.AddComponent<TComponent>();
+
+            return c;
+        }
+        
+        public static TComponent GetOrElseAddComponent<TComponent> (this Transform gObj)
+            where TComponent : UnityEngine.Component
+        {
+            TComponent c = gObj.GetComponent<TComponent>();
+            if (c == null) c = gObj.gameObject.AddComponent<TComponent>();
+
+            return c;
+        }
     }
 }

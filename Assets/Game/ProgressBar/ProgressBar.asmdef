@@ -2,7 +2,8 @@
     "name": "ProgressBar",
     "rootNamespace": "",
     "references": [
-        "GUID:e522abf7b66a4d5490e934c487879913"
+        "GUID:e522abf7b66a4d5490e934c487879913",
+        "GUID:650285d4250223242888860c303ad68e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
