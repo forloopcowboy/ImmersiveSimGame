@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using System;
+using Sirenix.OdinInspector;
 
 namespace KinematicCharacterController.Examples
 {
@@ -26,6 +27,7 @@ namespace KinematicCharacterController.Examples
         public bool CrouchDown;
         public bool CrouchUp;
         public bool SprintDown;
+        public bool SprintUp;
     }
 
     public struct AICharacterInputs
@@ -47,8 +49,8 @@ namespace KinematicCharacterController.Examples
 
         [Header("Stable Movement")]
         public float MaxStableMoveSpeed = 10f;
-        [Range(1, 3)]
-        public float SprintMultiplier = 1.3f;
+        [Range(0.0001f, 3)]
+        public float SprintMultiplier = .3f;
         public float StableMovementSharpness = 15f;
         public float OrientationSharpness = 10f;
         public OrientationMethod OrientationMethod = OrientationMethod.TowardsCamera;
@@ -88,6 +90,7 @@ namespace KinematicCharacterController.Examples
         private Vector3 _internalVelocityAdd = Vector3.zero;
         private bool _shouldBeCrouching = false;
         private bool _isCrouching = false;
+        [ShowInInspector, ReadOnly]
         private bool _sprintRequested = false;
 
         private Vector3 lastInnerNormal = Vector3.zero;
@@ -203,7 +206,7 @@ namespace KinematicCharacterController.Examples
                         {
                             _sprintRequested = true;
                         }
-                        else _sprintRequested = false;
+                        else if (inputs.SprintUp) _sprintRequested = false;
 
                         break;
                     }
@@ -308,8 +311,11 @@ namespace KinematicCharacterController.Examples
                             // Calculate target velocity
                             Vector3 inputRight = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
                             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized * _moveInputVector.magnitude;
-                            Vector3 targetMovementVelocity = reorientedInput * MaxStableMoveSpeed * (_sprintRequested ? SprintMultiplier : 1f);
-
+                            Vector3 targetMovementVelocity = reorientedInput * MaxStableMoveSpeed;
+                            
+                            // Handle sprinting
+                            if (_sprintRequested) AddVelocity(reorientedInput * (MaxStableMoveSpeed * SprintMultiplier));
+                            
                             // Smooth movement Velocity
                             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-StableMovementSharpness * deltaTime));
                         }

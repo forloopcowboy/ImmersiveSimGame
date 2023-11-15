@@ -177,6 +177,8 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
             characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
             characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
+            characterInputs.SprintDown = Input.GetKeyDown(KeyCode.LeftShift);
+            characterInputs.SprintUp = Input.GetKeyUp(KeyCode.LeftShift);
 
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);
