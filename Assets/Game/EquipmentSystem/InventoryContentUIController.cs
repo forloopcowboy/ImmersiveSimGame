@@ -152,7 +152,7 @@ namespace Game.EquipmentSystem
                     if (nextIndex != -1) for (var i = 0; i < thumbnails.Count; i++)
                     {
                         var thumbnail = thumbnails[i];
-                        if (i == nextIndex)
+                        if (i == nextIndex && thumbnail != null && thumbnail.GameItemInInventory?.Item != null)
                         {
                             Debug.Log($"Item to select: {thumbnail.GameItemInInventory.Item.name}");
                             thumbnail.button.Select();

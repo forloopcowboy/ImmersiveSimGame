@@ -7,9 +7,9 @@ namespace Game.HealthSystem
     public enum DamageMethod
     {
         Fixed,
-        InstantKill,
+        FullHealth,
         Percentage,
-        RandomBetweenRange,
+        RandomBetweenRange
     }
     
     [CreateAssetMenu(fileName = "Untitled DamageSettings", menuName = "Health/New DamageSettings", order = 0)]
@@ -28,18 +28,18 @@ namespace Game.HealthSystem
         public float cooldownInSeconds;
         
         public bool IsFixed => method == DamageMethod.Fixed;
-        public bool IsInstantKill => method == DamageMethod.InstantKill;
+        public bool IsInstantKill => method == DamageMethod.FullHealth;
         public bool IsPercentage => method == DamageMethod.Percentage;
         public bool IsRandomBetweenRange => method == DamageMethod.RandomBetweenRange;
 
-        public float GetDamageValue(float currentHealth)
+        public float GetValue(float currentHealth)
         {
             switch (method)
             {
                 case DamageMethod.Fixed:
                     return fixedDamage;
-                case DamageMethod.InstantKill:
-                    return currentHealth;
+                case DamageMethod.FullHealth:
+                    return Single.MaxValue;
                 case DamageMethod.Percentage:
                     return percentageDamage * currentHealth;
                 case DamageMethod.RandomBetweenRange:

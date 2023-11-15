@@ -22,7 +22,7 @@ namespace Game.HealthSystem
             }
 
             lastDamageTime = DateTime.Now;
-            return settings.GetDamageValue(currentHealthValue);
+            return settings.GetValue(currentHealthValue);
         }
         
         /// <summary>

@@ -21,6 +21,18 @@ namespace Game.HealthSystem
             isDead = settings.isDead;
         }
 
+        public void Heal(float amount)
+        {
+            if (isDead)
+                return;
+            
+            currentHealth += amount;
+            if (currentHealth > settings.maxHealth)
+                currentHealth = settings.maxHealth;
+            
+            Debug.Log($"{name} healed for {amount}! Current health: {currentHealth}");
+        }
+        
         public void TakeDamage(float damage)
         {
             if (settings.isInvincible || isDead)
