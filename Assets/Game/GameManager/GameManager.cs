@@ -77,7 +77,7 @@ namespace Game.GameManager
 
         public void LoadScenes(LoadSceneMode mode, params int[] scenes)
         {
-            loadingScreen.SetActive(true);
+            if (loadingScreen != null) loadingScreen.SetActive(true);
             
             var totalScenes = scenes.Length;
             List<AsyncOperation> loadingProcesses = new List<AsyncOperation>(totalScenes);
@@ -104,7 +104,7 @@ namespace Game.GameManager
                 yield return checkInterval;
             }
             
-            loadingScreen.SetActive(false);
+            if (loadingScreen != null) loadingScreen.SetActive(false);
             onLoadingFinished?.Invoke();
         }
         

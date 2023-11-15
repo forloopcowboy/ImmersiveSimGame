@@ -15,7 +15,8 @@ namespace Game.ProjectileSystem
             var spawnPosition = other.contacts[0].point + other.contacts[0].normal.normalized * 0.1f;
             var spawnRotation = Quaternion.LookRotation(other.contacts[0].normal * -1);
             
-            Instantiate(prefab, spawnPosition, spawnRotation);
+            var instance = Instantiate(prefab, spawnPosition, spawnRotation);
+            instance.transform.SetParent(other.transform, true);
         }
     }
 }

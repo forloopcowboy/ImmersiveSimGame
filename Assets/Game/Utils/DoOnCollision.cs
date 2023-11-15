@@ -44,5 +44,17 @@ namespace Game.Utils
         {
             Destroy(gameObject, delay);
         }
+
+        public void StickToCollidedObject(Collision collision)
+        {
+            var rb = GetComponentInChildren<Rigidbody>();
+            
+            if (rb != null)
+            {
+                rb.detectCollisions = false;
+                rb.isKinematic = true;
+                transform.SetParent(collision.transform.localScale != Vector3.one ? collision.transform.parent : collision.transform, true);
+            }
+        }
     }
 }
