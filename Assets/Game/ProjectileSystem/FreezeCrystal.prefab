@@ -106,6 +106,105 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: c680ee11700df9844a288cf648e21ce8, type: 3}
+--- !u!1 &5589723659120298762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2170121954652623119}
+  - component: {fileID: 6201580910493654080}
+  - component: {fileID: 4161005645703481590}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2170121954652623119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589723659120298762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071065, y: -0, z: -0, w: 0.7071071}
+  m_LocalPosition: {x: 0.385, y: -0.014, z: 0.088}
+  m_LocalScale: {x: 0.001249644, y: 0.001249644, z: 0.001249644}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6689475289405094245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6201580910493654080
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589723659120298762}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 524288
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: c680ee11700df9844a288cf648e21ce8, type: 3}
+--- !u!114 &4161005645703481590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589723659120298762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c463c08be66f434bbd68cf928cdb062b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  count: 1
+  iterations: 3
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2986908514393734305}
+        m_TargetAssemblyTypeName: Game.HealthSystem.DamageComponent, HealthSystem
+        m_MethodName: DamageOnTrigger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6313513387792671711
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +220,8 @@ GameObject:
   - component: {fileID: 2919576383392476401}
   - component: {fileID: 6872710203789946657}
   - component: {fileID: 6535675287100198485}
+  - component: {fileID: -2986908514393734305}
+  - component: {fileID: 2238015809821475876}
   m_Layer: 0
   m_Name: FreezeCrystal
   m_TagString: Untagged
@@ -143,6 +244,7 @@ Transform:
   m_Children:
   - {fileID: 6099560992439748669}
   - {fileID: 6176050295242264771}
+  - {fileID: 2170121954652623119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &352276127105024331
@@ -238,12 +340,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2238015809821475876}
+        m_TargetAssemblyTypeName: Game.Utils.ObjectDisappear, Utils
+        m_MethodName: Disappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onCollision:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 352276127105024331}
         m_TargetAssemblyTypeName: Game.ProjectileSystem.ObjectSpawner, ProjectileSystem
         m_MethodName: SpawnOnCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -2986908514393734305}
+        m_TargetAssemblyTypeName: Game.HealthSystem.DamageComponent, HealthSystem
+        m_MethodName: DamageOnCollision
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -403,6 +529,58 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-2986908514393734305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313513387792671711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdfad6469184dc19fdd943f191d6819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: e9c53fda60ef0f14092a94f7bba46228, type: 2}
+--- !u!114 &2238015809821475876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313513387792671711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f64f80cd6124b3a9dbbc07edae22130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 2
+  animateOnEnable: 0
+  disappearMode: 1
 --- !u!1001 &8300479450460395212
 PrefabInstance:
   m_ObjectHideFlags: 0

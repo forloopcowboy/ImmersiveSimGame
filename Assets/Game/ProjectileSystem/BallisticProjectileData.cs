@@ -16,7 +16,7 @@ namespace Game.ProjectileSystem
             if (!spawnPoint)
                 throw new NullReferenceException("ProjectileSpawnPoint not found on user. Please attach a ProjectileSpawnPoint to the user, and ensure it's forward vector indicates the desired launch direction.");
 
-            var instanceId = GetInstanceID().ToString();
+            var instanceId = ItemName; // todo: use something better here
             
             GameObjectPool.Singleton.RegisterIfNotAlready(
                 instanceId, // pooled by projectile data type
