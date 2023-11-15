@@ -64,6 +64,8 @@ namespace Game.ProjectileSystem
               rb.AddForce(spawnPoint.forward * launchSpeed, ForceMode.VelocityChange);
             }
             
+            base.Use(user); // handle consumption
+            
             if (autoRepool) GameObjectPool.Singleton.ReleaseIn(instanceId, projectile, autoRepoolDelay);
         }
     }

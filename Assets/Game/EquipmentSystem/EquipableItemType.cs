@@ -1,18 +1,23 @@
+using System.Linq;
+using Game.InteractionSystem;
+using Game.Src.EventBusModule;
 using UnityEngine;
 
 namespace Game.EquipmentSystem
 {
     // TODO: Make this abstract
     [CreateAssetMenu(fileName = "Equipable Item", menuName = "GameItem/New EquipableItemType", order = 0)]
-    public class EquipableItemType : UsableItemType
+    public abstract class EquipableItemType : UsableItemType
     {
-        public override void Use(GameItemInventory user)
+        public void Equip(GameItemInventory user)
         {
-            // TODO: Make extension for projectile consumable item
-            // Using this item while equipped will fire a projectile
-            // make projectile do damage to dummy
-            // copy paste code from progress bar to make a health bar
-            Debug.Log("Equipable items cannot be used yet.");
+            var gameItemInInventory = user.ItemsInInventory.First(i => i.Item.GetInstanceID() == GetInstanceID());
+            if (gameItemInInventory == null) throw new System.Exception("Item not found in inventory. Can only equip items from inventory.");
+            
+            SceneEventBus.Emit(new TryEquipItemEvent(gameItemInInventory));
+            SceneEventBus.Emit(new NotificationEvent($"Press number 1...9 to equip {gameItemInInventory.Item.ItemName}."));
+            
+            user.HoldItem(gameItemInInventory);
         }
     }
 }

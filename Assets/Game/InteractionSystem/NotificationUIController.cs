@@ -14,17 +14,25 @@ namespace Game.InteractionSystem
         public float notificationDuration = 5f;
         public float rollOutSpeed = 1f;
         public bool showNotification;
+        public Vector3 outOfScreenOffset = new Vector3(-200, 0, 0);
 
         private Vector3 initialPosition;
         private Vector3 outOfScreenPosition;
 
-        public void Start()
+        private Action unsub;
+
+        public void OnEnable()
         {
-            SceneEventBus.Subscribe<NotificationEvent>(OnNotificationEvent);
+            unsub = SceneEventBus.Subscribe<NotificationEvent>(OnNotificationEvent);
             
             notificationUIContainer.gameObject.SetActive(false);
             initialPosition = notificationUIContainer.position;
-            outOfScreenPosition = new Vector3(initialPosition.x - 280, initialPosition.y, initialPosition.z);
+            outOfScreenPosition = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z) + outOfScreenOffset;
+        }
+
+        private void OnDisable()
+        {
+            unsub?.Invoke();
         }
 
         private void Update()
@@ -41,7 +49,7 @@ namespace Game.InteractionSystem
             
             if (DateTime.Now - lastNotificationTime > TimeSpan.FromSeconds(notificationDuration))
             {
-                if (notificationUIContainer.position.y < -50)
+                if (Vector3.Distance(notificationUIContainer.position, outOfScreenPosition) < 0.1f)
                 {
                     notificationUIContainer.gameObject.SetActive(false);
                     notificationUIContainer.position = initialPosition;

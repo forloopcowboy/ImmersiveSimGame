@@ -72,11 +72,9 @@ namespace Game.Utils
 
         private void SetScale(float scale)
         {
-            var scale3d = new Vector3(scale, scale, scale);
-            
             if (_decalProjector != null)
-                _decalProjector.size = scale3d;
-            else transform.localScale = scale3d;
+                _decalProjector.size = new Vector3(scale, scale, _decalProjector.size.z);
+            else transform.localScale = new Vector3(scale, scale, scale);
         }
     }
 

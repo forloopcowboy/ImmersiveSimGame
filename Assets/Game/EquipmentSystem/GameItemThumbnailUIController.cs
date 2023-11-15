@@ -31,7 +31,7 @@ namespace Game.EquipmentSystem
 
         private void Update()
         {
-            if (GameItemInInventory == null || GameItemInInventory.Item == null)
+            if (GameItemInInventory == null || GameItemInInventory.Item == null || GameItemInInventory.Quantity <= 0)
             {
                 quantityText.transform.parent.gameObject.SetActive(false);
                 itemThumbnailImage.enabled = false;
@@ -59,15 +59,12 @@ namespace Game.EquipmentSystem
         
         public void OnClick()
         {
-            if (GameItemInInventory.Item is EquipableItemType)
-            {
-                SceneEventBus.Emit(new TryEquipItemEvent(GameItemInInventory));
-                GameItemInInventory.Inventory.HoldItem(GameItemInInventory);
-            }
+            if (GameItemInInventory.Item is EquipableItemType equipableItemType)
+                equipableItemType.Equip(GameItemInInventory.Inventory);
             else if (GameItemInInventory.Item is UsableItemType usableItemType)
             {
                 usableItemType.Use(GameItemInInventory.Inventory);
-                SceneEventBus.Emit(new NotificationEvent(usableItemType.useMessage.Replace("$itemName", usableItemType.ItemName)));
+                usableItemType.EmitUseMessage();
             }
             else
             {

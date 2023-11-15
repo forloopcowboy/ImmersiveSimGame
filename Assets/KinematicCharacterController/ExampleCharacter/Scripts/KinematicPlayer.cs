@@ -64,13 +64,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void HandleMouseInput()
         {
-            var currentlyHeldItem = Inventory.activelyHeldItem;
-            if (currentlyHeldItem != null && currentlyHeldItem.Item is UsableItemType equipableItem)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    equipableItem.Use(Inventory);
-                }
+                Inventory.UseItemInHand();
             }
         }
 

@@ -80,7 +80,7 @@ namespace Game.EquipmentSystem
                 uiItem.button.enabled = false;
                 uiItem.button.targetGraphic.enabled = false;
                 
-                if (item == Inventory.activelyHeldItem)
+                if (item == Inventory.activelyHeldItem && item != null && item.Quantity > 0)
                 {
                     uiItem.button.targetGraphic.enabled = true;
                 }

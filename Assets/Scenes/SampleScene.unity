@@ -2557,6 +2557,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6943138141079426756, guid: 41298c6ff2dd79f4485adca15b109283,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2747,6 +2752,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943138141079426756, guid: 41298c6ff2dd79f4485adca15b109283,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3100,6 +3110,11 @@ PrefabInstance:
     - target: {fileID: 1592598311196874403, guid: 6074241c127d41b4092a52dfc1033031,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034939818430867814, guid: 6074241c127d41b4092a52dfc1033031,
+        type: 3}
+      propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4122,6 +4137,7 @@ MonoBehaviour:
   notificationDuration: 3
   rollOutSpeed: 10
   showNotification: 0
+  outOfScreenOffset: {x: 500, y: 0, z: 0}
 --- !u!1 &1437692278
 GameObject:
   m_ObjectHideFlags: 0
@@ -6241,6 +6257,11 @@ PrefabInstance:
     - target: {fileID: 2630160431870637882, guid: 8343c08b423f72149b63333ae4c2bda3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940988855599163790, guid: 8343c08b423f72149b63333ae4c2bda3,
+        type: 3}
+      propertyPath: animateOnEnable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

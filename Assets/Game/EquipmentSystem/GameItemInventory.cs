@@ -69,6 +69,25 @@ namespace Game.EquipmentSystem
             
             Destroy(item.gameObject);
         }
+
+        public void ConsumeItem(GameItemType type, int quantity = 1)
+        {
+            if (quantity < 1) throw new Exception("Quantity must be at least 1.");
+            
+            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == type.GetInstanceID());
+            if (itemInInventory != null)
+                itemInInventory.Quantity -= quantity;
+        }
+
+        public void UseItemInHand()
+        {
+            var currentlyHeldItem = activelyHeldItem;
+            if (currentlyHeldItem != null && currentlyHeldItem.Item is UsableItemType equipableItem && currentlyHeldItem.Quantity > 0)
+            {
+                equipableItem.Use(this);
+                equipableItem.EmitUseMessage();
+            }
+        }
     }
 
     [Serializable]

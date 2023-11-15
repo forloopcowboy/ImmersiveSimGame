@@ -103,6 +103,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 20
-  delay: 0
+  delay: 5
   animateOnEnable: 1
   disappearMode: 0

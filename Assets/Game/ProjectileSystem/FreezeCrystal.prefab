@@ -261,7 +261,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfaceTypeTag: {fileID: 0}
   prefab: {fileID: 1233216423728265415, guid: 8343c08b423f72149b63333ae4c2bda3, type: 3}
-  destroyDelay: 35
 --- !u!54 &6846192998757176008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -567,15 +566,6 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9183921
-      value: 0.63861775
-      inSlope: -0.03299599
-      outSlope: -0.03299599
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 1
-    - serializedVersion: 3
       time: 1
       value: 0
       inSlope: 0
@@ -587,8 +577,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  duration: 10
-  delay: 3
+  duration: 5
+  delay: 8
   animateOnEnable: 0
   disappearMode: 1
 --- !u!1001 &8300479450460395212
