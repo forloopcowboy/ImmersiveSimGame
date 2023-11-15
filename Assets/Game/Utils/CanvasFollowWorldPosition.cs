@@ -8,6 +8,7 @@ namespace Game.Utils
         [Header("Tweaks")] 
         public Transform lookAt;
         public Vector3 offset;
+        public Vector3 lookAtOffset = Vector3.zero;
         public Canvas canvas;
 
         // //
@@ -32,7 +33,7 @@ namespace Game.Utils
 
             if (lookAtIsNotVisible) return;
             
-            Vector2 adjustedPosition = cam.WorldToScreenPoint(lookAt.position) + offset;
+            Vector2 adjustedPosition = cam.WorldToScreenPoint(lookAt.position + lookAtOffset) + offset;
 
             var canvasRT = canvas.GetComponent<RectTransform>();
             var rect = canvasRT.rect;

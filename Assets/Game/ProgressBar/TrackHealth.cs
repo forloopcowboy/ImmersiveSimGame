@@ -26,7 +26,10 @@ namespace Game.ProgressBar
             if (_health.isDead && !_notifiedDeath)
             {
                 _notifiedDeath = true;
-                SceneEventBus.Emit(new StopTrackingHealthEvent(_health));
+                StartCoroutine(CoroutineHelpers.DelayedAction(1.25f, () =>
+                {
+                    SceneEventBus.Emit(new StopTrackingHealthEvent(_health));
+                }));
             }
         }
 

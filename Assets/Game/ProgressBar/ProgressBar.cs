@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,16 @@ namespace Game.ProgressBar
         public void Toggle(bool value)
         {
             foreach (var image in GetImages) image.enabled = value;
+        }
+
+        private void OnEnable()
+        {
+            Show();
+        }
+        
+        private void OnDisable()
+        {
+            Hide();
         }
 
         public void Show() => Toggle(true);

@@ -35,9 +35,13 @@ namespace Game.ProgressBar
             if (_trackedHealthbars.TryGetValue(obj.health, out HealthBar healthBar))
             {
                 healthBar.health = obj.health;
+                
                 var positionFollower = healthBar.GetOrElseAddComponent<CanvasFollowWorldPosition>();
                 positionFollower.lookAt = obj.health.transform;
                 positionFollower.canvas = GetComponentInChildren<Canvas>() ?? GetComponentInParent<Canvas>();
+
+                var visibilityChecker = healthBar.GetOrElseAddComponent<VisibilityChecker>();
+                visibilityChecker.objectToCheck = obj.health.transform;
             }
         }
         
