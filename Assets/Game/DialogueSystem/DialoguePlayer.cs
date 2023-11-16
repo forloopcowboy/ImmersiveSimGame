@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Src.EventBusModule;
 using Game.Utils;
+using PlasticGui.WorkspaceWindow.BrowseRepository;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -19,8 +21,13 @@ namespace Game.DialogueSystem
         [Required]
         public TMP_Text dialogueText;
         
+        public int charactersPerSecond = 25;
+        
         // Event bus subscription
         private Action _unsubscribe;
+        private string _currentDialogueText;
+        private bool _isAnimating = false;
+        private Coroutine _renderDialogueLettersCoroutine;
         
         private void Start()
         {
@@ -59,6 +66,18 @@ namespace Game.DialogueSystem
         /// </summary>
         public void ShowNextDialogue(NextDialogueEvent obj = null)
         {
+            // If currently rendering dialogue, stop coroutine and show full text. Next event will trigger next dialogue.
+            if (_renderDialogueLettersCoroutine != null)
+            {
+                StopCoroutine(_renderDialogueLettersCoroutine);
+                dialogueText.text = _currentDialogueText;
+                _renderDialogueLettersCoroutine = null;
+                _isAnimating = false;
+
+                return;
+            }
+            
+            // if no dialogue left, hide dialogue box
             if (dialogueQueue.Count == 0)
             {
                 if (dialogueBox.gameObject.activeSelf)
@@ -70,7 +89,22 @@ namespace Game.DialogueSystem
             var dialogueItem = dialogueQueue.Dequeue();
             dialogueBox.gameObject.SetActive(true);
             speakerText.text = dialogueItem.speaker;
-            dialogueText.text = dialogueItem.text;
+            
+            _currentDialogueText = dialogueItem.text;
+            _renderDialogueLettersCoroutine = StartCoroutine(RenderDialogueLetters());
+        }
+
+        private IEnumerator RenderDialogueLetters()
+        {
+            _isAnimating = true;
+            dialogueText.text = "";
+            foreach (var letter in _currentDialogueText)
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(1f/charactersPerSecond);
+            }
+            _isAnimating = false;
+            _renderDialogueLettersCoroutine = null;
         }
 
         private void OnDisable()

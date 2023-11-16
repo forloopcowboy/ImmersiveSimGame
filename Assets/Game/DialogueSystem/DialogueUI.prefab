@@ -408,6 +408,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 1406674432299290913}
   speakerText: {fileID: 5718258236422474571}
   dialogueText: {fileID: 5164004084933093391}
+  charactersPerSecond: 25
 --- !u!1 &6133623089676706653
 GameObject:
   m_ObjectHideFlags: 0
