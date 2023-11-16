@@ -1,4 +1,5 @@
-﻿using Game.DoorSystem;
+﻿using Game.DialogueSystem;
+using Game.DoorSystem;
 using Game.EquipmentSystem;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
@@ -20,6 +21,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         private const string MouseScrollInput = "Mouse ScrollWheel";
         private const string HorizontalInput = "Horizontal";
         private const string VerticalInput = "Vertical";
+        
+        // State
+        private bool _isInDialogue;
         
         public bool IsInventoryOpen => InventoryContentUIController.root.gameObject.activeSelf;
 
@@ -53,13 +57,31 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             // Ignore the character's collider(s) for camera obstruction checks
             CharacterCamera.IgnoredColliders.Clear();
             CharacterCamera.IgnoredColliders.AddRange(Character.GetComponentsInChildren<Collider>());
+            
+            // Handle dialogue interaction
+            SceneEventBus.Subscribe<DialogueEvent>(OnDialogueEvent);
+            SceneEventBus.Subscribe<EndDialogueEvent>(OnEndDialogueEvent);
+        }
+
+        private void OnEndDialogueEvent(EndDialogueEvent obj)
+        {
+            _isInDialogue = false;
+        }
+
+        private void OnDialogueEvent(DialogueEvent obj)
+        {
+            _isInDialogue = true;
         }
 
         private void Update()
         {
-            HandleCharacterInput();
             HandleInteractionInput();
-            HandleMouseInput();
+
+            if (!_isInDialogue)
+            {
+                HandleCharacterInput();
+                HandleMouseInput();
+            }
         }
 
         private void HandleMouseInput()
@@ -111,9 +133,16 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                         doorController.PushDoor(Character.transform);
                     }
                 }
+                else if (Interactor.TryPeekInteractionQueue(out DialogueInteractor dialogueInteractor))
+                {
+                    if (dialogueInteractor.enabled)
+                        Interactor.TryToInteract(out dialogueInteractor, "");
+                    else SceneEventBus.Emit(new NextDialogueEvent()); // if interactor is no longer enabled, emit next dialogue event
+                }
                 else
                 {
-                    Debug.Log("Pressed E but inventory is closed. And no item is selected and no interactable in range.");
+                    Debug.Log("Pressed E but inventory is closed. And no item is selected and no interactable in range. Emitting next dialog event in case there is one.");
+                    SceneEventBus.Emit(new NextDialogueEvent());
                 }
             }
         }

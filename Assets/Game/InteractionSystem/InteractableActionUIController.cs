@@ -33,7 +33,7 @@ namespace Game.InteractionSystem
 
         private void UpdateText()
         {
-            if (Interactor.TryPeekInteractionQueue(out InteractableObject item))
+            if (Interactor.TryPeekInteractionQueue(out InteractableObject item) && item.enabled)
             {
                 ActionUIController.SetText(item.itemName, item.interactionText, item.shortcut);
                 ActionUIController.Show();

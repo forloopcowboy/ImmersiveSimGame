@@ -2,18 +2,22 @@ using System;
 using System.Collections.Generic;
 using Game.Utils;
 using Game.Utils.EventBusModule;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Src.EventBusModule
 {
-   
     public class SceneEventBus : SingletonMonoBehaviour<SceneEventBus>
     {
         private EventBus bus = new();
 
         public bool debug = false;
         private bool ShowDebug() => debug;
+
+        private void Start()
+        {
+            Debug.Log("Starting SceneEventBus. Total number of listeners: " + totalNumberOfListeners);
+            DontDestroyOnLoad(gameObject);
+        }
 
         // [ShowInInspector, FoldoutGroup("Debug"), ShowIf("ShowDebug")]
         private int totalNumberOfListeners => bus.GetSubscriberCount();
