@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Game.DialogueSystem
 {
     [RequireComponent(typeof(Collider))]
-    public class DialogueTrigger : SerializedMonoBehaviour
+    public class DialogueTriggerComponent : SerializedMonoBehaviour
     {
         [InfoBox("Resets once triggered")]
         public bool shouldTrigger = true;

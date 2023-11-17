@@ -13,7 +13,12 @@ namespace Game.DialogueSystem
         public string[] dialogue;
 
         private Action _unsubscribe;
-        
+
+        private void OnValidate()
+        {
+            itemName = speakerName;
+        }
+
         private void Start()
         {
             var unsub1 = SceneEventBus.Subscribe<DialogueEvent>(OnDialogueStarted);

@@ -10,10 +10,7 @@ namespace Game.InteractionSystem
         [TabGroup("General")] public string shortcut = "E";
         [TabGroup("General")] public string interactionText = "to inspect";
         [TabGroup("General")] public string itemName = "Item";
-        
-        public virtual void Interact(dynamic input)
-        {
-            Debug.Log("I just wanted" + interactionText + "a little bit of " + name);
-        }
+
+        public abstract void Interact(dynamic input);
     }
 }

@@ -82,6 +82,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 HandleCharacterInput();
                 HandleMouseInput();
             }
+            else ResetCharacterInput();
         }
 
         private void HandleMouseInput()
@@ -210,6 +211,12 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             characterInputs.SprintUp = Input.GetKeyUp(KeyCode.LeftShift);
 
             // Apply inputs to character
+            Character.SetInputs(ref characterInputs);
+        }
+
+        private void ResetCharacterInput()
+        {
+            PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
             Character.SetInputs(ref characterInputs);
         }
     }
