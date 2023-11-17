@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Game.InteractionSystem;
 using Game.Utils;
@@ -16,6 +17,9 @@ namespace Game.DoorSystem
         
         [ShowInInspector]
         public bool isLocked { get; private set; }
+
+        [ShowInInspector, ReadOnly]
+        private int _openCount = 0;
         
         private void Start()
         {
@@ -23,6 +27,18 @@ namespace Game.DoorSystem
             if (!doorLock) throw new MissingComponentException("Missing DoorLock on DoorController.");
             
             if (startLocked) Lock();
+        }
+        
+        private void UpdateActionName()
+        {
+            if (isLocked && _openCount == 0)
+            {
+                interactionText = "to unlock";
+            }
+            else
+            {
+                interactionText = "to push open";
+            }
         }
 
         public override void Interact(dynamic input)
@@ -88,6 +104,9 @@ namespace Game.DoorSystem
             
             isLocked = false;
             door.isKinematic = false;
+            _openCount++;
+            
+            UpdateActionName();
 
             return true;
         }

@@ -118,9 +118,9 @@ MonoBehaviour:
   notificationUIContainer: {fileID: 8745097692098932364}
   notificationUI: {fileID: 6216362539429504186}
   notificationDuration: 3
-  rollOutSpeed: 10
+  rollOutSpeed: 7
   showNotification: 0
-  outOfScreenOffset: {x: 500, y: 0, z: 0}
+  outOfScreenOffset: {x: 350, y: 0, z: 0}
 --- !u!1 &4254972623884741684
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 34.95
+  m_PixelsPerUnitMultiplier: 135
 --- !u!1 &8179623216492368475
 GameObject:
   m_ObjectHideFlags: 0

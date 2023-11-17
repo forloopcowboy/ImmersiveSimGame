@@ -7780,6 +7780,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 996552000644979249, guid: d51217ecd07288b4aa4379c74ab92a00,
+        type: 3}
+      propertyPath: rollOutSpeed
+      value: 4.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 996552000644979249, guid: d51217ecd07288b4aa4379c74ab92a00,
+        type: 3}
+      propertyPath: outOfScreenOffset.x
+      value: 950
+      objectReference: {fileID: 0}
+    - target: {fileID: 996552000644979249, guid: d51217ecd07288b4aa4379c74ab92a00,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2569563861391337252, guid: d51217ecd07288b4aa4379c74ab92a00,
         type: 3}
       propertyPath: m_AnchorMax.y

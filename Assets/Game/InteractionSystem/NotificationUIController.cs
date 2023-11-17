@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Game.Src.EventBusModule;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
 namespace Game.InteractionSystem
 {
-    public class NotificationUIController : MonoBehaviour
+    public class NotificationUIController : SerializedMonoBehaviour
     {
         public RectTransform notificationUIContainer;
         public TMP_Text notificationUI;
@@ -14,9 +15,11 @@ namespace Game.InteractionSystem
         public float notificationDuration = 5f;
         public float rollOutSpeed = 1f;
         public bool showNotification;
-        public Vector3 outOfScreenOffset = new Vector3(-200, 0, 0);
+        public Vector2 outOfScreenOffset = new Vector3(300, 0, 0);
 
+        [ReadOnly, ShowInInspector]
         private Vector3 initialPosition;
+        [ReadOnly, ShowInInspector]
         private Vector3 outOfScreenPosition;
 
         private Action unsub;
@@ -26,8 +29,12 @@ namespace Game.InteractionSystem
             unsub = SceneEventBus.Subscribe<NotificationEvent>(OnNotificationEvent);
             
             notificationUIContainer.gameObject.SetActive(false);
-            initialPosition = notificationUIContainer.position;
-            outOfScreenPosition = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z) + outOfScreenOffset;
+            initialPosition = notificationUIContainer.anchoredPosition;
+            outOfScreenPosition = new Vector3(
+                initialPosition.x + outOfScreenOffset.x,
+                initialPosition.y + outOfScreenOffset.y, 
+                  initialPosition.z
+            );
         }
 
         private void OnDisable()
@@ -40,24 +47,35 @@ namespace Game.InteractionSystem
             if (showNotification)
             {
                 notificationUIContainer.gameObject.SetActive(true);
+                var position = Vector2.Lerp(
+                    notificationUIContainer.anchoredPosition,
+                    initialPosition,
+                    Time.deltaTime * rollOutSpeed
+                );
+                notificationUIContainer.anchoredPosition = position;
             }
             else
             {
                 notificationUIContainer.gameObject.SetActive(false);
+                notificationUIContainer.anchoredPosition = outOfScreenPosition;
                 return;
             }
             
             if (DateTime.Now - lastNotificationTime > TimeSpan.FromSeconds(notificationDuration))
             {
-                if (Vector3.Distance(notificationUIContainer.position, outOfScreenPosition) < 0.1f)
+                if (Vector3.Distance(notificationUIContainer.anchoredPosition, outOfScreenPosition) < 0.1f)
                 {
                     notificationUIContainer.gameObject.SetActive(false);
-                    notificationUIContainer.position = initialPosition;
                     showNotification = false;
                 }
                 else
                 {
-                    notificationUIContainer.position = Vector3.Lerp(notificationUIContainer.position, outOfScreenPosition, Time.deltaTime * rollOutSpeed);
+                    var position = Vector2.Lerp(
+                        notificationUIContainer.anchoredPosition,
+                        outOfScreenPosition,
+                        Time.deltaTime * rollOutSpeed
+                    );
+                    notificationUIContainer.anchoredPosition = position;
                 }
             }
         }
