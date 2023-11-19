@@ -76,7 +76,12 @@ namespace Game.EquipmentSystem
             
             var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == type.GetInstanceID());
             if (itemInInventory != null)
+            {
                 itemInInventory.Quantity -= quantity;
+                if (itemInInventory.Quantity <= 0)
+                    ItemsInInventory.Remove(itemInInventory);
+            }
+            
         }
 
         public void UseItemInHand()
