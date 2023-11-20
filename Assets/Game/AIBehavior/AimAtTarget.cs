@@ -1,6 +1,7 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using Game.ProjectileSystem;
+using UnityEngine;
 
 namespace Game.AIBehavior
 {
@@ -8,6 +9,7 @@ namespace Game.AIBehavior
     public class AimAtTarget : Action
     {
         public SharedGameObject target;
+        public SharedVector3 offset = new Vector3(0f, 1.5f, 0f);
         public SharedFloat projectileSpeed;
         
         private AimComponent _aimComponent;
@@ -26,7 +28,7 @@ namespace Game.AIBehavior
         {
             if (_aimComponent == null || target.Value == null) return TaskStatus.Failure;
             
-            _aimComponent.AimAt(target.Value.transform.position, projectileSpeed.Value);
+            _aimComponent.AimAt(target.Value.transform.position + offset.Value, projectileSpeed.Value);
             
             return TaskStatus.Running;
         }

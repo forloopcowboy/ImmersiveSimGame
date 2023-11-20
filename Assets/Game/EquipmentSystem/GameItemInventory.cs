@@ -57,16 +57,16 @@ namespace Game.EquipmentSystem
             activelyHeldItem = item;
         }
 
-        private void AddItemToInventory(GameItem item)
+        public void AddItemToInventory(GameItem item)
         {
             var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == item.ItemType.GetInstanceID());
             if (itemInInventory == null)
             {
-                ItemsInInventory.Add(new GameItemInInventory {Item = item.ItemType, Quantity = 1, Inventory = this});
+                ItemsInInventory.Add(new GameItemInInventory {Item = item.ItemType, Quantity = Mathf.Clamp(item.Amount, 1, 999), Inventory = this});
             }
             else
             {
-                itemInInventory.Quantity++;
+                itemInInventory.Quantity += Mathf.Clamp(item.Amount, 1, 999);
             }
             
             Destroy(item.gameObject);

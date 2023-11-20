@@ -40,8 +40,12 @@ namespace Game.ProjectileSystem
                     var rb = obj.GetComponentInChildren<Rigidbody>();
                     if (rb) {
                       if (!rb.isKinematic) rb.velocity = Vector3.zero;
-                      rb.detectCollisions = true;
                       rb.isKinematic = true;
+                      rb.detectCollisions = false;
+
+                      // Prevent collisions with the user
+                      GameObjectPool.Singleton.StartCoroutine(
+                          CoroutineHelpers.DelayedAction(0.05f, () => rb.detectCollisions = true));
                     }
                     
                     var dmg = obj.GetComponentInChildren<DamageComponent>();
@@ -55,6 +59,7 @@ namespace Game.ProjectileSystem
                     if (rb) {
                       if (!rb.isKinematic) rb.velocity = Vector3.zero;
                       rb.isKinematic = true;
+                      rb.detectCollisions = false;
                     }
                     
                     var dmg = obj.GetComponentInChildren<DamageComponent>();

@@ -12,9 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060dad088ea24a4697c12ed4d2735dd5, type: 3}
   m_Name: Fireball Projectile
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   ItemSprite: {fileID: 21300000, guid: 90c53d864f96bc946a6502cfdda8f9f9, type: 3}
-  ItemName: Crystallized Ember
+  ItemName: Pure Fire
   ItemValue: 150
-  useMessage: a $itemName has turned to dust
+  IconPrefab: {fileID: 0}
+  useMessage: ouch! it's hot
+  consumable: 1
   prefab: {fileID: 3475214457611752613, guid: 184b2f534ad779a4c9c6b1f0d7ed0961, type: 3}
-  launchSpeed: 15
+  launchSpeed: 35
+  autoRepool: 1
+  autoRepoolDelay: 5
