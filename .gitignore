@@ -20,6 +20,10 @@
 !/[Aa]ssets/KinematicCharacterController/Core
 !/[Aa]ssets/KinematicCharacterController/ExampleCharacter
 
+# Ignore behavior designer to avoid lawsuits
+/[Aa]ssets/Behavior Designer/*/
+/[Aa]ssets/Behavior Designer/
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # [Aa]ssets/AssetStoreTools*
 
