@@ -4,6 +4,14 @@ using UnityEngine;
 
 namespace Game.ProjectileSystem
 {
+    public enum BallisticTrajectory
+    {
+        Max,
+        Min,
+        LowEnergy
+    }
+
+    
     public class ProjectileSpawner
     {
         public static Vector3 CalculateVelocityToLaunchToCameraDirection(GameObject camera, Transform source,
@@ -14,19 +22,18 @@ namespace Game.ProjectileSystem
 
             if (Physics.Raycast(ray, out var hit, raycastRange, layerMask, QueryTriggerInteraction.Ignore))
             {
-                return GetVelocityToHitTarget(source, hit.point, speed).normalized * speed;
+                return CalculateBallisticVelocity(source, hit.point, speed).normalized * speed;
             }
 
             else
-                return GetVelocityToHitTarget(source, (ray.origin + ray.direction * raycastRange), speed).normalized *
+                return CalculateBallisticVelocity(source, (ray.origin + ray.direction * raycastRange), speed).normalized *
                        speed;
         }
         
-        /// <summary>
         /// Returns the velocity needed to hit a target from a certain position with a certain speed.
         /// </summary>
         /// <returns>The 3D velocity.</returns>
-        public static Vector3 GetVelocityToHitTarget(Transform source, Vector3 target, float speed)
+        public static Vector3 CalculateBallisticVelocity(Transform source, Vector3 target, float speed, BallisticTrajectory trajectoryType = BallisticTrajectory.Min)
         {
             speed = Mathf.Clamp(speed, 0, speed);
             Vector3 toTarget = target - source.position;
@@ -55,7 +62,21 @@ namespace Game.ProjectileSystem
             // Lowest-speed arc available:
             float T_lowEnergy = Mathf.Sqrt(Mathf.Sqrt(toTarget.sqrMagnitude * 4f / gSquared));
 
-            float T = T_min; // choose T_max, T_min, or some T in-between like T_lowEnergy
+            float T;
+            switch (trajectoryType)
+            {
+                case BallisticTrajectory.Max:
+                    T = T_max;
+                    break;
+                case BallisticTrajectory.Min:
+                    T = T_min;
+                    break;
+                case BallisticTrajectory.LowEnergy:
+                    T = T_lowEnergy;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(trajectoryType), trajectoryType, null);
+            }
 
             // Convert from time-to-hit to a launch velocity:
             return toTarget / T - Physics.gravity * T / 2f;

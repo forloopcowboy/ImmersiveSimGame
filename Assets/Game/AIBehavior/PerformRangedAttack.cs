@@ -12,6 +12,7 @@ namespace Game.AIBehavior
     public class PerformRangedAttack : Action
     {
         public SharedGameObject target;
+        public SharedFloat projectileSpeed;
         
         private GameItemInventory _inventory;
 
@@ -20,6 +21,7 @@ namespace Game.AIBehavior
             if (_inventory == null)
             {
                 _inventory = GetComponent<GameItemInventory>();
+                projectileSpeed.Value = 3f;
             }
             
             if (_inventory == null) Debug.LogError("No GameItemInventory component found on " + gameObject.name + "!");
@@ -42,11 +44,13 @@ namespace Game.AIBehavior
                 Vector3 lookAtDirection = target.Value.transform.position - projectileEmitter.position;
                 if (projectileItem is BallisticProjectileData ballisticProjectile)
                 {
-                    lookAtDirection = ProjectileSpawner.GetVelocityToHitTarget(
+                    lookAtDirection = ProjectileSpawner.CalculateBallisticVelocity(
                         projectileEmitter,
                         target.Value.transform.position,
                         ballisticProjectile.launchSpeed
                     );
+                    
+                    projectileSpeed.Value = ballisticProjectile.launchSpeed;
                 }
                 
                 projectileEmitter.transform.rotation = Quaternion.LookRotation(lookAtDirection);
