@@ -75,18 +75,11 @@ namespace Game.Utils
                     Debug.DrawLine(mainCamera.transform.position, hit.point, hit.transform.GetInstanceID() == objectTransform.GetInstanceID() ? Color.green : Color.red);
 
                     // If the hit object is not the object we are checking, there is an obstruction
-                    if (hit.transform != objectTransform)
-                    {
-                        Debug.Log($"Object is obstructed by {hit.transform.name}");
-                        continue;
-                    }
-                    
+                    if (hit.transform != objectTransform) continue;
                     return true;
                 }
-                else
-                {
-                    Debug.DrawRay(mainCamera.transform.position, (corner - mainCamera.transform.position).normalized * 700f, Color.red);
-                }
+
+                Debug.DrawRay(mainCamera.transform.position, (corner - mainCamera.transform.position).normalized * 700f, Color.red);
             }
 
             // If no obstructions and within view frustum, the object is visible
@@ -112,16 +105,14 @@ namespace Game.Utils
         {
             while (true)
             {
-                if (IsVisibleFromCamera(objectToCheck, _mainCamera, raycastLayerMask, offsetPercentage))
-                {
-                    onIsVisible?.Invoke();
-                    Debug.Log("Object is visible!");
-                }
-                else
-                {
-                    onIsNotVisible?.Invoke();
-                    Debug.Log("Object is not visible.");
-                }
+                if (IsVisibleFromCamera(
+                    objectToCheck,
+                    _mainCamera,
+                    raycastLayerMask,
+                    offsetPercentage
+                    )) onIsVisible?.Invoke();
+                
+                else onIsNotVisible?.Invoke();
                 
                 yield return new WaitForSeconds(0.05f);
             }

@@ -13,7 +13,7 @@ namespace Game.HealthSystem
             base.Use(user);
             var health = user.GetComponent<Health>();
             
-            health.Heal(healSettings.GetValue(health.currentHealth));
+            health.Heal(healSettings.GetValue(health.currentHealth), user.gameObject);
         }
     }
 }

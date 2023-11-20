@@ -1,5 +1,6 @@
 using System;
 using Game.EquipmentSystem;
+using Game.HealthSystem;
 using Game.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -35,21 +36,29 @@ namespace Game.ProjectileSystem
                 {
                     obj.transform.SetParent(null);
                     obj.SetActive(true);
+                    
                     var rb = obj.GetComponentInChildren<Rigidbody>();
                     if (rb) {
                       if (!rb.isKinematic) rb.velocity = Vector3.zero;
                       rb.detectCollisions = true;
                       rb.isKinematic = true;
                     }
+                    
+                    var dmg = obj.GetComponentInChildren<DamageComponent>();
+                    dmg.damageSource = user.gameObject;
                 },
                 obj =>
                 {
                     obj.SetActive(false);
+                    
                     var rb = obj.GetComponentInChildren<Rigidbody>();
                     if (rb) {
                       if (!rb.isKinematic) rb.velocity = Vector3.zero;
                       rb.isKinematic = true;
                     }
+                    
+                    var dmg = obj.GetComponentInChildren<DamageComponent>();
+                    dmg.damageSource = null;
                 },
                 Destroy,
                 10

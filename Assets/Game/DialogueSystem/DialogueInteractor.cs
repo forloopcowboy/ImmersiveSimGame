@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using BehaviorDesigner.Runtime;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
 using Sirenix.OdinInspector;
@@ -13,6 +14,12 @@ namespace Game.DialogueSystem
         public string[] dialogue;
 
         private Action _unsubscribe;
+        
+        public enum BehaviorEvents
+        {
+            DialogueStarted,
+            DialogueEnded
+        }
 
         private void OnValidate()
         {
@@ -31,14 +38,26 @@ namespace Game.DialogueSystem
             };
         }
 
-        private void OnDialogueEnded(EndDialogueEvent obj)
-        {
-            enabled = true;
-        }
-
         private void OnDialogueStarted(DialogueEvent obj)
         {
             enabled = false;
+            
+            var behaviorTree = GetComponent<Behavior>();
+            if (behaviorTree != null)
+            {
+                behaviorTree.SendEvent(BehaviorEvents.DialogueStarted.ToString());
+            }
+        }
+
+        private void OnDialogueEnded(EndDialogueEvent obj)
+        {
+            enabled = true;
+            
+            var behaviorTree = GetComponent<Behavior>();
+            if (behaviorTree != null)
+            {
+                behaviorTree.SendEvent(BehaviorEvents.DialogueEnded.ToString());
+            }
         }
 
         public override void Interact(dynamic input)

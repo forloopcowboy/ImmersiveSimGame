@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8258834102368508610}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.12304901, z: -0, w: 0.99240065}
+  m_LocalRotation: {x: 0, y: -0.12304714, z: 0, w: 0.9924008}
   m_LocalPosition: {x: 1.7707764, y: 0.6926414, z: 0.18033385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -136,4 +136,4 @@ MonoBehaviour:
   interactionText: to grab
   itemName: Item
   ItemType: {fileID: 11400000, guid: b4efd685d9290494181af9b5e98c6a3e, type: 2}
-  PickUpDialogue: picked up $itemName
+  PickUpDialogue: 

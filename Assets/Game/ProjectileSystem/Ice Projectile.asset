@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060dad088ea24a4697c12ed4d2735dd5, type: 3}
   m_Name: Ice Projectile
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   ItemSprite: {fileID: 21300000, guid: 7fb1286c73d377444b94648f32a9a83f, type: 3}
   ItemName: Ice Crystal
   ItemValue: 150
+  IconPrefab: {fileID: 0}
   useMessage: a cold breeze scarred the scenery
+  consumable: 1
   prefab: {fileID: 6313513387792671711, guid: 722f54310f35d284fbd32f5847041082, type: 3}
   launchSpeed: 8
   autoRepool: 1

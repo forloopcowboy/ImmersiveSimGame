@@ -13,8 +13,7 @@ namespace Game.EquipmentSystem
         public string ItemName;
         public float ItemValue;
         
-        [Required("IconPrefab is required to generate IconSprite. This object should represent the item in the world, but not necessarily have all functions of the object.")]
-        public GameObject IconPrefab;
+        [Required("IconPrefab is required to generate IconSprite. If none is provided, ItemSprite will be used. This object should represent the item in the world, but not necessarily have all functions of the object.", InfoMessageType.Warning)] public GameObject IconPrefab;
         
         internal bool IconSpriteGenerated = false;
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.InteractionSystem;
+using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -20,19 +21,20 @@ namespace Game.EquipmentSystem
         public GameItemInInventory[] EquippedItems = new GameItemInInventory[10]; // 10 slots for equipped items
         public GameItemInInventory activelyHeldItem = null;
         
-        public Interactor interactor;
+        [CanBeNull, Required("Interactor is null. Initialize it in the inspector or assign it in code. No interactor will prevent item pickup.", InfoMessageType.Info)] public Interactor interactor;
 
         private void Start()
         {
             if (!interactor) interactor = GetComponentInChildren<Interactor>();
-            if (!interactor) throw new NullReferenceException("Interactor is null. Initialize it in the inspector or assign it in code.");
-            
+
             EquippedItems = new GameItemInInventory[10]; // 10 slots for equipped items
         }
 
         public bool TryToPickUpItem(out GameItem item)
         {
-            var found = interactor.TryToInteract<GameItem, bool>(out item);
+            item = null;
+            
+            var found = interactor != null && interactor.TryToInteract<GameItem, bool>(out item);
             if (found)
             {
                 AddItemToInventory(item);
@@ -92,6 +94,20 @@ namespace Game.EquipmentSystem
                 equipableItem.Use(this);
                 equipableItem.EmitUseMessage();
             }
+        }
+
+        public bool TryGetItemOfType<TItemType>(out TItemType itemType) where TItemType : GameItemType
+        {
+            itemType = null;
+            
+            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item is TItemType);
+            if (itemInInventory != null)
+            {
+                itemType = itemInInventory.Item as TItemType;
+                return true;
+            }
+
+            return false;
         }
     }
 

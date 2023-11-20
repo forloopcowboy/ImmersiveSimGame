@@ -2273,6 +2273,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -3031,6 +3037,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -3179,6 +3191,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -3737,6 +3755,7 @@ GameObject:
   - component: {fileID: 757159941}
   - component: {fileID: 757159940}
   - component: {fileID: 757159939}
+  - component: {fileID: 757159943}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -3830,6 +3849,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244812118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757159943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757159938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.14999999
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: d70c8964af7ade1418adaf6a48fb11c7, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &805970081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3899,6 +3949,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -4126,10 +4182,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9310e56f8314472f9d7609782cd7145b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   settings: {fileID: 11400000, guid: 63a1be13234b7744ca121a09c1d3630c, type: 2}
   currentHealth: 100
   isDead: 0
   onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!136 &837306332
@@ -5278,8 +5349,10 @@ GameObject:
   - component: {fileID: 1302315087}
   - component: {fileID: 1302315086}
   - component: {fileID: 1302315092}
+  - component: {fileID: 1302315093}
+  - component: {fileID: 1302315094}
   m_Layer: 0
-  m_Name: Capsule (1)
+  m_Name: Fleeing AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5309,10 +5382,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9310e56f8314472f9d7609782cd7145b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   settings: {fileID: 11400000, guid: 63a1be13234b7744ca121a09c1d3630c, type: 2}
   currentHealth: 100
   isDead: 0
   onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!136 &1302315088
@@ -5396,13 +5484,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302315085}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.42, y: 1.22, z: 8.61}
+  m_LocalRotation: {x: -0, y: 0.32798553, z: -0, w: 0.9446828}
+  m_LocalPosition: {x: 3.89, y: 1.22, z: -0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 38.293, z: 0}
 --- !u!114 &1302315092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5432,6 +5520,69 @@ MonoBehaviour:
   dialogue:
   - Hello, stranger! I'm Red Guy!
   - PLEASE SHOOT ME TO DEATH
+--- !u!195 &1302315093
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302315085}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1302315094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302315085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: 77eebb6493269984f9bb58fdc61f0dfd, type: 2}
+  mBehaviorSource:
+    behaviorName: Fleeing AI Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Repeat
+        Forever?","IsShared":true,"BooleanmValue":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.7
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1001 &1316213083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5548,6 +5699,9 @@ GameObject:
   - component: {fileID: 1558350967}
   - component: {fileID: 1558350966}
   - component: {fileID: 1558350972}
+  - component: {fileID: 1558350973}
+  - component: {fileID: 1558350975}
+  - component: {fileID: 1558350974}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Untagged
@@ -5579,10 +5733,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9310e56f8314472f9d7609782cd7145b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   settings: {fileID: 11400000, guid: 63a1be13234b7744ca121a09c1d3630c, type: 2}
   currentHealth: 100
   isDead: 0
   onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!136 &1558350968
@@ -5670,7 +5839,8 @@ Transform:
   m_LocalPosition: {x: 13.959, y: 1.22, z: 7.221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1790876343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1558350972
@@ -5705,6 +5875,130 @@ MonoBehaviour:
   - I have such a fun job here, great benefits!
   - What are you waiting for, grab a fireball item, equip it, and shoot it at me!
   - You can shoot my friends too, of course.
+--- !u!114 &1558350973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558350965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10220552abc44f47b3ad1d76cc48896f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ItemsInInventory:
+  - Inventory: {fileID: 1558350973}
+    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    Quantity: 15
+  EquippedItems:
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  activelyHeldItem:
+    Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  interactor: {fileID: 0}
+--- !u!195 &1558350974
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558350965}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1558350975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558350965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: f88a26eeb1e2095458b6f27704bd3952, type: 2}
+  mBehaviorSource:
+    behaviorName: AI Combat Bot
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"FLEE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
+        Wander?","IsShared":true,"BooleanmValue":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.7
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1 &1562682699
 GameObject:
   m_ObjectHideFlags: 0
@@ -6325,6 +6619,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -6690,6 +6990,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1790876342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790876343}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1790876343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790876342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.763, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1558350971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1792122766
 PrefabInstance:
@@ -7232,6 +7563,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -7312,6 +7649,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -7664,6 +8007,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9310e56f8314472f9d7609782cd7145b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   settings: {fileID: 11400000, guid: 63a1be13234b7744ca121a09c1d3630c, type: 2}
   currentHealth: 75
   isDead: 0
@@ -7682,6 +8034,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &114565868355218503 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4448277451761046923, guid: c3cb08e8c22913f488266479d98822cc,
@@ -7716,7 +8074,7 @@ PrefabInstance:
     - target: {fileID: 2185601969870302980, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.68
+      value: 8.89
       objectReference: {fileID: 0}
     - target: {fileID: 2185601969870302980, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
@@ -7726,7 +8084,7 @@ PrefabInstance:
     - target: {fileID: 2185601969870302980, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.87
+      value: -4.98
       objectReference: {fileID: 0}
     - target: {fileID: 2185601969870302980, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
@@ -7783,12 +8141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: ItemsInInventory.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
@@ -7835,7 +8192,7 @@ PrefabInstance:
     - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: ItemsInInventory.Array.data[0].Quantity
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
@@ -8020,6 +8377,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flames
       objectReference: {fileID: 0}
+    - target: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4038420522937370489, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
     - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
       propertyPath: serializationData.Prefab

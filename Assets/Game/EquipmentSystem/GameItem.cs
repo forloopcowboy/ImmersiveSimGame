@@ -30,7 +30,7 @@ namespace Game.EquipmentSystem
         {
             if (PickUpDialogue.Length > 0)
             {
-                SceneEventBus.Emit(new DialogueEvent(new DialogueItem("", PickUpDialogue)));
+                SceneEventBus.Emit(new DialogueEvent(new DialogueItem("", PickUpDialogue.Replace("$itemName", itemName))));
             }
         }
     }

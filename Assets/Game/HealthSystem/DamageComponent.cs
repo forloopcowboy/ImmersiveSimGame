@@ -11,6 +11,9 @@ namespace Game.HealthSystem
         public DamageSettings settings;
         
         public DateTime lastDamageTime = DateTime.MinValue;
+        
+        [InfoBox("The object that is the source of the damage. Set this to projectile launcher or the object that is attacking in order to properly handle AI chase/flee behaviour. If set to None, then a null reference will be sent in the Damage event.")]
+        public GameObject damageSource = null;
 
         public float GetDamageValue(float currentHealthValue)
         {
@@ -35,7 +38,7 @@ namespace Game.HealthSystem
                 return;
             
             if (MaterialInteractions.CanDamage(settings.damageMaterialType, health.settings.materialType))
-                health.TakeDamage(GetDamageValue(health.settings.currentHealth));
+                health.TakeDamage(GetDamageValue(health.settings.currentHealth), damageSource);
         }
         
         /// <summary>
@@ -48,7 +51,7 @@ namespace Game.HealthSystem
                 return;
             
             if (MaterialInteractions.CanDamage(settings.damageMaterialType, health.settings.materialType))
-                health.TakeDamage(GetDamageValue(health.settings.currentHealth));
+                health.TakeDamage(GetDamageValue(health.settings.currentHealth), damageSource);
         }
     }
 }
