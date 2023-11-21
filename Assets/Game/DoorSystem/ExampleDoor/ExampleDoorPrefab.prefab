@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCocked: 0
---- !u!1 &8073511224312303522
+--- !u!1 &8037750163202152783
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,50 +191,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1480742730814372647}
-  - component: {fileID: 4557607757795706561}
-  - component: {fileID: 3871424466322039321}
-  - component: {fileID: 1810075443454558122}
-  - component: {fileID: 7645797255500186152}
-  - component: {fileID: 5961698727460301301}
+  - component: {fileID: 4537237444336492703}
+  - component: {fileID: 2478232777165458550}
+  - component: {fileID: 2545507922570050261}
+  - component: {fileID: 631577780987294519}
   m_Layer: 20
-  m_Name: DoorRoot
+  m_Name: DoorMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1480742730814372647
+--- !u!4 &4537237444336492703
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073511224312303522}
+  m_GameObject: {fileID: 8037750163202152783}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4027193542259561720}
-  m_Father: {fileID: 5644813765176912013}
+  m_Children: []
+  m_Father: {fileID: 1480742730814372647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4557607757795706561
+--- !u!33 &2478232777165458550
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073511224312303522}
+  m_GameObject: {fileID: 8037750163202152783}
   m_Mesh: {fileID: 4300002, guid: 4a2351bd68af4ee49b2445ef7803b749, type: 3}
---- !u!23 &3871424466322039321
+--- !u!23 &2545507922570050261
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073511224312303522}
+  m_GameObject: {fileID: 8037750163202152783}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -273,13 +270,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1810075443454558122
+--- !u!65 &631577780987294519
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8073511224312303522}
+  m_GameObject: {fileID: 8037750163202152783}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -294,6 +291,41 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8999998, y: 2.1000001, z: 0.1}
   m_Center: {x: 0.44999686, y: 1.15, z: -0.0000026002526}
+--- !u!1 &8073511224312303522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1480742730814372647}
+  - component: {fileID: 7645797255500186152}
+  - component: {fileID: 5961698727460301301}
+  m_Layer: 20
+  m_Name: DoorRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1480742730814372647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073511224312303522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4027193542259561720}
+  - {fileID: 4537237444336492703}
+  m_Father: {fileID: 5644813765176912013}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7645797255500186152
 Rigidbody:
   m_ObjectHideFlags: 0

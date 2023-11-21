@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf774b4c734b1d04e9fbf6d71e964591, type: 2}
+  - {fileID: 2100000, guid: f048c927e3b36204e8263d036349be11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -209,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf774b4c734b1d04e9fbf6d71e964591, type: 2}
+  - {fileID: 2100000, guid: f048c927e3b36204e8263d036349be11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,8 +247,9 @@ GameObject:
   - component: {fileID: 8966574204990463280}
   - component: {fileID: 3868422688692098327}
   - component: {fileID: 702145712085287764}
+  - component: {fileID: 4810777232873125291}
   m_Layer: 19
-  m_Name: ExampleCharacter
+  m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,6 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Motor: {fileID: 4448277451761046923}
   MaxStableMoveSpeed: 3.5
+  SprintMultiplier: 0.3
   StableMovementSharpness: 10
   OrientationSharpness: 10
   OrientationMethod: 0
@@ -427,6 +429,41 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   ItemsInInventory: []
+  EquippedItems:
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  - Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
+  activelyHeldItem:
+    Inventory: {fileID: 0}
+    Item: {fileID: 0}
+    Quantity: 0
   interactor: {fileID: 0}
 --- !u!135 &3868422688692098327
 SphereCollider:
@@ -477,6 +514,63 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 1048631
+--- !u!114 &4810777232873125291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018226840045218429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9310e56f8314472f9d7609782cd7145b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  settings: {fileID: 11400000, guid: 63a1be13234b7744ca121a09c1d3630c, type: 2}
+  currentHealth: 100
+  isDead: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4448277451761046923}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 4562671444061122939}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9026985578172414387
 GameObject:
   m_ObjectHideFlags: 0

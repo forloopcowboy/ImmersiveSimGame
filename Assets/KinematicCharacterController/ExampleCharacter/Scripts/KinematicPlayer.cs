@@ -1,4 +1,5 @@
-﻿using Game.DialogueSystem;
+﻿using System;
+using Game.DialogueSystem;
 using Game.DoorSystem;
 using Game.EquipmentSystem;
 using Game.InteractionSystem;
@@ -61,6 +62,20 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             // Handle dialogue interaction
             SceneEventBus.Subscribe<DialogueEvent>(OnDialogueEvent);
             SceneEventBus.Subscribe<EndDialogueEvent>(OnEndDialogueEvent);
+        }
+
+        private void OnValidate()
+        {
+            if (Character != null)
+            {
+                Inventory = Character.GetComponentInChildren<GameItemInventory>();
+                Interactor = Character.GetComponentInChildren<Interactor>();
+            }
+            
+            if (InventoryContentUIController == null)
+            {
+                InventoryContentUIController = FindObjectOfType<InventoryContentUIController>();
+            }
         }
 
         private void OnEndDialogueEvent(EndDialogueEvent obj)
