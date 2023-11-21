@@ -45,7 +45,7 @@ namespace Game.ProjectileSystem
 
                       // Prevent collisions with the user
                       GameObjectPool.Singleton.StartCoroutine(
-                          CoroutineHelpers.DelayedAction(0.05f, () => rb.detectCollisions = true));
+                          CoroutineHelpers.DelayedAction(0.04f, () => rb.detectCollisions = true));
                     }
                     
                     var dmg = obj.GetComponentInChildren<DamageComponent>();

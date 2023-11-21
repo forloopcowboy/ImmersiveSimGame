@@ -20,6 +20,10 @@ namespace Game.DialogueSystem
         public TMP_Text speakerText;
         [Required]
         public TMP_Text dialogueText;
+        [Required]
+        public TMP_Text skipShortcutText;
+        [Required]
+        public KeyCode skipShortcut = KeyCode.Tab;
         
         public int charactersPerSecond = 25;
         
@@ -34,13 +38,36 @@ namespace Game.DialogueSystem
             ShowNextDialogue();
             
             var unsub1 = SceneEventBus.Subscribe<DialogueEvent>(OnDialogueEvent);
-            var unsub3 = SceneEventBus.Subscribe<NextDialogueEvent>(ShowNextDialogue);
+            var unsub2 = SceneEventBus.Subscribe<NextDialogueEvent>(ShowNextDialogue);
+            var unsub3 = SceneEventBus.Subscribe<SkipDialogueEvent>(SkipDialogue);
             
             _unsubscribe = () =>
             {
                 unsub1();
+                unsub2();
                 unsub3();
             };
+            
+            skipShortcutText.text = dialogueQueue.TryPeek(out var dialogueItem) && dialogueItem.skippable ? $"[{skipShortcut}] Skip" : "";
+        }
+        
+        private void Update()
+        {
+            if (Input.GetKeyDown(skipShortcut))
+            {
+                SkipDialogue();
+            }
+        }
+
+        private void SkipDialogue(SkipDialogueEvent obj = null)
+        {
+            // if next dialogue is skippable, skip it and all following skippable dialogues
+            while (dialogueQueue.Count > 0 && dialogueQueue.Peek().skippable)
+            {
+                dialogueQueue.Dequeue();
+            }
+            ShowNextDialogue();
+            ShowNextDialogue();
         }
 
         private void OnDialogueEvent(DialogueEvent obj)
@@ -89,6 +116,7 @@ namespace Game.DialogueSystem
             var dialogueItem = dialogueQueue.Dequeue();
             dialogueBox.gameObject.SetActive(true);
             speakerText.text = dialogueItem.speaker;
+            skipShortcutText.text = dialogueItem.skippable ? $"[{skipShortcut}] skip" : "";
             
             _currentDialogueText = dialogueItem.text;
             _renderDialogueLettersCoroutine = StartCoroutine(RenderDialogueLetters());
@@ -117,6 +145,7 @@ namespace Game.DialogueSystem
     {
         public string speaker;
         public string text;
+        public bool skippable = true;
 
         public DialogueItem(string speaker, string text)
         {
@@ -131,6 +160,8 @@ namespace Game.DialogueSystem
     public class EndDialogueEvent { }
     
     public class NextDialogueEvent { }
+    
+    public class SkipDialogueEvent { }
 
     public class DialogueEvent
     {
