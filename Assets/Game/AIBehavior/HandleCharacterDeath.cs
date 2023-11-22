@@ -1,5 +1,7 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using Game.DialogueSystem;
+using Game.InteractionSystem;
 using Game.Utils;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +16,7 @@ namespace Game.AIBehavior
         private NavMeshAgent _agent;
         private Animator _animator;
         private Rigidbody _rigidbody;
+        private DialogueInteractor _dialogueInteractor;
 
         public override void OnStart()
         {
@@ -29,9 +32,19 @@ namespace Game.AIBehavior
             {
                 _rigidbody = gameObject.GetOrElseAddComponent<Rigidbody>();
             }
+            if (_dialogueInteractor == null)
+            {
+                _dialogueInteractor = GetComponent<DialogueInteractor>();
+            }
             
             if (_agent) _agent.enabled = false;
             if (_animator) _animator.enabled = false;
+            
+            // disable dialogue interactable
+            if (_dialogueInteractor != null)
+            {
+                _dialogueInteractor.enabled = false;
+            }
             
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
