@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa29a38809e46219b1502889930bad2, type: 3}
   m_Name: Flame Health
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 10
+  currentHealth: 10
   healthRegenRate: 0
   healthRegenDelay: 0
   healthRegenAmount: 0

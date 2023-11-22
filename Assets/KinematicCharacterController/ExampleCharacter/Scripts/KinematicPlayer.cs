@@ -155,6 +155,10 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                         Interactor.TryToInteract(out dialogueInteractor, "");
                     else SceneEventBus.Emit(new NextDialogueEvent()); // if interactor is no longer enabled, emit next dialogue event
                 }
+                else if (Interactor.TryToInteract(out InteractableObject unknownInteractable, 0))
+                {
+                    // interact with any other interactable type
+                }
                 else
                 {
                     Debug.Log("Pressed E but inventory is closed. And no item is selected and no interactable in range. Emitting next dialog event in case there is one.");

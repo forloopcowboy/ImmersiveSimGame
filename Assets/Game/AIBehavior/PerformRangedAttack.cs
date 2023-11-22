@@ -33,27 +33,6 @@ namespace Game.AIBehavior
 
             if (_inventory.TryGetItemOfType<AbstractProjectileData>(out var projectileItem))
             {
-                // Set projectile emitter position and direction according to projectile speed and target position
-                var projectileEmitter = transform.FindTransformByName("ProjectileSpawnPoint");
-                if (!projectileEmitter)
-                {
-                    Debug.LogError("ProjectileSpawnPoint not found on " + gameObject.name + "!");
-                    return TaskStatus.Failure;
-                }
-
-                Vector3 lookAtDirection = target.Value.transform.position - projectileEmitter.position;
-                if (projectileItem is BallisticProjectileData ballisticProjectile)
-                {
-                    lookAtDirection = ProjectileSpawner.CalculateBallisticVelocity(
-                        projectileEmitter,
-                        target.Value.transform.position,
-                        ballisticProjectile.launchSpeed
-                    );
-                    
-                    projectileSpeed.Value = ballisticProjectile.launchSpeed;
-                }
-                
-                projectileEmitter.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                 projectileItem.Use(_inventory);
                 
                 return TaskStatus.Success;

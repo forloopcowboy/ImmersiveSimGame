@@ -4,6 +4,7 @@ using BehaviorDesigner.Runtime;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game.DialogueSystem
 {
@@ -11,6 +12,7 @@ namespace Game.DialogueSystem
     {
         [InfoBox("Dialogue to trigger")]
         public string speakerName = "???";
+        [TextArea(2, 5)]
         public string[] dialogue;
 
         private Action _unsubscribe;

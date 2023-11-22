@@ -28,6 +28,6 @@ MonoBehaviour:
   useMessage: a cold breeze scarred the scenery
   consumable: 1
   prefab: {fileID: 6313513387792671711, guid: 722f54310f35d284fbd32f5847041082, type: 3}
-  launchSpeed: 18
+  launchSpeed: 25
   autoRepool: 1
   autoRepoolDelay: 15

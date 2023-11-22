@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Game.DoorSystem
 {
+    [SelectionBase]
     public class DoorController : InteractableObject
     {
         public Rigidbody door;

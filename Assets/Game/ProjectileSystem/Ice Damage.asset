@@ -22,7 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   damageMaterialType: 2
-  method: 1
+  method: 3
   fixedDamage: 10
   percentageDamage: 0.1
-  randomDamageRange: {x: 0, y: 1}
+  randomDamageRange: {x: 25, y: 75}
+  cooldownInSeconds: 0.3

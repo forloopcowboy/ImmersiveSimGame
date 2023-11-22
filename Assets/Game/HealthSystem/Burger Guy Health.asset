@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa29a38809e46219b1502889930bad2, type: 3}
   m_Name: Burger Guy Health
   m_EditorClassIdentifier: 
-  maxHealth: 1500
-  currentHealth: 1450
+  maxHealth: 1000
+  currentHealth: 1000
   healthRegenRate: 0
   healthRegenDelay: 0
   healthRegenAmount: 0

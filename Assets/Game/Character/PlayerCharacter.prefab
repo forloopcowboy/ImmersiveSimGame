@@ -114,6 +114,66 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3280395429463048521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6007501192484639821}
+  - component: {fileID: 8801153943556424549}
+  m_Layer: 19
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6007501192484639821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280395429463048521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.208, y: 2.091, z: 0.457}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7721960365052508344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8801153943556424549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280395429463048521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b414f260c3d47768258349aa1e4ae6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  target: {fileID: 0}
+  followPosition: 0
+  followRotation: 1
+  followScale: 0
+  positionLerpSpeed: 25
+  rotationLerpSpeed: 0
+  scaleLerpSpeed: 0
 --- !u!1 &6604006502793832418
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Motor: {fileID: 4448277451761046923}
   MaxStableMoveSpeed: 3.5
-  SprintMultiplier: 0.3
+  SprintMultiplier: 0.17
   StableMovementSharpness: 10
   OrientationSharpness: 10
   OrientationMethod: 0
@@ -428,7 +488,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemsInInventory: []
+  ItemsInInventory:
+  - Inventory: {fileID: 8966574204990463280}
+    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    Quantity: 20
   EquippedItems:
   - Inventory: {fileID: 0}
     Item: {fileID: 0}
@@ -551,7 +614,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4562671444061122939}
         m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
@@ -564,6 +627,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4562671444061122939}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_useGravity
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   onDamage:
     m_PersistentCalls:
@@ -601,5 +676,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4895124669728806222}
+  - {fileID: 6007501192484639821}
   m_Father: {fileID: 4649990210060131539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

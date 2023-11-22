@@ -39,9 +39,9 @@ namespace Game.ProjectileSystem
             var projectileType = aimType;
                 
             Vector3 relativePos = projectileType == AimType.Raycast ?
-                target - traverse.position :
-                ProjectileSpawner.CalculateBallisticVelocity(traverse.transform, target, projectileSpeed, projectileBallisticType);
-
+                target - elevate.position :
+                ProjectileSpawner.CalculateBallisticVelocity(elevate.transform, target, projectileSpeed, projectileBallisticType);
+            
             InterpolateTurretAim(relativePos);
         }
 
