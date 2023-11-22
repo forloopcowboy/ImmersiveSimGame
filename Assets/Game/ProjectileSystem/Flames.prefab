@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4038420522937370489}
   - component: {fileID: 3793861103091790018}
   - component: {fileID: 4343828681635063695}
+  - component: {fileID: 1641028793502523258}
   m_Layer: 0
   m_Name: Flames
   m_TagString: Untagged
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 5401421e7cfc2724b835a38d73f9fc4d, type: 2}
+  damageSource: {fileID: 0}
 --- !u!114 &4038420522937370489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +64,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9310e56f8314472f9d7609782cd7145b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   settings: {fileID: 11400000, guid: 02a121c1663fb764c98c11193e00945a, type: 2}
   currentHealth: 0
   isDead: 0
@@ -93,6 +104,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3793861103091790018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +172,22 @@ MonoBehaviour:
   delay: 2
   animateOnEnable: 0
   disappearMode: 0
+--- !u!208 &1641028793502523258
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942523887969210960}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.25, y: 1.25, z: 1.25}
+  m_MoveThreshold: 0.5
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8165936081707800941
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +298,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _currentCount: 0
+  _iteration: 1
 --- !u!1001 &7913440983000084447
 PrefabInstance:
   m_ObjectHideFlags: 0

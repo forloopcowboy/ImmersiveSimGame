@@ -33,6 +33,7 @@ namespace Game.AIBehavior
 
             if (_inventory.TryGetItemOfType<AbstractProjectileData>(out var projectileItem))
             {
+                if (projectileItem is BallisticProjectileData ballisticProjectile) projectileSpeed.Value = ballisticProjectile.launchSpeed;
                 projectileItem.Use(_inventory);
                 
                 return TaskStatus.Success;

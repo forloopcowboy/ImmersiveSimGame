@@ -15,8 +15,9 @@ namespace Game.Utils.EventBusModule
         public UnityEngine.Events.UnityEvent action;
         [FormerlySerializedAs("onTrigger")] public UnityEngine.Events.UnityEvent<Collider> onTriggerEnter;
         public UnityEngine.Events.UnityEvent<Collider> onTriggerStay;
-        
+        [TabGroup("Debug")] [SerializeField] [ReadOnly] [InfoBox("Current collision count.")]
         private int _currentCount = 0;
+        [TabGroup("Debug")] [SerializeField] [ReadOnly] [InfoBox("Current iteration count.")]
         private int _iteration = 1;
 
         private void OnEnable()
