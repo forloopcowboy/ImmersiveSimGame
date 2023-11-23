@@ -12,29 +12,50 @@ namespace Game.AIBehavior
     public class PerformRangedAttack : Action
     {
         public SharedGameObject target;
+        public SharedVector3 offset = new Vector3(0f, 1.5f, 0f);
         public SharedFloat projectileSpeed;
+        public SharedFloat projectileHighArcThreshold = 20f;
         
         private GameItemInventory _inventory;
-
+        private AimComponent _aimComponent;
+        
         public override void OnStart()
         {
             if (_inventory == null)
             {
                 _inventory = GetComponent<GameItemInventory>();
-                projectileSpeed.Value = 3f;
             }
-            
             if (_inventory == null) Debug.LogError("No GameItemInventory component found on " + gameObject.name + "!");
+            
+            if (_aimComponent == null)
+            {
+                _aimComponent = GetComponent<AimComponent>();
+            }
+            if (_aimComponent == null) Debug.LogError("No AimComponent found on " + gameObject.name + "!");
+            
         }
 
         public override TaskStatus OnUpdate()
         {
             if (_inventory == null || target.Value == null) return TaskStatus.Failure;
 
+            
             if (_inventory.TryGetItemOfType<AbstractProjectileData>(out var projectileItem))
             {
-                if (projectileItem is BallisticProjectileData ballisticProjectile) projectileSpeed.Value = ballisticProjectile.launchSpeed;
-                projectileItem.Use(_inventory);
+                if (projectileItem is BallisticProjectileData ballisticProjectile)
+                {
+                    var strategy = Vector3.Distance(_aimComponent.elevate.position, target.Value.transform.position) > projectileHighArcThreshold.Value
+                        ? BallisticTrajectory.LowEnergy
+                        : BallisticTrajectory.Min;
+                    
+                    projectileSpeed.Value = ballisticProjectile.launchSpeed;
+                    
+                    var velocity = ProjectileSpawner.CalculateBallisticVelocity(_aimComponent.elevate, target.Value.transform.position + offset.Value, ballisticProjectile.launchSpeed, strategy);
+                    
+                    ballisticProjectile.LaunchProjectile(_inventory, _aimComponent.elevate, velocity);
+                    ballisticProjectile.HandleConsumption(_inventory);
+                }
+                else projectileItem.Use(_inventory);
                 
                 return TaskStatus.Success;
             }

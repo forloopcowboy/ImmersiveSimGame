@@ -184,6 +184,7 @@ MonoBehaviour:
     SerializationNodes: []
   count: 1
   iterations: 3
+  triggerAlways: 0
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -202,9 +203,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
+  _currentCount: 0
+  _iteration: 1
 --- !u!1 &6313513387792671711
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: e9c53fda60ef0f14092a94f7bba46228, type: 2}
+  damageSource: {fileID: 0}
 --- !u!114 &2238015809821475876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +710,7 @@ PrefabInstance:
     - target: {fileID: 5147919869966267995, guid: 1b107bfcc6f61094f9748fa54d2ed72f,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 500
+      value: 1450
       objectReference: {fileID: 0}
     - target: {fileID: 5147919869966267995, guid: 1b107bfcc6f61094f9748fa54d2ed72f,
         type: 3}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa29a38809e46219b1502889930bad2, type: 3}
   m_Name: Bot Health
   m_EditorClassIdentifier: 
-  maxHealth: 150
-  currentHealth: 150
+  maxHealth: 350
+  currentHealth: 350
   healthRegenRate: 0
   healthRegenDelay: 0
   healthRegenAmount: 0

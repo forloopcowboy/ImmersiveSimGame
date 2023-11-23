@@ -818,6 +818,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2505025889721752909, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
+      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
+        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":20}]}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1028190357}
     - target: {fileID: 3199262374575813900, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1721,6 +1737,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
         type: 3}
+    - target: {fileID: 4487054223609622862, guid: 390e397278d44c54e8d8ba9d7e93bf72,
+        type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4270,12 +4291,25 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
-      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
-        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"Tooltip":"When
-        true, will interrupt any chasing, attacking, or fleeing behaviour and begin
-        again.","BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,1.5,0)"}]}'
+      propertyPath: mBehaviorSource.behaviorName
+      value: Borger Defender
       objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
+      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
+        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":20}]}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1028190357}
     - target: {fileID: 3199262374575813900, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4284,7 +4318,7 @@ PrefabInstance:
     - target: {fileID: 4647469678655081537, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_Name
-      value: Retaliatory AI (3)
+      value: Borger
       objectReference: {fileID: 0}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -5497,6 +5531,98 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd81efad6fd334cfbb23afe0f591c67a, type: 3}
+--- !u!1 &1028190357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028190359}
+  - component: {fileID: 1028190358}
+  - component: {fileID: 1028190360}
+  m_Layer: 0
+  m_Name: RestrictedArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1028190358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028190357}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 14.362898, y: 1.0000001, z: 11.2109785}
+  m_Center: {x: 6.681425, y: -0.000000090158736, z: 5.105496}
+--- !u!4 &1028190359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028190357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.028137408, y: -0.72384953, z: 0.010797852, w: 0.68929935}
+  m_LocalPosition: {x: 3.795, y: 4.529, z: -18.337}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 3.12, y: -92.842, z: -1.483}
+--- !u!114 &1028190360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028190357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c463c08be66f434bbd68cf928cdb062b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  count: 1
+  iterations: 1
+  triggerAlways: 1
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
+  _currentCount: 0
+  _iteration: 1
 --- !u!1 &1033148301
 GameObject:
   m_ObjectHideFlags: 0
@@ -7221,6 +7347,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2505025889721752909, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
+      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
+        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":3},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,2,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":0}]}'
+      objectReference: {fileID: 0}
     - target: {fileID: 3199262374575813900, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7591,6 +7723,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8379698365960680940}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1558350973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8379698365960680940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558350965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10220552abc44f47b3ad1d76cc48896f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1558350978
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10113,6 +10257,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8018226840045218429, guid: c3cb08e8c22913f488266479d98822cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8801153943556424549, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: target
@@ -10920,10 +11069,19 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 5247838702431395680, guid: 1ce4cdf7f09dad04d9f0a196f357da4d,
         type: 3}
+      propertyPath: charactersPerSecond
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247838702431395680, guid: 1ce4cdf7f09dad04d9f0a196f357da4d,
+        type: 3}
+      propertyPath: timeScaleOnDialogue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247838702431395680, guid: 1ce4cdf7f09dad04d9f0a196f357da4d,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 5247838702431395680, guid: 1ce4cdf7f09dad04d9f0a196f357da4d,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5560727552998560562, guid: 1ce4cdf7f09dad04d9f0a196f357da4d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -11280,7 +11438,7 @@ PrefabInstance:
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.08
+      value: 24.41
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11290,12 +11448,12 @@ PrefabInstance:
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.61
+      value: -13.65
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.95498484
+      value: 0.66201
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11305,7 +11463,7 @@ PrefabInstance:
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.29665473
+      value: -0.7494951
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11320,7 +11478,7 @@ PrefabInstance:
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -34.514
+      value: -97.093
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11342,20 +11500,39 @@ PrefabInstance:
     - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
-        Wander?","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"Tooltip":"When
-        true, will interrupt any chasing, attacking, or fleeing behaviour and begin
-        again.","BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1.2},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,2.1,0)"}]}'
+      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"STAND_GROUND"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
+        Wander?","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":35}]}'
       objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1028190357}
+    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1028190357}
     - target: {fileID: 4647469678655081537, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_Name
-      value: Retaliatory AI
+      value: Rooftop Bot
       objectReference: {fileID: 0}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
+      objectReference: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.size
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11363,6 +11540,107 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d,
         type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[1].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[2].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[3].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[4].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[5].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[6].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[0].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[1].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[2].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[3].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[4].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[5].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[6].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[1].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[2].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[3].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[4].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[5].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[6].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
     - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: dialogue.Array.data[1]
@@ -11554,3 +11832,4 @@ SceneRoots:
   - {fileID: 114369390}
   - {fileID: 38157929}
   - {fileID: 1302503066}
+  - {fileID: 1028190359}

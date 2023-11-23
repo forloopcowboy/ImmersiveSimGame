@@ -6,8 +6,11 @@ namespace Game.ProjectileSystem
 {
     public enum BallisticTrajectory
     {
+        // Highest arc to hit from above
         Max,
+        // Most direct arc to hit straight on
         Min,
+        // Somewhere in between
         LowEnergy
     }
 
@@ -30,7 +33,9 @@ namespace Game.ProjectileSystem
                        speed;
         }
         
-        /// Returns the velocity needed to hit a target from a certain position with a certain speed.
+        /// <summary>
+        /// Returns the velocity needed to hit a target from a certain position with a certain speed. This 3d vector can also
+        /// be used as the look direction for a projectile by using Quaternion.LookRotation().
         /// </summary>
         /// <returns>The 3D velocity.</returns>
         public static Vector3 CalculateBallisticVelocity(Transform source, Vector3 target, float speed, BallisticTrajectory trajectoryType = BallisticTrajectory.Min)

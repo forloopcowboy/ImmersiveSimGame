@@ -27,6 +27,8 @@ namespace Game.DialogueSystem
         
         public int charactersPerSecond = 25;
         
+        public float timeScaleOnDialogue = 0.16f;
+        
         // Event bus subscription
         private Action _unsubscribe;
         private string _currentDialogueText;
@@ -36,21 +38,55 @@ namespace Game.DialogueSystem
         private void Start()
         {
             ShowNextDialogue();
+            InitializeEventBus();
+        }
+
+        private void OnEnable()
+        {
+            InitializeEventBus();
+
+            // if dialogue was interrupted, skip animation
+            if (_isAnimating)
+            {
+                if (_renderDialogueLettersCoroutine != null)
+                {
+                    StopCoroutine(_renderDialogueLettersCoroutine);
+                }
+                dialogueText.text = _currentDialogueText;
+                _isAnimating = false;
+            }
+        }
+
+        private void InitializeEventBus()
+        {
+            if (_unsubscribe != null)
+            {
+                _unsubscribe();
+            }
             
             var unsub1 = SceneEventBus.Subscribe<DialogueEvent>(OnDialogueEvent);
             var unsub2 = SceneEventBus.Subscribe<NextDialogueEvent>(ShowNextDialogue);
             var unsub3 = SceneEventBus.Subscribe<SkipDialogueEvent>(SkipDialogue);
+            var unsub4 = SceneEventBus.Subscribe<EndDialogueEvent>(OnDialogueEnded);
             
             _unsubscribe = () =>
             {
                 unsub1();
                 unsub2();
                 unsub3();
+                unsub4();
             };
             
             skipShortcutText.text = dialogueQueue.TryPeek(out var dialogueItem) && dialogueItem.skippable ? $"[{skipShortcut}] Skip" : "";
         }
-        
+
+        private void OnDialogueEnded(EndDialogueEvent obj)
+        {
+            Time.timeScale = 1f;
+            // update physics time scale
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(skipShortcut))
@@ -72,7 +108,11 @@ namespace Game.DialogueSystem
 
         private void OnDialogueEvent(DialogueEvent obj)
         {
-            Debug.Log($"Dialogue event received: {obj.dialogueItems.Count()} DialogueItems added to queue");
+            Debug.Log($"Dialogue event received: {obj.dialogueItems.Count()} DialogueItems added to queue. Time scale is now {timeScaleOnDialogue}");
+            Time.timeScale = timeScaleOnDialogue;
+            // update physics time scale
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            
             EnqueueDialogueItems(obj.dialogueItems);
             ShowNextDialogue();
         }
@@ -129,7 +169,7 @@ namespace Game.DialogueSystem
             foreach (var letter in _currentDialogueText)
             {
                 dialogueText.text += letter;
-                yield return new WaitForSeconds(1f/charactersPerSecond);
+                yield return new WaitForSeconds(1f/ (charactersPerSecond / Time.timeScale));
             }
             _isAnimating = false;
             _renderDialogueLettersCoroutine = null;
@@ -138,6 +178,7 @@ namespace Game.DialogueSystem
         private void OnDisable()
         {
             _unsubscribe?.Invoke();
+            _unsubscribe = null;
         }
     }
     

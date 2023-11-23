@@ -17,16 +17,20 @@ namespace Game.AIBehavior
         public override void OnStart()
         {
             _health = GetComponent<Health>();
-            damageSource.SetValue(null);
             _health.onDamage.AddListener(OnDamageTaken);
         }
 
         private void OnDamageTaken(GameObject arg0)
         {
-            _hasTakenDamage = true;
-            damageSource.SetValue(arg0);
-
-            Debug.Log($"Conditional: Has taken damage from {arg0.name}!");
+            // ignore self damage
+            if (gameObject.name != arg0.name)
+            {
+                _hasTakenDamage = true;
+                damageSource.SetValue(arg0);
+                Debug.Log($"ConditionalTask: {gameObject.name} Has taken damage from {arg0.name}!");
+            }
+            
+            else Debug.Log($"ConditionalTask: [IGNORED SELF] {gameObject.name} has taken damage from {arg0.name}!");
         }
         
         public override TaskStatus OnUpdate()

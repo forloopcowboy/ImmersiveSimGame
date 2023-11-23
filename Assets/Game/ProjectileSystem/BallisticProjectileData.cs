@@ -15,14 +15,51 @@ namespace Game.ProjectileSystem
         [ShowIf("autoRepool")]
         public float autoRepoolDelay = 5f;
 
+        public string InstanceId => ItemName;
+        
+        /// <summary>
+        /// Launches projectile from the given spawn point, with the given launch velocity,
+        /// overriding the launch speed of the projectile data. Does not handle consumption.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="spawnPoint"></param>
+        /// <param name="launchVelocity"></param>
+        /// <returns></returns>
+        public GameObject LaunchProjectile(Component user, Transform spawnPoint, Vector3 launchVelocity)
+        {
+            PreparePool(InstanceId);
+            
+            var projectile = GameObjectPool.Singleton.Get(InstanceId);
+            
+            var dmg = projectile.GetComponentInChildren<DamageComponent>();
+            dmg.damageSource = user.gameObject;
+            
+            projectile.transform.position = spawnPoint.position;
+            projectile.transform.rotation = spawnPoint.rotation;
+            
+            var rb = projectile.GetComponentInChildren<Rigidbody>();
+            if (rb) {
+                rb.isKinematic = false;
+                rb.velocity = Vector3.zero;
+                rb.AddForce(launchVelocity, ForceMode.VelocityChange);
+            }
+            if (autoRepool) GameObjectPool.Singleton.ReleaseIn(InstanceId, projectile, autoRepoolDelay);
+
+            return projectile;
+        }
+
         public override void Use(GameItemInventory user)
         {
             var spawnPoint = user.transform.FindTransformByName("ProjectileSpawnPoint");
             if (!spawnPoint)
                 throw new NullReferenceException("ProjectileSpawnPoint not found on user. Please attach a ProjectileSpawnPoint to the user, and ensure it's forward vector indicates the desired launch direction.");
-
-            var instanceId = ItemName; // todo: use something better here
             
+            LaunchProjectile(user, spawnPoint, spawnPoint.forward.normalized * launchSpeed);
+            base.Use(user); // handle consumption
+        }
+
+        private void PreparePool(string instanceId)
+        {
             GameObjectPool.Singleton.RegisterIfNotAlready(
                 instanceId, // pooled by projectile data type
                 () =>
@@ -34,55 +71,45 @@ namespace Game.ProjectileSystem
                 },
                 obj =>
                 {
-                    obj.transform.SetParent(null);
-                    obj.SetActive(true);
-                    
-                    var rb = obj.GetComponentInChildren<Rigidbody>();
-                    if (rb) {
-                      if (!rb.isKinematic) rb.velocity = Vector3.zero;
-                      rb.isKinematic = true;
-                      rb.detectCollisions = false;
-
-                      // Prevent collisions with the user
-                      GameObjectPool.Singleton.StartCoroutine(
-                          CoroutineHelpers.DelayedAction(0.04f, () => rb.detectCollisions = true));
+                    if (obj == null)
+                    {
+                        obj = Instantiate(prefab);
+                        obj.name = ItemName + $" (Pooled ID::{GameObjectPool.Singleton.Count(instanceId)})";
                     }
                     
-                    var dmg = obj.GetComponentInChildren<DamageComponent>();
-                    dmg.damageSource = user.gameObject;
+                    obj.transform.SetParent(null);
+                    obj.SetActive(true);
+
+                    var rb = obj.GetComponentInChildren<Rigidbody>();
+                    if (rb)
+                    {
+                        if (!rb.isKinematic) rb.velocity = Vector3.zero;
+                        rb.isKinematic = true;
+                        rb.detectCollisions = false;
+
+                        // Prevent collisions with the user
+                        GameObjectPool.Singleton.StartCoroutine(
+                            CoroutineHelpers.DelayedAction(0.04f / Time.timeScale, () => rb.detectCollisions = true));
+                    }
                 },
                 obj =>
                 {
                     obj.SetActive(false);
-                    
+
                     var rb = obj.GetComponentInChildren<Rigidbody>();
-                    if (rb) {
-                      if (!rb.isKinematic) rb.velocity = Vector3.zero;
-                      rb.isKinematic = true;
-                      rb.detectCollisions = false;
+                    if (rb)
+                    {
+                        if (!rb.isKinematic) rb.velocity = Vector3.zero;
+                        rb.isKinematic = true;
+                        rb.detectCollisions = false;
                     }
-                    
+
                     var dmg = obj.GetComponentInChildren<DamageComponent>();
                     dmg.damageSource = null;
                 },
                 Destroy,
                 10
             );
-            
-            var projectile = GameObjectPool.Singleton.Get(instanceId);
-            
-            projectile.transform.position = spawnPoint.position;
-            projectile.transform.rotation = spawnPoint.rotation;
-            
-            var rb = projectile.GetComponentInChildren<Rigidbody>();
-            if (rb) {
-              rb.isKinematic = false;
-              rb.AddForce(spawnPoint.forward * launchSpeed, ForceMode.VelocityChange);
-            }
-            
-            base.Use(user); // handle consumption
-            
-            if (autoRepool) GameObjectPool.Singleton.ReleaseIn(instanceId, projectile, autoRepoolDelay);
         }
     }
 }

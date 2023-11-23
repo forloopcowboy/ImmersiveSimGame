@@ -17,6 +17,8 @@ namespace Game.GameManager
         public UnityEvent onPause;
         public UnityEvent onResume;
         public UnityEvent onLoadingFinished;
+        
+        private float _timeScaleBeforePause;
 
         private void Start()
         {
@@ -40,27 +42,32 @@ namespace Game.GameManager
 
         public void Pause()
         {
-            if (_isPaused == false) onPause?.Invoke();
-            
-            _isPaused = true;
-            Cursor.lockState = CursorLockMode.None;
-            if (pauseScreen != null)
+            if (!_isPaused)
             {
-                pauseScreen.SetActive(true);
-            }
+                onPause?.Invoke();_isPaused = true;
+                Cursor.lockState = CursorLockMode.None;
+                if (pauseScreen != null)
+                {
+                    pauseScreen.SetActive(true);
+                }
             
-            Time.timeScale = 0;
+                _timeScaleBeforePause = Time.timeScale;
+                Time.timeScale = 0;
+            }
         }
 
         public void Resume()
         {
-            if (_isPaused == true) onResume?.Invoke();
+            if (_isPaused)
+            {
+                onResume?.Invoke();
             
-            _isPaused = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            pauseScreen.SetActive(false);
+                _isPaused = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                pauseScreen.SetActive(false);
             
-            Time.timeScale = 1;
+                Time.timeScale = _timeScaleBeforePause;
+            }
         }
 
         public void ReloadScene()

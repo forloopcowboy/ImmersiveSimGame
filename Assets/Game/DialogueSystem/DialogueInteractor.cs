@@ -43,12 +43,6 @@ namespace Game.DialogueSystem
         private void OnDialogueStarted(DialogueEvent obj)
         {
             enabled = false;
-            
-            var behaviorTree = GetComponent<Behavior>();
-            if (behaviorTree != null)
-            {
-                behaviorTree.SendEvent(BehaviorEvents.DialogueStarted.ToString());
-            }
         }
 
         private void OnDialogueEnded(EndDialogueEvent obj)
@@ -64,7 +58,16 @@ namespace Game.DialogueSystem
 
         public override void Interact(dynamic input)
         {
-            if (enabled) SceneEventBus.Emit(new DialogueEvent(dialogue.Select(text => new DialogueItem(speakerName, text))));
+            if (enabled)
+            {
+                SceneEventBus.Emit(new DialogueEvent(dialogue.Select(text => new DialogueItem(speakerName, text))));
+                
+                var behaviorTree = GetComponent<Behavior>();
+                if (behaviorTree != null)
+                {
+                    behaviorTree.SendEvent(BehaviorEvents.DialogueStarted.ToString());
+                }
+            }
         }
 
         private void OnDestroy()

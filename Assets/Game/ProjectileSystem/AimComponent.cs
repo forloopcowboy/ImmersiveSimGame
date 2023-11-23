@@ -37,10 +37,14 @@ namespace Game.ProjectileSystem
         public void AimAt(Vector3 target, float projectileSpeed, BallisticTrajectory projectileBallisticType = BallisticTrajectory.Min)
         {
             var projectileType = aimType;
+            
+            Debug.DrawLine(elevate.transform.position, target, Color.yellow, 0.1f);
                 
             Vector3 relativePos = projectileType == AimType.Raycast ?
                 target - elevate.position :
                 ProjectileSpawner.CalculateBallisticVelocity(elevate.transform, target, projectileSpeed, projectileBallisticType);
+            
+            Debug.DrawRay(elevate.transform.position, relativePos, Color.blue, 0.2f);
             
             InterpolateTurretAim(relativePos);
         }
