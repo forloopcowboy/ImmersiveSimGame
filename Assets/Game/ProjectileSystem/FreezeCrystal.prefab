@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 6535675287100198485}
   - component: {fileID: -2986908514393734305}
   - component: {fileID: 2238015809821475876}
+  - component: {fileID: -6570990780743348210}
   m_Layer: 0
   m_Name: FreezeCrystal
   m_TagString: Untagged
@@ -604,6 +605,34 @@ MonoBehaviour:
   delay: 8
   animateOnEnable: 0
   disappearMode: 1
+  OnDisappear:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -6570990780743348210}
+        m_TargetAssemblyTypeName: Game.Utils.PooledObject, Utils
+        m_MethodName: ReturnToPool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-6570990780743348210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313513387792671711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8f9e0432c64524aaab6567d59fc53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolCategory: default
 --- !u!1001 &8300479450460395212
 PrefabInstance:
   m_ObjectHideFlags: 0

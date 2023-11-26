@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4040003573943560089}
   - component: {fileID: 2204073949777196551}
   - component: {fileID: 6685766835331773356}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c0d25474dfd33349bfeedd203d2a3e0, type: 2}
+  - {fileID: 2100000, guid: 5fe0aebe85b574b4a94e74712f0aa915, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955879694860790696}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 565018298231060869}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.519, y: 0.242, z: 0.708}
+  m_LocalPosition: {x: 0.23, y: 0.242, z: 0.825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 134409479532216553}
   - component: {fileID: 3199262374575813900}
   - component: {fileID: 1065380510973084950}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: MeshRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d41f8c57e738e44f9f12fc053be388c, type: 2}
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,8 @@ GameObject:
   - component: {fileID: 1571118238788384754}
   - component: {fileID: 2505025889721752909}
   - component: {fileID: 4498407939739275240}
-  m_Layer: 0
+  - component: {fileID: 3435136833521405857}
+  m_Layer: 18
   m_Name: Retaliatory AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,12 +309,15 @@ MonoBehaviour:
   isInteractable: 1
   shortcut: E
   interactionText: to speak to
-  itemName: Angry Red Guy
-  speakerName: Angry Red Guy
+  itemName: Trained Red Guy
+  speakerName: Trained Red Guy
   dialogue:
-  - Hello, stranger! I'm Red Guy!
-  - If you try to attack me I won't show you mercy...
-  - So go ahead and fuck off. I got some wandering around to do.
+  - I just got back from deployment. Got a job as target practice assistant here
+    at the Playground. I'm hoping today will be a decent day and I will get to share
+    my skills!
+  - Though the job description did kind of imply I would be the target...
+  - If you dare treat me like a goddamn target practice, I'm gonna light your ass
+    on fire.
 --- !u!114 &6157632096871658302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,10 +407,8 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
-        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"Tooltip":"When
-        true, will interrupt any chasing, attacking, or fleeing behaviour and begin
-        again.","BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":3},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,2,0)"}]}'
+      JSONSerialization: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
+        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":20}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -488,3 +490,30 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3435136833521405857
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647469678655081537}
+  serializedVersion: 4
+  m_Mass: 8
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

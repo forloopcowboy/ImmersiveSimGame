@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3484301029598748226}
   - component: {fileID: 323496830462341919}
   - component: {fileID: 6211057412891064367}
+  - component: {fileID: 162182097464334037}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -176,6 +177,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 162182097464334037}
+        m_TargetAssemblyTypeName: Game.Utils.PooledObject, Utils
+        m_MethodName: ReturnToPool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onReset:
     m_PersistentCalls:
       m_Calls: []
@@ -234,6 +247,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: d79ccbcf51c519741affff4aeeb1c924, type: 2}
   damageSource: {fileID: 0}
+--- !u!114 &162182097464334037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475214457611752613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8f9e0432c64524aaab6567d59fc53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolCategory: default
 --- !u!1 &5979911010678653349
 GameObject:
   m_ObjectHideFlags: 0

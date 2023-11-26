@@ -37,8 +37,8 @@ namespace Game.Utils
             _currentCount++;
             if (_currentCount == count * _iteration && _iteration <= iterations)
             {
-                action?.Invoke();
                 onCollision?.Invoke(other);
+                action?.Invoke();
                 _iteration++;
             }
         }

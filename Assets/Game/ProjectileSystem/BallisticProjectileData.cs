@@ -15,7 +15,7 @@ namespace Game.ProjectileSystem
         [ShowIf("autoRepool")]
         public float autoRepoolDelay = 5f;
 
-        public string InstanceId => ItemName;
+        public string InstanceId => ItemName; // todo: give a better ID
         
         /// <summary>
         /// Launches projectile from the given spawn point, with the given launch velocity,
@@ -43,6 +43,7 @@ namespace Game.ProjectileSystem
                 rb.velocity = Vector3.zero;
                 rb.AddForce(launchVelocity, ForceMode.VelocityChange);
             }
+            
             if (autoRepool) GameObjectPool.Singleton.ReleaseIn(InstanceId, projectile, autoRepoolDelay);
 
             return projectile;
@@ -66,6 +67,8 @@ namespace Game.ProjectileSystem
                 {
                     var instance = Instantiate(prefab);
                     instance.name = ItemName + $" (Pooled ID::{GameObjectPool.Singleton.Count(instanceId)})";
+                    var pooledObject = instance.GetOrElseAddComponent<PooledObject>();
+                    pooledObject.PoolCategory = instanceId;
 
                     return instance;
                 },
@@ -89,7 +92,7 @@ namespace Game.ProjectileSystem
 
                         // Prevent collisions with the user
                         GameObjectPool.Singleton.StartCoroutine(
-                            CoroutineHelpers.DelayedAction(0.04f / Time.timeScale, () => rb.detectCollisions = true));
+                            CoroutineHelpers.DelayedAction(0.035f / Time.timeScale, () => rb.detectCollisions = true));
                     }
                 },
                 obj =>

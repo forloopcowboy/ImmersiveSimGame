@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 4810777232873125291}
   m_Layer: 19
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   spherecastRadius: 0.5
   raycastMask:
     serializedVersion: 2
-    m_Bits: 1048631
+    m_Bits: 1310775
 --- !u!114 &4810777232873125291
 MonoBehaviour:
   m_ObjectHideFlags: 0

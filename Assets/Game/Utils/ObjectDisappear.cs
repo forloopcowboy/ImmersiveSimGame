@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 namespace Game.Utils
@@ -16,6 +17,8 @@ namespace Game.Utils
         public float delay = 0f;
         public bool animateOnEnable = false;
         public DisappearMode disappearMode = DisappearMode.Destroy;
+        
+        public UnityEvent OnDisappear;
 
         // Handle decals
         private DecalProjector _decalProjector;
@@ -24,7 +27,7 @@ namespace Game.Utils
         {
             SetScale(1);
             _decalProjector = GetComponentInChildren<DecalProjector>();
-            
+
             if (animateOnEnable)
             {
                 Disappear();
@@ -68,6 +71,8 @@ namespace Game.Utils
                 Debug.Log($"{name} Disabled");
                 gameObject.SetActive(false);
             }
+            
+            OnDisappear?.Invoke();
         }
 
         private void SetScale(float scale)

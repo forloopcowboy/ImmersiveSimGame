@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - DoorLock
+  - Elevator
+  - ElevatorButtonOpen
+  - ElevatorNumericButton
+  - ElevatorGoButton
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Humanoid
   - PlayerCharacter
   - Door
   - DoorFrame

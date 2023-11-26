@@ -818,27 +818,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2505025889721752909, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
-    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
-        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":20}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1028190357}
-    - target: {fileID: 3199262374575813900, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
     - target: {fileID: 4647469678655081537, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_Name
@@ -850,50 +829,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
-    - target: {fileID: 6685766835331773356, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5fe0aebe85b574b4a94e74712f0aa915, type: 2}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: itemName
-      value: Trained Red Guy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: speakerName
-      value: Trained Red Guy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: dialogue.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: dialogue.Array.data[0]
-      value: I just got back from deployment. Got a job as target practice assistant
-        here at the Playground. I'm hoping today will be a decent day and I will
-        get to share my skills!
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: dialogue.Array.data[1]
-      value: Though the job description did kind of imply I would be the target...
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: dialogue.Array.data[2]
-      value: If you dare treat me like a goddamn target practice, I'm gonna light
-        your ass on fire.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      propertyPath: dialogue.Array.data[3]
-      value: If you dare treat me like a goddamn target practice, I'm gonna light
-        your ass on fire.
-      objectReference: {fileID: 0}
     - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -903,11 +838,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4647469678655081537, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 649655202}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7638c5bb967585409775074b1b542d4, type: 3}
 --- !u!1001 &173577286
 PrefabInstance:
@@ -3497,39 +3428,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 138561729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &649655192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4647469678655081537, guid: d7638c5bb967585409775074b1b542d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 143562023}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &649655202
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649655192}
-  serializedVersion: 4
-  m_Mass: 8
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &651599933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5568,8 +5466,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14.362898, y: 1.0000001, z: 11.2109785}
-  m_Center: {x: 6.681425, y: -0.000000090158736, z: 5.105496}
+  m_Size: {x: 12.653461, y: 1.0000001, z: 10.528464}
+  m_Center: {x: 6.927018, y: -0.00000001517817, z: 5.446753}
 --- !u!4 &1028190359
 Transform:
   m_ObjectHideFlags: 0
@@ -10269,15 +10167,20 @@ PrefabInstance:
       objectReference: {fileID: 2418391684500874710}
     - target: {fileID: 8801153943556424549, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 8801153943556424549, guid: c3cb08e8c22913f488266479d98822cc,
-        type: 3}
-    - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
+      propertyPath: followPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801153943556424549, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
+        type: 3}
     - target: {fileID: 8966574204990463280, guid: c3cb08e8c22913f488266479d98822cc,
         type: 3}
       propertyPath: ItemsInInventory.Array.size
@@ -11438,17 +11341,17 @@ PrefabInstance:
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.41
+      value: 23.987
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.744
+      value: 17.255
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.65
+      value: -13.048
       objectReference: {fileID: 0}
     - target: {fileID: 401668204757133521, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11527,12 +11430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: ItemsInInventory.Array.size
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -11578,6 +11480,24 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
+      propertyPath: ItemsInInventory.Array.data[7].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[8].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[9].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6,
+        type: 2}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
       propertyPath: ItemsInInventory.Array.data[0].Quantity
       value: 15
       objectReference: {fileID: 0}
@@ -11613,6 +11533,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
+      propertyPath: ItemsInInventory.Array.data[7].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[8].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[9].Quantity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
       propertyPath: ItemsInInventory.Array.data[1].Inventory
       value: 
       objectReference: {fileID: 1558350973}
@@ -11639,6 +11574,21 @@ PrefabInstance:
     - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
       propertyPath: ItemsInInventory.Array.data[6].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[7].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[8].Inventory
+      value: 
+      objectReference: {fileID: 1558350973}
+    - target: {fileID: 6157632096871658302, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: ItemsInInventory.Array.data[9].Inventory
       value: 
       objectReference: {fileID: 1558350973}
     - target: {fileID: 8837190981611821977, guid: d7638c5bb967585409775074b1b542d4,

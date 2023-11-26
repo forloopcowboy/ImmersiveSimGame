@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,11 +19,17 @@ namespace Game.HealthSystem
         public UnityEvent<GameObject> onDamage;
         [InfoBox("Called when the object is healed. Argument is damage source")]
         public UnityEvent<GameObject> onHeal;
-
-        private void Start()
+        
+        [Button]
+        private void SynchronizeHealth()
         {
             currentHealth = settings.currentHealth;
             isDead = settings.isDead;
+        }
+
+        private void Start()
+        { 
+            SynchronizeHealth();
         }
 
         public void Heal(float amount, GameObject source)
