@@ -8,8 +8,9 @@ namespace Game.Utils
     public class DoOnCollision : SerializedMonoBehaviour
     {
         [InfoBox("Number of collisions to wait for before executing the action.")]
-        public int count = 1;
-        public int iterations = 1;
+        [HideIf("collideAlways")] public int count = 1;
+        [HideIf("collideAlways")] public int iterations = 1;
+        public bool collideAlways = false;
         
         [InfoBox("Action to execute when the number of collisions is reached.")]
         public UnityEngine.Events.UnityEvent action;
@@ -18,6 +19,11 @@ namespace Game.Utils
 
         private int _currentCount = 0;
         private int _iteration = 1;
+        
+        public void SetCollideAlways(bool value)
+        {
+            collideAlways = value;
+        }
 
         private void Start()
         {
@@ -35,7 +41,7 @@ namespace Game.Utils
         private void OnCollisionEnter(Collision other)
         {
             _currentCount++;
-            if (_currentCount == count * _iteration && _iteration <= iterations)
+            if (collideAlways || _currentCount == count * _iteration && _iteration <= iterations)
             {
                 onCollision?.Invoke(other);
                 action?.Invoke();

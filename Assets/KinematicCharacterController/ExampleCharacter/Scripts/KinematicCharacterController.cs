@@ -529,5 +529,19 @@ namespace KinematicCharacterController.Examples
         public void OnDiscreteCollisionDetected(Collider hitCollider)
         {
         }
+
+        public void IgnoreCollidersIn(GameObject obj)
+        {
+            IgnoredColliders.AddRange(obj.GetComponentsInChildren<Collider>());
+        }
+
+        public void StopIgnoringCollidersIn(GameObject obj)
+        {
+            var colliders = obj.GetComponentsInChildren<Collider>();
+            foreach (var c in colliders)
+            {
+                IgnoredColliders.Remove(c);
+            }
+        }
     }
 }

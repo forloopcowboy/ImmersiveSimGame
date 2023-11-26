@@ -1,0 +1,17 @@
+{
+    "name": "GrabSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:daa5b2a852af442584431e0ec47c9908",
+        "GUID:e522abf7b66a4d5490e934c487879913"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

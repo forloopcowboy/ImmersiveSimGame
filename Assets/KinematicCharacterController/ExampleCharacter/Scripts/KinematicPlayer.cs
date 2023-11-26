@@ -2,6 +2,7 @@
 using Game.DialogueSystem;
 using Game.DoorSystem;
 using Game.EquipmentSystem;
+using Game.GrabSystem;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
 using KinematicCharacterController.Examples;
@@ -16,6 +17,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         public GameItemInventory Inventory;
         public InventoryContentUIController InventoryContentUIController;
         public Interactor Interactor;
+        public GrabNode GrabNode;
 
         private const string MouseXInput = "Mouse X";
         private const string MouseYInput = "Mouse Y";
@@ -76,6 +78,11 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             {
                 InventoryContentUIController = FindObjectOfType<InventoryContentUIController>();
             }
+            
+            if (GrabNode == null)
+            {
+                GrabNode = Character.GetComponentInChildren<GrabNode>();
+            }
         }
 
         private void OnEndDialogueEvent(EndDialogueEvent obj)
@@ -104,7 +111,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Inventory.UseItemInHand();
+                if (GrabNode.isGrabbed)
+                    GrabNode.Throw();
+                else Inventory.UseItemInHand();
             }
         }
 
@@ -164,6 +173,14 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                     Debug.Log("Pressed E but inventory is closed. And no item is selected and no interactable in range. Emitting next dialog event in case there is one.");
                     SceneEventBus.Emit(new NextDialogueEvent());
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (GrabNode.isGrabbed)
+                    GrabNode.Release();
+                else
+                    Interactor.TryToInteract(out GrabbableObject grabbable, GrabNode);
             }
         }
 

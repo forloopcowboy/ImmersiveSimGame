@@ -23,7 +23,7 @@ namespace Game.AIBehavior
 
         public override TaskStatus OnUpdate()
         {
-            return health.isDead ? TaskStatus.Success : OnFailure;
+            return health != null && health.isDead ? TaskStatus.Success : OnFailure;
         }
     }
 }
