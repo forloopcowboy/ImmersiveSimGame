@@ -174,6 +174,118 @@ MonoBehaviour:
   positionLerpSpeed: 25
   rotationLerpSpeed: 0
   scaleLerpSpeed: 0
+--- !u!1 &6508045770183624732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7257897190215484997}
+  - component: {fileID: 887777102453422764}
+  - component: {fileID: 160499163606462607}
+  m_Layer: 19
+  m_Name: GrabNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7257897190215484997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508045770183624732}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7721960365052508344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887777102453422764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508045770183624732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f9816afe5b419bafde8822c922ee64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabObject: {fileID: 0}
+  isGrabbed: 0
+  throwForce: 10
+  attractionForce: 100
+  rotationSpeed: 65
+  dampingFactor: 18
+  stopDistance: 0.085
+  onGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 31585803439870811}
+        m_TargetAssemblyTypeName: KinematicCharacterController.Examples.KinematicCharacterController,
+          Assembly-CSharp
+        m_MethodName: IgnoreCollidersIn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onThrow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 31585803439870811}
+        m_TargetAssemblyTypeName: KinematicCharacterController.Examples.KinematicCharacterController,
+          Assembly-CSharp
+        m_MethodName: StopIgnoringCollidersIn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &160499163606462607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508045770183624732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b414f260c3d47768258349aa1e4ae6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  target: {fileID: 0}
+  followPosition: 1
+  followRotation: 1
+  followScale: 0
+  positionLerpSpeed: 0
+  rotationLerpSpeed: 0
+  scaleLerpSpeed: 0
 --- !u!1 &6604006502793832418
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +422,7 @@ GameObject:
   - component: {fileID: 4810777232873125291}
   m_Layer: 19
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,6 +604,9 @@ MonoBehaviour:
   - Inventory: {fileID: 8966574204990463280}
     Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 20
+  - Inventory: {fileID: 8966574204990463280}
+    Item: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
+    Quantity: 5
   EquippedItems:
   - Inventory: {fileID: 0}
     Item: {fileID: 0}
@@ -677,5 +792,6 @@ Transform:
   m_Children:
   - {fileID: 4895124669728806222}
   - {fileID: 6007501192484639821}
+  - {fileID: 7257897190215484997}
   m_Father: {fileID: 4649990210060131539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

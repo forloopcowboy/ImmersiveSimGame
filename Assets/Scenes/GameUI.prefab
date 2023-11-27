@@ -2069,6 +2069,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 755928926455139934, guid: ba01f9f8beef8d94582ac4c340bf3b13,
         type: 3}
+      propertyPath: charactersPerSecond
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 755928926455139934, guid: ba01f9f8beef8d94582ac4c340bf3b13,
+        type: 3}
+      propertyPath: timeScaleOnDialogue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 755928926455139934, guid: ba01f9f8beef8d94582ac4c340bf3b13,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 755928926455139934, guid: ba01f9f8beef8d94582ac4c340bf3b13,
@@ -2458,6 +2468,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2282493494733117569, guid: a1761d915d6dc9044a052c07b71d4018,
+        type: 3}
+      propertyPath: current
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2949562764022439564, guid: a1761d915d6dc9044a052c07b71d4018,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2622,6 +2637,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHUDUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483552245589239672, guid: a1761d915d6dc9044a052c07b71d4018,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

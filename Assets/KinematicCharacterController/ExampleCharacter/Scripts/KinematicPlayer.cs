@@ -66,7 +66,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             SceneEventBus.Subscribe<EndDialogueEvent>(OnEndDialogueEvent);
         }
 
-        private void OnValidate()
+        public void OnValidate()
         {
             if (Character != null)
             {
@@ -79,7 +79,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 InventoryContentUIController = FindObjectOfType<InventoryContentUIController>();
             }
             
-            if (GrabNode == null)
+            if (GrabNode == null && Character != null)
             {
                 GrabNode = Character.GetComponentInChildren<GrabNode>();
             }

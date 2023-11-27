@@ -1,3 +1,4 @@
+using Game.Src.EventBusModule;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +14,8 @@ namespace Game.Utils
 
         private void Start()
         {
-            _coroutine = StartCoroutine(CoroutineHelpers.DelayedAction(waitTime, () =>
+            // launch coroutine from event bus to still destroy it in case this object is disabled in the pooling process.
+            _coroutine = SceneEventBus.Singleton.StartCoroutine(CoroutineHelpers.DelayedAction(waitTime, () =>
             {
                 action?.Invoke();
             }));
