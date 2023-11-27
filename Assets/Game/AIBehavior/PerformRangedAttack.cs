@@ -57,6 +57,8 @@ namespace Game.AIBehavior
                 }
                 else projectileItem.Use(_inventory);
                 
+                Debug.Log($"{gameObject.name} targeting {target.Value.name} using {projectileItem.ItemName}");
+                
                 return TaskStatus.Success;
             }
             

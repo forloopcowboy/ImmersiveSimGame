@@ -13,10 +13,12 @@ GameObject:
   - component: {fileID: 1751171108527381446}
   - component: {fileID: 9020257116955542738}
   - component: {fileID: 372577728148438960}
-  - component: {fileID: 3484301029598748226}
-  - component: {fileID: 323496830462341919}
   - component: {fileID: 6211057412891064367}
   - component: {fileID: 162182097464334037}
+  - component: {fileID: -2798953888677621576}
+  - component: {fileID: 1489546124524270768}
+  - component: {fileID: -6926964892083888016}
+  - component: {fileID: 5405553098717769923}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -139,100 +141,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &3484301029598748226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475214457611752613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e3105606c9476eb10362a9447aee63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  count: 1
-  iterations: 1
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3475214457611752613}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 162182097464334037}
-        m_TargetAssemblyTypeName: Game.Utils.PooledObject, Utils
-        m_MethodName: ReturnToPool
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onReset:
-    m_PersistentCalls:
-      m_Calls: []
-  onCollision:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 323496830462341919}
-        m_TargetAssemblyTypeName: Game.ProjectileSystem.ObjectSpawner, ProjectileSystem
-        m_MethodName: SpawnOnCollision
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6211057412891064367}
-        m_TargetAssemblyTypeName: Game.HealthSystem.DamageComponent, HealthSystem
-        m_MethodName: DamageOnCollision
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &323496830462341919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475214457611752613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61eaef4452574145a8aeaddd33dd50aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  surfaceTypeTag: {fileID: 0}
-  prefab: {fileID: 1828176872806910, guid: 1723cf54253cf61458362d94bbf83003, type: 3}
 --- !u!114 &6211057412891064367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +168,283 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PoolCategory: default
+--- !u!114 &-2798953888677621576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475214457611752613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa16d9987844e9af429ad0a5904844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  CollisionRules:
+  - CollisionMaterialType: -7
+    SpawnRules:
+    - Prefab: {fileID: 1828176872806910, guid: 1723cf54253cf61458362d94bbf83003, type: 3}
+      SpawnOrientation: 0
+      SpawnPositionOffset: {x: 0, y: 0, z: 0}
+      SpawnRotationOffset: {x: 0, y: 0, z: 0}
+      ReparentToCollisionObject: 1
+      SelfDestruct: 1
+      SelfDestructDelay: 1.5
+  - CollisionMaterialType: 6
+    SpawnRules:
+    - Prefab: {fileID: 1828176872806910, guid: 1723cf54253cf61458362d94bbf83003, type: 3}
+      SpawnOrientation: 0
+      SpawnPositionOffset: {x: 0, y: 0, z: 0}
+      SpawnRotationOffset: {x: 0, y: 0, z: 0}
+      ReparentToCollisionObject: 0
+      SelfDestruct: 1
+      SelfDestructDelay: 1.5
+  ShouldSpawnOnNextCollision: 1
+--- !u!114 &1489546124524270768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475214457611752613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb27b743f90450aa56091f435017bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
+--- !u!114 &-6926964892083888016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475214457611752613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e3105606c9476eb10362a9447aee63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  count: 0
+  iterations: -1
+  collideAlways: 1
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5405553098717769923}
+        m_TargetAssemblyTypeName: Game.Utils.ObjectDisappear, Utils
+        m_MethodName: Disappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -6926964892083888016}
+        m_TargetAssemblyTypeName: Game.Utils.DoOnCollision, Utils
+        m_MethodName: SetCollideAlways
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5694531141707461388}
+        m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
+          ProjectileSystem
+        m_MethodName: SetEmissionRateMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 755698622916055220}
+        m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
+          ProjectileSystem
+        m_MethodName: SetEmissionRateMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4546014831440688026}
+        m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
+          ProjectileSystem
+        m_MethodName: SetEmissionRateMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onReset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -6926964892083888016}
+        m_TargetAssemblyTypeName: Game.Utils.DoOnCollision, Utils
+        m_MethodName: SetCollideAlways
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5694531141707461388}
+        m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
+          ProjectileSystem
+        m_MethodName: SetEmissionRateMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 45
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 755698622916055220}
+        m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
+          ProjectileSystem
+        m_MethodName: SetEmissionRateMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 200
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 4546014831440688026}
+        m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
+          ProjectileSystem
+        m_MethodName: SetEmissionRateMultiplier
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 35
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6211057412891064367}
+        m_TargetAssemblyTypeName: Game.HealthSystem.DamageComponent, HealthSystem
+        m_MethodName: DamageOnCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5405553098717769923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475214457611752613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f64f80cd6124b3a9dbbc07edae22130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3268492
+      value: 0.45878482
+      inSlope: -1.4993777
+      outSlope: -1.4993777
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0.5
+  delay: 0
+  animateOnEnable: 0
+  disappearMode: 1
+  OnDisappear:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 162182097464334037}
+        m_TargetAssemblyTypeName: Game.Utils.PooledObject, Utils
+        m_MethodName: ReturnToPool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5979911010678653349
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +456,7 @@ GameObject:
   - component: {fileID: 4754483151708072744}
   - component: {fileID: 5935799613054395324}
   - component: {fileID: 8656783027224343082}
+  - component: {fileID: 4546014831440688026}
   m_Layer: 0
   m_Name: FireTrail
   m_TagString: Untagged
@@ -5158,6 +5344,28 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &4546014831440688026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979911010678653349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c49ae800ef14ec39c33b442db89ce9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  targetParticleSystem: {fileID: 8656783027224343082}
 --- !u!1001 &5693233387697411388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5507,8 +5715,84 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5694531141707461388}
+    - targetCorrespondingSourceObject: {fileID: 1866692896978666, guid: a990e3ac1318b834488c784d851f42a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 755698622916055220}
   m_SourcePrefab: {fileID: 100100000, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
+--- !u!198 &5601866208733947870 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198086061384069858, guid: a990e3ac1318b834488c784d851f42a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5693233387697411388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5603497917564088628 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198706150799401992, guid: a990e3ac1318b834488c784d851f42a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5693233387697411388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5693823224008017950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5693233387697411388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5694531141707461388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693823224008017950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c49ae800ef14ec39c33b442db89ce9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  targetParticleSystem: {fileID: 5603497917564088628}
+--- !u!1 &5693900290036491222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1866692896978666, guid: a990e3ac1318b834488c784d851f42a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5693233387697411388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &755698622916055220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693900290036491222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c49ae800ef14ec39c33b442db89ce9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  targetParticleSystem: {fileID: 5601866208733947870}
 --- !u!4 &5696095992930465070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4209731392266258, guid: a990e3ac1318b834488c784d851f42a9,

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
@@ -23,9 +24,17 @@ namespace Game.Utils
         // Handle decals
         private DecalProjector _decalProjector;
         
+        // Handle initial scale
+        private float initialScale;
+
+        private void Awake()
+        {
+            initialScale = transform.localScale.magnitude;
+        }
+
         private void OnEnable()
         {
-            SetScale(1);
+            SetScale(initialScale);
             _decalProjector = GetComponentInChildren<DecalProjector>();
 
             if (animateOnEnable)
@@ -51,7 +60,7 @@ namespace Game.Utils
             while (timer < duration)
             {
                 float scale = disappearCurve.Evaluate(timer / duration);
-                SetScale(scale);
+                SetScale(scale * initialScale);
 
                 timer += Time.deltaTime;
                 yield return null;

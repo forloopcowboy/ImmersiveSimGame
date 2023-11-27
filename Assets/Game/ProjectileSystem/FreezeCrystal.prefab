@@ -229,6 +229,8 @@ GameObject:
   - component: {fileID: -2986908514393734305}
   - component: {fileID: 2238015809821475876}
   - component: {fileID: -6570990780743348210}
+  - component: {fileID: -5697128364392153476}
+  - component: {fileID: -2539133688958881861}
   m_Layer: 0
   m_Name: FreezeCrystal
   m_TagString: Untagged
@@ -318,6 +320,7 @@ MonoBehaviour:
     SerializationNodes: []
   count: 1
   iterations: 1
+  collideAlways: 0
   action:
     m_PersistentCalls:
       m_Calls:
@@ -365,33 +368,9 @@ MonoBehaviour:
   onCollision:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 352276127105024331}
-        m_TargetAssemblyTypeName: Game.ProjectileSystem.ObjectSpawner, ProjectileSystem
-        m_MethodName: SpawnOnCollision
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: -2986908514393734305}
         m_TargetAssemblyTypeName: Game.HealthSystem.DamageComponent, HealthSystem
         m_MethodName: DamageOnCollision
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 136286396912520988}
-        m_TargetAssemblyTypeName: Game.Utils.DoOnCollision, Utils
-        m_MethodName: StickToCollidedObject
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -633,6 +612,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PoolCategory: default
+--- !u!114 &-5697128364392153476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313513387792671711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb27b743f90450aa56091f435017bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
+--- !u!114 &-2539133688958881861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313513387792671711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa16d9987844e9af429ad0a5904844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  CollisionRules:
+  - CollisionMaterialType: -7
+    SpawnEffects: 1
+    SpawnRules:
+    - Prefab: {fileID: 1233216423728265415, guid: 8343c08b423f72149b63333ae4c2bda3,
+        type: 3}
+      SpawnOrientation: 0
+      SpawnPositionOffset: {x: 0, y: 0.5, z: 0}
+      SpawnRotationOffset: {x: 0, y: 0, z: 0}
+      ReparentToCollisionObject: 1
+      SelfDestruct: 0
+      SelfDestructDelay: 0
+    StickToCollisionObject: 0
+  - CollisionMaterialType: -1
+    SpawnEffects: 0
+    SpawnRules: []
+    StickToCollisionObject: 1
+  ShouldSpawnOnNextCollision: 1
 --- !u!1001 &8300479450460395212
 PrefabInstance:
   m_ObjectHideFlags: 0

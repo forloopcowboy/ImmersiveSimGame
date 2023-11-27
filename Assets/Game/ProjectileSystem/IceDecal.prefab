@@ -106,3 +106,6 @@ MonoBehaviour:
   delay: 5
   animateOnEnable: 1
   disappearMode: 0
+  OnDisappear:
+    m_PersistentCalls:
+      m_Calls: []

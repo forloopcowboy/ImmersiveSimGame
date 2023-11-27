@@ -23,6 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   damageMaterialType: 1
   method: 3
+  canDamage: 0000000003000000
   fixedDamage: 10
   percentageDamage: 0.1
   randomDamageRange: {x: 25, y: 35}

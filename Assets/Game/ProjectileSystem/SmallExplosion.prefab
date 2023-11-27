@@ -9726,7 +9726,6 @@ GameObject:
   - component: {fileID: 4361801158873524}
   - component: {fileID: 198656289721292014}
   - component: {fileID: 199514137936353666}
-  - component: {fileID: 1506143985535649865}
   m_Layer: 2
   m_Name: SmallExplosion
   m_TagString: Untagged
@@ -14644,34 +14643,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1506143985535649865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828176872806910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce5a97529db400ab4fff5f3122b7f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitTime: 0.45
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1506143985535649865}
-        m_TargetAssemblyTypeName: Game.Utils.DoInSeconds, Utils
-        m_MethodName: DestroySelf
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1834016579923706
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.HealthSystem
 {
@@ -17,6 +18,7 @@ namespace Game.HealthSystem
     {
         public MaterialType damageMaterialType = MaterialType.Default;
         public DamageMethod method = DamageMethod.Fixed;
+        [FormerlySerializedAs("canDamage")] public MaterialType[] canAffect;
         
         [ShowIf("IsFixed")]
         public float fixedDamage = 10f;
@@ -31,6 +33,17 @@ namespace Game.HealthSystem
         public bool IsInstantKill => method == DamageMethod.FullHealth;
         public bool IsPercentage => method == DamageMethod.Percentage;
         public bool IsRandomBetweenRange => method == DamageMethod.RandomBetweenRange;
+        
+        public bool CanDamage(MaterialType materialType)
+        {
+            foreach (var validTargetMaterialType in canAffect)
+            {
+                if (validTargetMaterialType == materialType)
+                    return true;
+            }
+
+            return false;
+        }
 
         public float GetValue(float currentHealth)
         {
@@ -51,5 +64,12 @@ namespace Game.HealthSystem
                     throw new Exception($"Invalid damage method {method}");
             }
         }
+    }
+    
+    [Serializable]
+    public class DamageRule
+    {
+        public MaterialType damageMaterialType = MaterialType.Default;
+        public MaterialType[] canDamage;
     }
 }

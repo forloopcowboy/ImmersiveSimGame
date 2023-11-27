@@ -29,5 +29,5 @@ MonoBehaviour:
   consumable: 1
   prefab: {fileID: 3475214457611752613, guid: 184b2f534ad779a4c9c6b1f0d7ed0961, type: 3}
   launchSpeed: 35
-  autoRepool: 1
+  autoRepool: 0
   autoRepoolDelay: 25

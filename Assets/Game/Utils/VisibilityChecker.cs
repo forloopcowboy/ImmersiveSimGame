@@ -46,8 +46,6 @@ namespace Game.Utils
             // Check if the object is within the camera's view frustum
             if (viewportPoint.x < 0 || viewportPoint.x > 1 || viewportPoint.y < 0 || viewportPoint.y > 1 || viewportPoint.z < 0)
             {
-                Debug.Log("Object is outside the camera's view frustum");
-                
                 // Object is outside the camera's view frustum
                 return false;
             }

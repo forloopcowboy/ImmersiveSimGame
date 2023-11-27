@@ -37,7 +37,7 @@ namespace Game.HealthSystem
             if (!health)
                 return;
             
-            if (MaterialInteractions.CanDamage(settings.damageMaterialType, health.settings.materialType))
+            if (settings.CanDamage(health.settings.materialType))
                 health.TakeDamage(GetDamageValue(health.settings.currentHealth), damageSource);
         }
         
@@ -50,7 +50,7 @@ namespace Game.HealthSystem
             if (!health)
                 return;
             
-            if (MaterialInteractions.CanDamage(settings.damageMaterialType, health.settings.materialType))
+            if (settings.CanDamage(health.settings.materialType))
                 health.TakeDamage(GetDamageValue(health.settings.currentHealth), damageSource);
         }
     }

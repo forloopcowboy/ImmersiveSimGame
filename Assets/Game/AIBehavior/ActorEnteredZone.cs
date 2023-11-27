@@ -33,6 +33,10 @@ namespace Game.AIBehavior
             }
 
             allColliders = Zone.Value.GetComponentsInChildren<Collider>();
+            
+            // clean up previous info
+            LatestActorInZone.Value = null;
+            AllActorsInZone.Value.Clear();
 
             foreach (var collider in allColliders)
             {
@@ -51,6 +55,8 @@ namespace Game.AIBehavior
             {
                 return OnFailure;
             }
+
+            Debug.Log($"Actor {LatestActorInZone.Value.name} entered {Zone.Value.name} zone!");
 
             return TaskStatus.Success;
         }
