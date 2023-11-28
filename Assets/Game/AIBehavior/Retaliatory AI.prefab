@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 2505025889721752909}
   - component: {fileID: 4498407939739275240}
   - component: {fileID: 3435136833521405857}
-  - component: {fileID: 8713499353707217105}
+  - component: {fileID: 6896517214245909085}
   m_Layer: 18
   m_Name: Retaliatory AI
   m_TagString: Untagged
@@ -518,7 +518,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8713499353707217105
+--- !u!114 &6896517214245909085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -527,6 +527,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4647469678655081537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8992aca14c2d48b2b33ea36755e5a72c, type: 3}
+  m_Script: {fileID: 11500000, guid: 19e848ec62184b10a1e5198944729868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
