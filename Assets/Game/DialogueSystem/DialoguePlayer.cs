@@ -8,26 +8,34 @@ using PlasticGui.WorkspaceWindow.BrowseRepository;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.DialogueSystem
 {
     public class DialoguePlayer : SingletonMonoBehaviour<DialoguePlayer>
     {
+        [TabGroup("Dialogue")]
         public Queue<DialogueItem> dialogueQueue = new();
-        [Required]
+        [Required, TabGroup("Settings")]
         public Transform dialogueBox;
-        [Required]
+        [Required, TabGroup("Settings")]
         public TMP_Text speakerText;
-        [Required]
+        [Required, TabGroup("Settings")]
         public TMP_Text dialogueText;
-        [Required]
+        [Required, TabGroup("Settings")]
         public TMP_Text skipShortcutText;
-        [Required]
+        [Required, TabGroup("Settings")]
         public KeyCode skipShortcut = KeyCode.Tab;
         
+        [TabGroup("Dialogue")]
         public int charactersPerSecond = 25;
-        
+        [TabGroup("Dialogue")]
         public float timeScaleOnDialogue = 0.16f;
+
+        [TabGroup("Events")]
+        public UnityEvent OnDialogueShow;
+        [TabGroup("Events")]
+        public UnityEvent OnDialogueHide;
         
         // Event bus subscription
         private Action _unsubscribe;
@@ -148,13 +156,24 @@ namespace Game.DialogueSystem
             if (dialogueQueue.Count == 0)
             {
                 if (dialogueBox.gameObject.activeSelf)
+                {
                     SceneEventBus.Emit(new EndDialogueEvent());
-                dialogueBox.gameObject.SetActive(false);
+                    dialogueBox.gameObject.SetActive(false);
+                    OnDialogueHide?.Invoke();
+                }
+                
                 return;
             }
             
             var dialogueItem = dialogueQueue.Dequeue();
-            dialogueBox.gameObject.SetActive(true);
+            
+            // emit unity event
+            if (!dialogueBox.gameObject.activeSelf)
+            {
+                OnDialogueShow?.Invoke();
+                dialogueBox.gameObject.SetActive(true);
+            }
+            
             speakerText.text = dialogueItem.speaker;
             skipShortcutText.text = dialogueItem.skippable ? $"[{skipShortcut}] skip" : "";
             

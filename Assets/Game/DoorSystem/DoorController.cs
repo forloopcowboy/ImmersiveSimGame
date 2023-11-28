@@ -10,16 +10,18 @@ namespace Game.DoorSystem
     [SelectionBase]
     public class DoorController : InteractableObject
     {
-        public Rigidbody door;
-        public DoorLock doorLock;
-        public bool startLocked;
+        [TabGroup("Door")] public Rigidbody door;
+        [TabGroup("Door")] public DoorLock doorLock;
+        [TabGroup("Door")] public bool startLocked;
+        [TabGroup("General"), Tooltip("You may use $itemName to refer to door name.")] public string lockedMessage = "The door is locked.";
+        [TabGroup("General"), Tooltip("You may use $itemName to refer to door name.")] public string unlockedMessage = "Door unlocked.";
 
-        [SerializeField] private StringConstant doorKey;
+        [SerializeField, TabGroup("Door")] private StringConstant doorKey;
         
-        [ShowInInspector]
+        [ShowInInspector, TabGroup("Door")]
         public bool isLocked { get; private set; }
 
-        [ShowInInspector, ReadOnly]
+        [ShowInInspector, ReadOnly, TabGroup("Door")]
         private int _openCount = 0;
         
         private void Start()

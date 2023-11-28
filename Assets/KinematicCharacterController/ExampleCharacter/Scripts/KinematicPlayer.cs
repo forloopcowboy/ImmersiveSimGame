@@ -144,13 +144,15 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                         
                         if (key != null && key.Item is KeyItemType password)
                         {
-                            SceneEventBus.Emit(new NotificationEvent($"Unlocking {doorController.itemName}..."));
+                            if (!String.IsNullOrEmpty(doorController.unlockedMessage)) 
+                                SceneEventBus.Emit(new NotificationEvent(doorController.unlockedMessage.Replace("$itemName", doorController.itemName)));
                             doorController.Unlock(password);
                             doorController.PushDoor(Character.transform);
                         }
                         else
                         {
-                            SceneEventBus.Emit(new NotificationEvent($"{doorController.itemName} is locked."));
+                            if (!String.IsNullOrEmpty(doorController.lockedMessage)) 
+                                SceneEventBus.Emit(new NotificationEvent(doorController.lockedMessage.Replace("$itemName", doorController.itemName)));
                         }
                     }
                     else
