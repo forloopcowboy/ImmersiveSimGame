@@ -37,8 +37,13 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             var rotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
             
             var player = Instantiate(playerPrefab, position, rotation);
+            player.name = "Player Master";
+            
             var playerCharacter = Instantiate(playerCharacterPrefab, position, rotation);
+            playerCharacter.name = "Player KinematicCharacter";
+            
             var playerCamera = Instantiate(playerCameraPrefab, position, rotation);
+            playerCamera.name = "KinematicCamera";
 
             var kinematicPlayer = player.GetComponentInChildren<KinematicPlayer>();
             var kinematicCharacter = playerCharacter.GetComponentInChildren<Examples.KinematicCharacterController>();
@@ -69,6 +74,8 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         {
             var gameUI = Instantiate(gameUIPrefab);
             var health = kinematicPlayer.Character.GetComponentInChildren<Health>();
+            
+            gameUI.name = "Game User Interface";
             
             // initialize player HUD
             var deathScreenUI = gameUI.GetComponentInChildren<DeathScreenUIController>();

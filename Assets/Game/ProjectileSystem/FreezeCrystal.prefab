@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8967459862519837047}
   - component: {fileID: 5573040826221745635}
   - component: {fileID: 7665168828973109787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 2170121954652623119}
   - component: {fileID: 6201580910493654080}
   - component: {fileID: 4161005645703481590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: -6570990780743348210}
   - component: {fileID: -5697128364392153476}
   - component: {fileID: -2539133688958881861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FreezeCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,6 +676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SnowParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524406660752290606, guid: 1b107bfcc6f61094f9748fa54d2ed72f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2775491774981047823, guid: 1b107bfcc6f61094f9748fa54d2ed72f,
         type: 3}

@@ -1,3 +1,4 @@
+using System;
 using Game.HealthSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,14 +10,14 @@ namespace Game.ProgressBar
     {
         [Required]
         public Health health;
-        
-        public void SetValues(Health fromHealthComponent)
+
+        public void SetValues(Health fromHealthComponent, bool lerp = true)
         {
             // lerp
-            current = Mathf.Lerp(current, fromHealthComponent.currentHealth, Time.deltaTime * 10f);
+            current = lerp ? Mathf.Lerp(current, fromHealthComponent.currentHealth, Time.deltaTime * 10f) : fromHealthComponent.currentHealth;
             max = fromHealthComponent.settings.maxHealth;
         }
-        
+
         private void Update()
         {
             SetValues(health);

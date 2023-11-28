@@ -15,10 +15,13 @@ namespace Game.ProgressBar
         private void OnEnable()
         {
             _health = GetComponentInChildren<Health>();
-            StartCoroutine(CoroutineHelpers.DelayedAction(0.25f, () =>
-            {
-                SceneEventBus.Emit(new TrackHealthEvent(_health));
-            }));
+            _health.onDamage.AddListener(OnDamageTrackHealth);
+        }
+
+        private void OnDamageTrackHealth(GameObject arg0)
+        {
+            SceneEventBus.Emit(new TrackHealthEvent(_health));
+            _health.onDamage.RemoveListener(OnDamageTrackHealth);
         }
 
         private void Update()

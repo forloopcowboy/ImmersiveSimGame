@@ -60,7 +60,7 @@ namespace Game.HealthSystem
                 currentHealth = 0;
                 onDeath?.Invoke(source);
 
-                Debug.Log(name + "is dead!");
+                Debug.Log(name + " is dead!");
             }
             // else Debug.Log($"{name} took {damage} damage{dmgSrcMsg}! Current health: {currentHealth}");
             

@@ -35,6 +35,7 @@ namespace Game.ProgressBar
             if (_trackedHealthbars.TryGetValue(obj.health, out HealthBar healthBar))
             {
                 healthBar.health = obj.health;
+                healthBar.SetValues(obj.health, false);
                 
                 var positionFollower = healthBar.GetOrElseAddComponent<CanvasFollowWorldPosition>();
                 positionFollower.lookAt = obj.health.transform;

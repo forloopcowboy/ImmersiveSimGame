@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1489546124524270768}
   - component: {fileID: -6926964892083888016}
   - component: {fileID: 5405553098717769923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!114 &6211057412891064367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
     SerializationNodes: []
   CollisionRules:
   - CollisionMaterialType: -7
+    SpawnEffects: 1
     SpawnRules:
     - Prefab: {fileID: 1828176872806910, guid: 1723cf54253cf61458362d94bbf83003, type: 3}
       SpawnOrientation: 0
@@ -199,7 +200,9 @@ MonoBehaviour:
       ReparentToCollisionObject: 1
       SelfDestruct: 1
       SelfDestructDelay: 1.5
+    StickToCollisionObject: 0
   - CollisionMaterialType: 6
+    SpawnEffects: 1
     SpawnRules:
     - Prefab: {fileID: 1828176872806910, guid: 1723cf54253cf61458362d94bbf83003, type: 3}
       SpawnOrientation: 0
@@ -208,6 +211,7 @@ MonoBehaviour:
       ReparentToCollisionObject: 0
       SelfDestruct: 1
       SelfDestructDelay: 1.5
+    StickToCollisionObject: 0
   ShouldSpawnOnNextCollision: 1
 --- !u!114 &1489546124524270768
 MonoBehaviour:
@@ -338,7 +342,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 45
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 755698622916055220}
         m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
@@ -351,7 +355,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 200
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4546014831440688026}
         m_TargetAssemblyTypeName: Game.ProjectileSystem.ParticleSystemController,
@@ -364,7 +368,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 35
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   onCollision:
     m_PersistentCalls:
@@ -457,7 +461,7 @@ GameObject:
   - component: {fileID: 5935799613054395324}
   - component: {fileID: 8656783027224343082}
   - component: {fileID: 4546014831440688026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5376,7 +5380,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1866692896978666, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_Name
@@ -5384,7 +5388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4209731392266258, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_LocalScale.x

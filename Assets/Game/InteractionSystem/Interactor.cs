@@ -31,6 +31,7 @@ namespace Game.InteractionSystem
         [ReadOnly, ShowInInspector, TabGroup("Interaction Runtime")]
         private Stack<InteractableObject> _interactionQueue = new();
         private Camera _camera;
+        private Coroutine _updateRaycast;
 
         public bool TryPeekInteractionQueue<T>(out T item) where T : InteractableObject
         {
@@ -65,11 +66,17 @@ namespace Game.InteractionSystem
             return false;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             if (!_camera) _camera = Camera.main;
             
-            StartCoroutine(UpdateRaycast());
+            if (_updateRaycast != null) StopCoroutine(_updateRaycast);
+            _updateRaycast = StartCoroutine(UpdateRaycast());
+        }
+
+        private void Start()
+        {
+            OnEnable();
         }
 
         private IEnumerator UpdateRaycast()
@@ -77,7 +84,7 @@ namespace Game.InteractionSystem
             while (true)
             {
                 RaySphereCast();
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.1f*Time.timeScale);
             }
         }
 
@@ -92,7 +99,7 @@ namespace Game.InteractionSystem
                 var previousHitInfo = hitInfo;
                 
                 _camera = Camera.main;
-                Ray ray = useCameraForward ? _camera.ViewportPointToRay(new Vector2(0.5f, 0.5f)) : new Ray(transform.position, transform.forward);
+                Ray ray = useCameraForward && _camera != null ? _camera.ViewportPointToRay(new Vector2(0.5f, 0.5f)) : new Ray(transform.position, transform.forward);
 
                 if (InteractionMethod == InteractionMethod.RAYCAST)
                 {
@@ -163,6 +170,14 @@ namespace Game.InteractionSystem
 
             _inInteractRange.Remove(item);
             _interactionQueue = new Stack<InteractableObject>(_interactionQueue.Where(i => i != item));
+        }
+
+        private void OnDisable()
+        {
+            _inInteractRange.Clear();
+            _interactionQueue.Clear();
+            
+            if (_updateRaycast != null) StopCoroutine(_updateRaycast);
         }
     }
 }

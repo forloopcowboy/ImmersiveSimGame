@@ -34,12 +34,15 @@ namespace Game.CollisionEffects
             }
             
             var collisionMaterial = other.gameObject.GetComponent<CollisionMaterial>();
+            var collisionMaterialType =
+                collisionMaterial == null ? CollisionMaterialType.Default : collisionMaterial.Type;
             if (collisionMaterial == null)
             {
                 Debug.Log("No collision material found on " + other.gameObject.name + ".");
             }
+            else Debug.Log($"{gameObject.name} collided with material {collisionMaterialType} ({other.gameObject.name}).");
 
-            SpawnEffect(collisionMaterial == null ? CollisionMaterialType.Default : collisionMaterial.Type, other.GetContact(0).point, other.GetContact(0).normal, other.transform);
+            SpawnEffect(collisionMaterialType, other.GetContact(0).point, other.GetContact(0).normal, other.transform);
             ShouldSpawnOnNextCollision = false;
         }
 
@@ -49,7 +52,12 @@ namespace Game.CollisionEffects
 
             foreach (var rule in rules)
             {
-                Debug.Log("Executing spawn rule for " + rule.CollisionMaterialType + " at " + position + ".");
+                var msg = $"Executing collision rule for material {rule.CollisionMaterialType}: ";
+                msg += rule.SpawnEffects ? "Spawning effects, " : "";
+                msg += rule.StickToCollisionObject ? "Sticking to collision object, " : "";
+
+                Debug.Log(msg);
+
                 if (rule.StickToCollisionObject)
                 {
                     StickToCollidedObject(parent);

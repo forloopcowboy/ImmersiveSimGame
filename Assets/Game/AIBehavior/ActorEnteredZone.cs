@@ -84,6 +84,8 @@ namespace Game.AIBehavior
             if (allColliders == null) return;
             foreach (var collider in allColliders)
             {
+                if (collider == null) continue;
+                
                 if (collider.isTrigger)
                 {
                     var doOnTrigger = collider.gameObject.GetComponent<DoOnTrigger>();

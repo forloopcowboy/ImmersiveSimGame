@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using System;
+using Game;
+using Game.ProjectileSystem;
+using Game.Utils;
 using Sirenix.OdinInspector;
 
 namespace KinematicCharacterController.Examples
@@ -43,7 +46,7 @@ namespace KinematicCharacterController.Examples
         TowardsGroundSlopeAndGravity,
     }
 
-    public class KinematicCharacterController : MonoBehaviour, ICharacterController
+    public class KinematicCharacterController : MonoBehaviour, ICharacterController, ICollisionHandler
     {
         public KinematicCharacterMotor Motor;
 
@@ -532,16 +535,26 @@ namespace KinematicCharacterController.Examples
 
         public void IgnoreCollidersIn(GameObject obj)
         {
+            if (obj == null) return;
+            
             IgnoredColliders.AddRange(obj.GetComponentsInChildren<Collider>());
+            GenericCollisionHandler.SetCollisionHandling(gameObject, obj, true);
+            
+            Debug.Log($"[{name}:KCC] Ignoring collisions with {obj.name}");
         }
 
         public void StopIgnoringCollidersIn(GameObject obj)
         {
+            if (obj == null) return;
+            
             var colliders = obj.GetComponentsInChildren<Collider>();
             foreach (var c in colliders)
             {
                 IgnoredColliders.Remove(c);
             }
+            GenericCollisionHandler.SetCollisionHandling(gameObject, obj, false);
+            
+            Debug.Log($"[{name}:KCC] Stopped ignoring collisions with {obj.name}");
         }
     }
 }

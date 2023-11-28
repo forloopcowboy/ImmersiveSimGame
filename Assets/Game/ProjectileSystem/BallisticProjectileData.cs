@@ -1,6 +1,7 @@
 using System;
 using Game.EquipmentSystem;
 using Game.HealthSystem;
+using Game.Src.EventBusModule;
 using Game.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -32,7 +33,13 @@ namespace Game.ProjectileSystem
             var projectile = GameObjectPool.Singleton.Get(InstanceId);
             
             var dmg = projectile.GetComponentInChildren<DamageComponent>();
-            dmg.damageSource = user.gameObject;
+            var userGameObj = user.gameObject;
+            
+            dmg.damageSource = userGameObj;
+            
+            // Ignore collisions between the projectile and the user (considering all colliders) for a brief period of time
+            // Then re-enable collisions
+            GenericCollisionHandler.IgnoreCollisionsForSeconds(userGameObj, projectile, 0.1f);
             
             projectile.transform.position = spawnPoint.position;
             projectile.transform.rotation = spawnPoint.rotation;
@@ -88,11 +95,6 @@ namespace Game.ProjectileSystem
                     {
                         if (!rb.isKinematic) rb.velocity = Vector3.zero;
                         rb.isKinematic = true;
-                        rb.detectCollisions = false;
-
-                        // Prevent collisions with the user
-                        GameObjectPool.Singleton.StartCoroutine(
-                            CoroutineHelpers.DelayedAction(0.035f / Time.timeScale, () => rb.detectCollisions = true));
                     }
                 },
                 obj =>
@@ -104,7 +106,6 @@ namespace Game.ProjectileSystem
                     {
                         if (!rb.isKinematic) rb.velocity = Vector3.zero;
                         rb.isKinematic = true;
-                        rb.detectCollisions = false;
                     }
 
                     var dmg = obj.GetComponentInChildren<DamageComponent>();
