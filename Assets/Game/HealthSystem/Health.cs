@@ -27,9 +27,16 @@ namespace Game.HealthSystem
             isDead = settings.isDead;
         }
 
-        private void Start()
-        { 
-            SynchronizeHealth();
+        public void SetHealth(float amount)
+        {
+            currentHealth = amount;
+            if (currentHealth > settings.maxHealth)
+                currentHealth = settings.maxHealth;
+            else if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                isDead = true;
+            }
         }
 
         public void Heal(float amount, GameObject source)
