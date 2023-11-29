@@ -19,7 +19,10 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 {
     public class PlayerSpawner : SerializedMonoBehaviour
     {
-        public Transform spawnPoint;
+        [ReadOnly]
+        public SpawnPoint[] spawnPoints;
+        [Required("Spawn point is required to spawn player. If none is provided, spawner position will be used.", InfoMessageType.Warning)]
+        public SpawnPoint defaultSpawnPoint;
         
         public GameObject playerPrefab;
         public GameObject playerCharacterPrefab;
@@ -28,7 +31,6 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         public GameManager gameManagerPrefab;
 
         public bool spawnOnStart = true;
-        
         
         public PlayerState _playerState;
         
@@ -42,8 +44,16 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         [ReadOnly]
         private HealthBar _playerHealthBarInstance;
 
+        [Button(ButtonSizes.Small)]
+        private void OnValidate()
+        {
+            spawnPoints = FindObjectsOfType<SpawnPoint>();
+        }
+
         private void Start()
         {
+            OnValidate();
+            
             if (spawnOnStart)
             {
                 SpawnPlayer();
@@ -53,10 +63,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         [Button]
         public void SpawnPlayer()
         {
-            // TODO: pick spawn point from game state
-            var position = spawnPoint != null ? spawnPoint.position : transform.position;
-            var rotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
-            
+            Vector3 position = transform.position;
+            Quaternion rotation = transform.rotation;
+
             var player = Instantiate(playerPrefab, position, rotation);
             player.name = "Player Master";
             
@@ -148,25 +157,40 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 inventory.EquippedItems = _playerState.EquippedItems;
                 inventory.activelyHeldItem = _playerState.HeldItemIndex >= 0 && _playerState.HeldItemIndex < inventory.ItemsInInventory.Count ? inventory.ItemsInInventory[_playerState.HeldItemIndex] : null;
             }
+
+            Vector3 position;
+            Quaternion rotation;
             
-            // Check if player location should be loaded or initialized
-            if (!GlobalGameState.State.PlayerLocationInitialized)
+            if (GlobalGameState.SpawnState.RestoreLastPosition)
             {
-                SyncPlayerPosition();
-                Debug.Log("First time loading player location. Saving spawned position to serialized state.");
+                position = GlobalGameState.State.PlayerPosition;
+                rotation = Quaternion.Euler(GlobalGameState.State.PlayerRotation);
             }
             else
             {
-                Debug.Log("Loading player location from serialized state.");
-                _kinematicPlayerInstance.Character.Motor.enabled = false;
-                _kinematicPlayerInstance.Character.transform.SetPositionAndRotation(GlobalGameState.State.PlayerPosition, Quaternion.Euler(GlobalGameState.State.PlayerRotation));
-                _kinematicPlayerInstance.Character.Motor.SetPositionAndRotation(GlobalGameState.State.PlayerPosition, Quaternion.Euler(GlobalGameState.State.PlayerRotation));
-            
-                StartCoroutine(CoroutineHelpers.DelayedAction(0.5f, () =>
-                {
-                    _kinematicPlayerInstance.Character.Motor.enabled = true;
-                }));
+                var spawnIdFromStateIsEmpty = String.IsNullOrEmpty(GlobalGameState.SpawnState.SpawnID);
+                var spawnPoint = spawnIdFromStateIsEmpty
+                    ? defaultSpawnPoint
+                    : spawnPoints.FirstOrDefault(sp => sp.SpawnID == GlobalGameState.SpawnState.SpawnID);
+
+                Transform spawnPointTransform = spawnPoint == null ? transform : spawnPoint.transform;
+
+                Debug.Log($"PlayerSpawner: Spawn point is {spawnPointTransform.name} (ID: {spawnPoint?.SpawnID ?? "null"})");
+                
+                position = spawnPointTransform.position;
+                rotation = spawnPointTransform.rotation;
             }
+            
+            // Check if player location should be loaded or initialized
+            _kinematicPlayerInstance.Character.Motor.enabled = false;
+            _kinematicPlayerInstance.Character.transform.SetPositionAndRotation(position,rotation);
+            _kinematicPlayerInstance.Character.Motor.SetPositionAndRotation(position,rotation);
+            
+            StartCoroutine(CoroutineHelpers.DelayedAction(0.5f, () =>
+            {
+                SyncPlayerPosition(); // we loaded position, so put it in the state
+                _kinematicPlayerInstance.Character.Motor.enabled = true;
+            }));
         }
 
         private void InitializeUI(KinematicPlayer kinematicPlayer)
@@ -278,7 +302,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         public void SyncPlayerState()
         {
             var inventory = _kinematicPlayerInstance.Inventory;
-            var health = _kinematicPlayerInstance.Character.GetComponentInChildren<Health>();
+            var health = _kinematicPlayerInstance.Health;
 
             GlobalGameState.State.PlayerState.Health = health.currentHealth;
             GlobalGameState.State.PlayerState.Inventory = inventory.GetSerializedInventory();
@@ -293,6 +317,11 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             GlobalGameState.State.PlayerRotation = _kinematicPlayerInstance.Character.transform.rotation.eulerAngles;
         }
 
+        private void Update()
+        {
+            SyncPlayerState();
+        }
+
         private void OnDestroy()
         {
             GameManager.Singleton.onPause.RemoveListener(HideUIOnPause);
@@ -301,15 +330,10 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void OnDrawGizmos()
         {
-            if (spawnPoint != null)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(spawnPoint.position, 0.3f);
-            }
-            else
+            if (defaultSpawnPoint == null)
             {
                 Gizmos.color = new Color(1f, 0.67f, 0.05f);
-                Gizmos.DrawSphere(transform.position, 0.1f);
+                Gizmos.DrawSphere(transform.position, 0.8f);
             }
         }
     }

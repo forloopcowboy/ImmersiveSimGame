@@ -24,6 +24,8 @@ namespace Game.SaveUtility
         
         [SerializeField]
         private GameState _gameState = new();
+        [SerializeField]
+        private PlayerSpawnState _playerSpawnState = new();
 
         public static GameState State
         {
@@ -39,12 +41,22 @@ namespace Game.SaveUtility
                 return Singleton._gameState;
             }
         }
-        
-        private void Awake()
+
+        public static PlayerSpawnState SpawnState
         {
-            LoadState();
-            DontDestroyOnLoad(gameObject);
-            SceneManager.activeSceneChanged += HandleSceneChanged;
+            get => Singleton._playerSpawnState;
+            set => Singleton._playerSpawnState = value;
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            if (Singleton == this)
+            {
+                LoadState();
+                DontDestroyOnLoad(gameObject);
+                SceneManager.activeSceneChanged += HandleSceneChanged;
+            }
         }
         
         protected override void OnDestroy()
@@ -67,6 +79,10 @@ namespace Game.SaveUtility
             {
                 _gameState = new GameState();
             }
+            
+            // Spawn at default spawn position
+            SpawnState.RestoreLastPosition = false;
+            SpawnState.SpawnID = null;
             
             // Get current scene index
             _gameState.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
@@ -105,6 +121,10 @@ namespace Game.SaveUtility
             {
                 Debug.Log($"No current level found in save file {FilePath}. Initializing game state.");
                 InitializeGameState();
+            }
+            else {
+                // When loading the state we want to restore where the player was, not where they spawned
+                SpawnState.RestoreLastPosition = true;
             }
             
             if (_gameState.CurrentLevel != SceneManager.GetActiveScene().buildIndex)
@@ -145,5 +165,12 @@ namespace Game.SaveUtility
                 LevelStates[CurrentLevel].PlayerRotation = value;
             }
         }
+    }
+    
+    [Serializable]
+    public class PlayerSpawnState
+    {
+        public bool RestoreLastPosition;
+        public string SpawnID;
     }
 }

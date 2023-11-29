@@ -7,6 +7,6 @@ namespace Game.Utils
     {
         public string Value = "default";
         
-        public static implicit operator string(StringConstant constant) => constant.Value;
+        public static implicit operator string(StringConstant constant) => constant != null ? constant.Value : null;
     }
 }

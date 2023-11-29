@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
+using Game.SaveUtility;
+using Game.Utils;
 using Sirenix.OdinInspector;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.InteractionSystem
@@ -10,17 +12,20 @@ namespace Game.InteractionSystem
         [ValueDropdown("GetSceneNames")]
         public int levelIndex;
         public LoadSceneMode loadSceneMode = LoadSceneMode.Single;
+        public StringConstant spawnPointId;
 
         private IEnumerable GetSceneNames()
         {
-            for (var i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
+            for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
-                yield return new ValueDropdownItem(UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(i).name, i);
+                yield return new ValueDropdownItem(SceneManager.GetSceneByBuildIndex(i).name, i);
             }
         }
         
         public override void Interact(dynamic input)
         {
+            GlobalGameState.SpawnState.RestoreLastPosition = String.IsNullOrEmpty(spawnPointId);
+            GlobalGameState.SpawnState.SpawnID = spawnPointId;
             GameManager.GameManager.Singleton.LoadScene(levelIndex, loadSceneMode);
         }
     }

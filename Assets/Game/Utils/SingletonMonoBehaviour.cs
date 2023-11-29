@@ -7,8 +7,14 @@ namespace Game.Utils
     public class SingletonMonoBehaviour<T> : SerializedMonoBehaviour
         where T : Component
     {
-        public static bool IsInitialized = false;
-        
+        protected virtual void Awake()
+        {
+            if (_instance == null)
+                _instance = this as T;
+            else
+                Destroy(gameObject);
+        }
+
         private static T _instance;
         public static T Singleton
         {
@@ -30,6 +36,7 @@ namespace Game.Utils
                         _instance = obj.AddComponent<T>();
                     }
                 }
+                
                 return _instance;
             }
         }
