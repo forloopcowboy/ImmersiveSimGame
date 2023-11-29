@@ -13,10 +13,12 @@ namespace Game.SaveUtility
     /// </summary>
     public class GlobalGameState : SingletonMonoBehaviour<GlobalGameState>
     {
+        [TabGroup("General")]
         public string FileName = "GameState.json";
 
+        [ShowInInspector, ReadOnly, TabGroup("General")]
         public string FilePath => Path.Combine(Application.persistentDataPath, FileName);
-        
+
         private bool _loaded = false;
         
         [SerializeField]
@@ -96,7 +98,20 @@ namespace Game.SaveUtility
     {
         public int CurrentLevel = -1;
         public List<LevelState> LevelStates = new();
+        public PlayerState PlayerState = new();
         
         public List<NPCState> NPCStates => LevelStates[CurrentLevel].NPCStates;
+
+        public Vector3 PlayerPosition
+        {
+            get => LevelStates[CurrentLevel].PlayerPosition;
+            set => LevelStates[CurrentLevel].PlayerPosition = value;
+        }
+        
+        public Vector3 PlayerRotation
+        {
+            get => LevelStates[CurrentLevel].PlayerRotation;
+            set => LevelStates[CurrentLevel].PlayerRotation = value;
+        }
     }
 }

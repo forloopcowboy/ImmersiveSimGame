@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.InteractionSystem;
+using Game.SaveUtility;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,16 +19,23 @@ namespace Game.EquipmentSystem
     {
         [SerializeField]
         public List<GameItemInInventory> ItemsInInventory = new();
-        public GameItemInInventory[] EquippedItems = new GameItemInInventory[10]; // 10 slots for equipped items
+        public int[] EquippedItems; // 10 slots for equipped items
         public GameItemInInventory activelyHeldItem = null;
-        
+
         [CanBeNull, Required("Interactor is null. Initialize it in the inspector or assign it in code. No interactor will prevent item pickup.", InfoMessageType.Info)] public Interactor interactor;
 
         private void Start()
         {
             if (!interactor) interactor = GetComponentInChildren<Interactor>();
 
-            EquippedItems = new GameItemInInventory[10]; // 10 slots for equipped items
+            if (EquippedItems == null || EquippedItems.Length != 10)
+            {
+                EquippedItems = new int[10]; // 10 slots for equipped items
+                for (var i = 0; i < EquippedItems.Length; i++)
+                {
+                    EquippedItems[i] = -1;
+                }
+            }
         }
 
         public bool TryToPickUpItem(out GameItem item)
@@ -45,9 +53,9 @@ namespace Game.EquipmentSystem
         
         public void EquipItem(GameItemInInventory item, int index)
         {
-            if (item.Item is EquipableItemType equipableItem)
+            if (item.Item is EquipableItemType)
             {
-                EquippedItems[index] = item;
+                EquippedItems[index] = ItemsInInventory.IndexOf(item);
             }
             else Debug.LogWarning("Item is not equipable.");
         }
@@ -108,6 +116,11 @@ namespace Game.EquipmentSystem
             }
 
             return false;
+        }
+
+        public SerializedItemData[] GetSerializedInventory()
+        {
+            return ItemsInInventory.Select(i => new SerializedItemData(i.Item.Identifier, i.Quantity)).ToArray();
         }
     }
 

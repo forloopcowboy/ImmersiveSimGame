@@ -1,14 +1,15 @@
 using System;
-using System.IO;
-using Game.Src.IconGeneration;
+using Game.SaveUtility;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.EquipmentSystem
 {
     [CreateAssetMenu(fileName = "GameItemType", menuName = "GameItem/New GameItemType", order = 0)]
-    public class GameItemType : SerializedScriptableObject
+    public class GameItemType : SerializedScriptableObject, IHasIdentifier
     {
+        [ReadOnly, SerializeField]
+        private string _identifier;
         public Sprite ItemSprite;
         public string ItemName;
         public float ItemValue;
@@ -17,9 +18,20 @@ namespace Game.EquipmentSystem
         
         internal bool IconSpriteGenerated = false;
 
+        private void OnValidate()
+        {
+            if (String.IsNullOrEmpty(_identifier))
+            {
+                _identifier = Guid.NewGuid().ToString();
+            }
+        }
+
         private void OnDisable()
         {
             IconSpriteGenerated = false;
         }
+
+
+        public string Identifier => _identifier;
     }
 }

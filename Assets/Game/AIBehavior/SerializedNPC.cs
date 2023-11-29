@@ -49,6 +49,12 @@ namespace Game.AIBehavior
         [Button]
         public void SaveState()
         {
+            SyncState();
+            GlobalGameState.Singleton.SaveState();
+        }
+
+        private void SyncState()
+        {
             State.Health = Health.currentHealth;
         }
 
@@ -59,7 +65,7 @@ namespace Game.AIBehavior
 
         private void Update()
         {
-            SaveState();
+            SyncState();
         }
 
         private void OnValidate()

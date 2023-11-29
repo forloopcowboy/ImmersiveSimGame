@@ -70,7 +70,9 @@ namespace Game.EquipmentSystem
             
             for (var i = 0; i < EquippedUiItems.Length; i++)
             {
-                var item = i < equippedItems.Length ? equippedItems[i] : null;
+                var item = i < equippedItems.Length && equippedItems[i] > -1 && equippedItems[i] < Inventory.ItemsInInventory.Count ?
+                    Inventory.ItemsInInventory[equippedItems[i]] :
+                    null;
                 var uiItem = EquippedUiItems[i];
                 
                 if (uiItem == null)
@@ -176,64 +178,32 @@ namespace Game.EquipmentSystem
                 var i = -1;
                 
                 if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
                     i = 0;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
                     i = 1;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
                     i = 2;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha4))
-                {
                     i = 3;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha5))
-                {
                     i = 4;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha6))
-                {
                     i = 5;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha7))
-                {
                     i = 6;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha8))
-                {
                     i = 7;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha9))
-                {
                     i = 8;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
-                }
                 else if (Input.GetKeyDown(KeyCode.Alpha0))
-                {
                     i = 9;
-                    var equippedItem = i < Inventory.EquippedItems.Length ? Inventory.EquippedItems[i] : null;
-                    Inventory.HoldItem(equippedItem);
+                
+                if (i > -1)
+                {
+                    var itemIndex = Inventory.EquippedItems[i];
+                    
+                    if (itemIndex > -1 && itemIndex < Inventory.ItemsInInventory.Count)
+                        Inventory.HoldItem(Inventory.ItemsInInventory[itemIndex]);
                 }
             }
         }

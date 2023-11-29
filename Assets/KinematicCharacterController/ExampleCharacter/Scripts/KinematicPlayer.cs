@@ -49,7 +49,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             Inventory = Character.gameObject.GetComponent<GameItemInventory>();
             if (!Inventory) throw new MissingComponentException("Missing GameItemInventory on Character.");
             
-            InventoryContentUIController = FindObjectOfType<InventoryContentUIController>();
+            if (InventoryContentUIController == null) InventoryContentUIController = FindObjectOfType<InventoryContentUIController>();
             if (!InventoryContentUIController) throw new MissingComponentException("Missing InventoryContentUIController in scene.");
             
             Cursor.lockState = CursorLockMode.Locked;
