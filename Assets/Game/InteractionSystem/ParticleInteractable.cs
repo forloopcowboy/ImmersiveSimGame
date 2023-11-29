@@ -25,7 +25,7 @@ namespace Game.InteractionSystem
             particleSystems.AddRange(GetComponentsInChildren<ParticleSystem>());
         }
 
-        public override void Interact(dynamic input)
+        protected override void OnInteract(Interactor interactor, object input)
         {
             PlayAllParticles();
         }

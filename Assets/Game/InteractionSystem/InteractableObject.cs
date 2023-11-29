@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.InteractionSystem
 {
@@ -11,6 +12,17 @@ namespace Game.InteractionSystem
         [TabGroup("General")] public string interactionText = "to inspect";
         [TabGroup("General")] public string itemName = "Item";
 
-        public abstract void Interact(dynamic input);
+        public UnityEvent<Interactor, object> OnInteracted;
+
+        protected abstract void OnInteract(Interactor interactor, object input);
+        
+        public void Interact(Interactor interactor, object input)
+        {
+            if (isInteractable)
+            {
+                OnInteracted?.Invoke(interactor, input);
+                OnInteract(interactor, input);
+            }
+        }
     }
 }

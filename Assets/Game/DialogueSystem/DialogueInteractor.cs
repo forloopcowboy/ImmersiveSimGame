@@ -56,7 +56,7 @@ namespace Game.DialogueSystem
             }
         }
 
-        public override void Interact(dynamic input)
+        protected override void OnInteract(Interactor interactor, dynamic input)
         {
             if (enabled)
             {

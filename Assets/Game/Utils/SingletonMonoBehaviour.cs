@@ -7,10 +7,16 @@ namespace Game.Utils
     public class SingletonMonoBehaviour<T> : SerializedMonoBehaviour
         where T : Component
     {
+        public bool DontDestroyOnLoad;
+        
         protected virtual void Awake()
         {
             if (_instance == null)
+            {
                 _instance = this as T;
+                if (DontDestroyOnLoad)
+                    DontDestroyOnLoad(gameObject);
+            }
             else
                 Destroy(gameObject);
         }

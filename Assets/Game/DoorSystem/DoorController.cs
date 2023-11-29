@@ -44,7 +44,7 @@ namespace Game.DoorSystem
             }
         }
 
-        public override void Interact(dynamic input)
+        protected override void OnInteract(Interactor interactor, dynamic input)
         {
             if (input is string key)
                 Unlock(key);

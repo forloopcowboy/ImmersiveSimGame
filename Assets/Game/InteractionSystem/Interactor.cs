@@ -56,7 +56,7 @@ namespace Game.InteractionSystem
             if (TryPeekInteractionQueue(out item) && _interactionQueue.TryPop(out var interactable) && interactable is T result)
             {
                 item = result;
-                item.Interact(input);
+                item.Interact(this, input);
                 _inInteractRange.Remove(item);
                 
                 return item != null;

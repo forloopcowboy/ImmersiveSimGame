@@ -91,7 +91,7 @@ namespace Game.SaveUtility
             // Initialize level states
             for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
-                _gameState.LevelStates.Add(new LevelState(i, new List<string>(), new List<NPCState>()));
+                _gameState.LevelStates.Add(new LevelState(i, new List<SerializedEvent>(), new List<NPCState>()));
             }
             Debug.Log("> Initialized " + SceneManager.sceneCountInBuildSettings + " level states.");
         }
@@ -146,7 +146,8 @@ namespace Game.SaveUtility
         
         public List<NPCState> NPCStates => LevelStates[CurrentLevel].NPCStates;
 
-        public bool PlayerLocationInitialized => LevelStates[CurrentLevel].PlayerLocationInitialized;
+        public List<SerializedEvent> Events => LevelStates[CurrentLevel].Events;
+        
         
         public Vector3 PlayerPosition
         {

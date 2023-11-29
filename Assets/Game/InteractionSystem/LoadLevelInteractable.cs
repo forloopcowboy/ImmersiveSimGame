@@ -22,7 +22,7 @@ namespace Game.InteractionSystem
             }
         }
         
-        public override void Interact(dynamic input)
+        protected override void OnInteract(Interactor interactor, dynamic input)
         {
             GlobalGameState.SpawnState.RestoreLastPosition = String.IsNullOrEmpty(spawnPointId);
             GlobalGameState.SpawnState.SpawnID = spawnPointId;

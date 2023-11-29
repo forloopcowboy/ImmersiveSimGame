@@ -7,7 +7,7 @@ namespace Game.GrabSystem
     {
         public UnityEvent OnThrow;
         
-        public override void Interact(dynamic input)
+        protected override void OnInteract(Interactor interactor, object input)
         {
             if (input is GrabNode grabNode)
             {

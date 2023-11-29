@@ -29,7 +29,7 @@ namespace Game.EquipmentSystem
             });
         }
 
-        public override void Interact(dynamic input)
+        protected override void OnInteract(Interactor interactor, dynamic input)
         {
             if (PickUpDialogue.Length > 0)
             {
