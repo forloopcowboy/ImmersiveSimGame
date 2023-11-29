@@ -1,5 +1,6 @@
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
+using Game.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

@@ -209,8 +209,6 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 var respawnBtn = deathScreenUI.GetComponentInChildren<Button>(true);
                 respawnBtn.onClick.AddListener(() =>
                 {
-                    // Reload scene
-                    gameManager.ReloadScene();
                     // Load previous save
                     GlobalGameState.Singleton.LoadState();
                 });

@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.InteractionSystem
+namespace Game.Utils
 {
     [Serializable]
     public class NotificationEvent

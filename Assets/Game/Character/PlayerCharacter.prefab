@@ -597,37 +597,7 @@ MonoBehaviour:
   - Inventory: {fileID: 8966574204990463280}
     Item: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
     Quantity: 5
-  EquippedItems:
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  EquippedItems: 
   activelyHeldItem:
     Inventory: {fileID: 0}
     Item: {fileID: 0}

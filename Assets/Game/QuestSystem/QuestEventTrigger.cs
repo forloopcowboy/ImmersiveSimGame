@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using BehaviorDesigner.Runtime.Tasks;
 using Game.Src.EventBusModule;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game.QuestSystem
 {
@@ -14,14 +14,19 @@ namespace Game.QuestSystem
     {
         public bool isEnabled;
         
-        [Tooltip("The event to trigger."), TabGroup("Quest")]
+        [BehaviorDesigner.Runtime.Tasks.Tooltip("The event to trigger."), TabGroup("Quest")]
         public QuestEvent questEvent;
 
         [TabGroup("Quest")] public List<QuestId> requiredQuestsCompleted;
         [TabGroup("Quest")] public List<QuestId> requiredQuestsNotCompleted;
         [TabGroup("Quest")] public List<QuestEventId> requiredQuestEvents;
         [TabGroup("Quest")] public List<QuestEventId> requiredQuestEventsNotCompleted;
-        
+
+        public QuestEventTrigger(bool isEnabled)
+        {
+            this.isEnabled = isEnabled;
+        }
+
         public bool CanTrigger
         {
             get
@@ -30,6 +35,7 @@ namespace Game.QuestSystem
                 {
                     if (!QuestManager.Singleton.IsQuestCompleted(questId))
                     {
+                        Debug.Log($"Quest {questId} not completed. Cannot trigger event {questEvent.eventName}.");
                         return false;
                     }
                 }
@@ -37,6 +43,7 @@ namespace Game.QuestSystem
                 {
                     if (QuestManager.Singleton.IsQuestCompleted(questId))
                     {
+                        Debug.Log($"Quest {questId} completed. Cannot trigger event {questEvent.eventName}.");
                         return false;
                     }
                 }
@@ -44,6 +51,7 @@ namespace Game.QuestSystem
                 {
                     if (!QuestManager.Singleton.HasQuestEvent(questEventId))
                     {
+                        Debug.Log($"Quest event {questEventId} not completed. Cannot trigger event {questEvent.eventName}.");
                         return false;
                     }
                 }
@@ -51,9 +59,12 @@ namespace Game.QuestSystem
                 {
                     if (QuestManager.Singleton.HasQuestEvent(questEventId))
                     {
+                        Debug.Log($"Quest event {questEventId} completed. Cannot trigger event {questEvent.eventName}.");
                         return false;
                     }
                 }
+
+                Debug.Log("Can trigger: " + questEvent.eventName);
                 return true;
             }
         }

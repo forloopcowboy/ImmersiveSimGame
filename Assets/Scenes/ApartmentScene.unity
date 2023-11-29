@@ -3869,7 +3869,8 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5234332443041779310, guid: efa80ec6f9e10d1478d81d23d05a286b,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7771,6 +7772,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isContentVisible: 1
+--- !u!114 &355645476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _snapMode: 0
+  _snapHalfSpace: 0
+  _projectionSettings: {fileID: 0}
 --- !u!1001 &355663452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9085,26 +9101,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 404200266}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &406311214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49490255aaf1a2641a4c5771511bd253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _halfSpace: 1
-  _alignAxis: 0
-  _alignmentAxis: 1
-  _invertAlignmentAxis: 0
-  _projectAsUnit: 0
-  _embedInSurface: 1
-  _inFrontOffset: 0
-  _behindOffset: 0
 --- !u!1001 &406698926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10515,21 +10511,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c578338a83f2d164d826dcb4258bdb1f, type: 3}
---- !u!114 &462304603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _snapMode: 0
-  _snapHalfSpace: 0
-  _projectionSettings: {fileID: 0}
 --- !u!1001 &462947894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11891,6 +11872,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 512592897}
+    - targetCorrespondingSourceObject: {fileID: 5672061600595218420, guid: 13a1cfe9d5f85804a9a60d10abee60bd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 512592902}
   m_SourcePrefab: {fileID: 100100000, guid: 13a1cfe9d5f85804a9a60d10abee60bd, type: 3}
 --- !u!1 &512592896 stripped
 GameObject:
@@ -11923,10 +11908,49 @@ MonoBehaviour:
   shortcut: E
   interactionText: to pick up
   itemName: Item
+  OnInteracted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 512592902}
+        m_TargetAssemblyTypeName: Game.QuestSystem.QuestEventComponent, QuestSystem
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ItemType: {fileID: 11400000, guid: 123e417668500a74d8003325d3a6825f, type: 2}
   PickUpDialogue: I can't forget my keys again.
   Amount: 1
   UseItemTypeName: 1
+--- !u!114 &512592902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512592896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a41aa41a2ce4e18a12f267814445628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerMethod: 2
+  questEventTrigger:
+    isEnabled: 1
+    questEvent:
+      questId: {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+      questEventId: {fileID: 11400000, guid: b15c2883fc2af3e40b845dcdf6995c74, type: 2}
+      eventName: Time to shower
+      eventDescription: Go take a quick shower.
+    requiredQuestsCompleted: []
+    requiredQuestsNotCompleted: []
+    requiredQuestEvents: []
+    requiredQuestEventsNotCompleted: []
 --- !u!1001 &515335333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12635,7 +12659,7 @@ MonoBehaviour:
   _extensionPlane:
     _refOBBFace: 4
   _heightPatternDirection: 0
-  _modularSnapSession: {fileID: 462304603}
+  _modularSnapSession: {fileID: 355645476}
   _mirrorGizmo: {fileID: 1060548405}
 --- !u!114 &550463078
 MonoBehaviour:
@@ -14042,6 +14066,26 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &624482308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49490255aaf1a2641a4c5771511bd253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _halfSpace: 1
+  _alignAxis: 0
+  _alignmentAxis: 1
+  _invertAlignmentAxis: 0
+  _projectAsUnit: 0
+  _embedInSurface: 1
+  _inFrontOffset: 0
+  _behindOffset: 0
 --- !u!1001 &624715637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14774,6 +14818,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 650267970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &651808241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _snapMode: 0
+  _snapHalfSpace: 0
+  _projectionSettings: {fileID: 0}
 --- !u!1001 &658199947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15751,6 +15810,178 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 701198314}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &701931224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701931228}
+  - component: {fileID: 701931227}
+  - component: {fileID: 701931226}
+  - component: {fileID: 701931225}
+  - component: {fileID: 701931229}
+  m_Layer: 0
+  m_Name: MainCamera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &701931225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701931224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!81 &701931226
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701931224}
+  m_Enabled: 1
+--- !u!20 &701931227
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701931224}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.05
+  far clip plane: 1000
+  field of view: 60.000004
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &701931228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701931224}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.007222012, y: 0.38957247, z: 0.007432072, w: 0.92093754}
+  m_LocalPosition: {x: -6.3687897, y: 1.5963714, z: -5.4965534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &701931229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701931224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &702763083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15763,7 +15994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8725edae6a1fd4408036dedaf0199f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectionSettings: {fileID: 406311214}
+  _projectionSettings: {fileID: 624482308}
   _dragAndDropGuide: {fileID: 0}
 --- !u!1001 &703204432
 PrefabInstance:
@@ -16607,7 +16838,8 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5234332443041779310, guid: efa80ec6f9e10d1478d81d23d05a286b,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20507,6 +20739,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6399676747068942218, guid: e5698ddb57096ee47935716e2b9db494,
+        type: 3}
+      propertyPath: questEventTrigger.questEvent.eventName
+      value: Leave the building
+      objectReference: {fileID: 0}
     - target: {fileID: 6562550703977078343, guid: e5698ddb57096ee47935716e2b9db494,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -22254,21 +22491,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7378c1a628e7b0f488417ca98ac76dd6, type: 3}
---- !u!114 &955997121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _snapMode: 0
-  _snapHalfSpace: 0
-  _projectionSettings: {fileID: 0}
 --- !u!1001 &956119165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23417,6 +23639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005900517}
   - component: {fileID: 1005900516}
+  - component: {fileID: 1005900518}
   m_Layer: 0
   m_Name: GlobalGameState
   m_TagString: Untagged
@@ -23445,6 +23668,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  DontDestroyOnLoad: 0
   FileName: GameState.json
   _gameState:
     CurrentLevel: 1
@@ -23506,6 +23730,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005900518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005900515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05acbc8ce1274b2696659a950ba97528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  DontDestroyOnLoad: 0
+  Quests:
+  - questId: {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+    questName: Get started with the day
+    questDescription: I should probably take a shower and head out to check out the
+      place.
+    questEvents: []
+    requiredToComplete:
+    - {fileID: 11400000, guid: 16b701dbdad07884183af4e08c41943f, type: 2}
+  ActiveQuests: []
 --- !u!1001 &1006504474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27513,7 +27768,8 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1929834143583422940, guid: aec914ff072a47f4385169c15c1316ba,
+        type: 3}
     - target: {fileID: 2357063683841865175, guid: aec914ff072a47f4385169c15c1316ba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30440,6 +30696,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1299741033}
+    - targetCorrespondingSourceObject: {fileID: 1620548524678864, guid: c03b4697a8de1a546b3485561da0e846,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299741039}
   m_SourcePrefab: {fileID: 100100000, guid: c03b4697a8de1a546b3485561da0e846, type: 3}
 --- !u!4 &1299741031 stripped
 Transform:
@@ -30478,9 +30738,49 @@ MonoBehaviour:
   shortcut: E
   interactionText: to head out
   itemName: 
+  OnInteracted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1299741039}
+        m_TargetAssemblyTypeName: Game.QuestSystem.QuestEventComponent, QuestSystem
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   levelIndex: 0
   loadSceneMode: 0
   spawnPointId: {fileID: 11400000, guid: a69b4693fda230d42a903d7b0049ea84, type: 2}
+--- !u!114 &1299741039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299741032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a41aa41a2ce4e18a12f267814445628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerMethod: 2
+  questEventTrigger:
+    isEnabled: 1
+    questEvent:
+      questId: {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+      questEventId: {fileID: 11400000, guid: 16b701dbdad07884183af4e08c41943f, type: 2}
+      eventName: Explore Serraland
+      eventDescription: 
+    requiredQuestsCompleted: []
+    requiredQuestsNotCompleted: []
+    requiredQuestEvents: []
+    requiredQuestEventsNotCompleted:
+    - {fileID: 11400000, guid: 16b701dbdad07884183af4e08c41943f, type: 2}
 --- !u!1001 &1300250215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39795,6 +40095,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6399676747068942218, guid: e5698ddb57096ee47935716e2b9db494,
+        type: 3}
+      propertyPath: questEventTrigger.requiredQuestsCompleted.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6562550703977078343, guid: e5698ddb57096ee47935716e2b9db494,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -45755,7 +46060,7 @@ MonoBehaviour:
   _spawnGuide: {fileID: 1804464375}
   _extensionPlane:
     _refOBBFace: 4
-  _modularSnapSession: {fileID: 955997121}
+  _modularSnapSession: {fileID: 651808241}
   _mirrorGizmo: {fileID: 2022743541}
 --- !u!4 &1929167063 stripped
 Transform:
@@ -50409,3 +50714,4 @@ SceneRoots:
   - {fileID: 1555861300}
   - {fileID: 1253101500}
   - {fileID: 1944050933}
+  - {fileID: 701931228}

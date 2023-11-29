@@ -59,6 +59,8 @@ namespace Game.QuestSystem
                 EventType = QuestEvent.EVENT_TYPE,
                 EventData = JsonUtility.ToJson(questEvent)
             }));
+            
+            GlobalGameState.Singleton.SaveState();
         }
 
         [Button]
@@ -78,15 +80,29 @@ namespace Game.QuestSystem
         /// </summary>
         private void HandleQuestEvent(QuestEvent questEvent)
         {
-            if (ActiveQuests.Exists(quest => quest.questId == questEvent.questId))
+            Quest quest = Quests.First(quest => quest.questId == questEvent.questId);
+            
+            if (!ActiveQuests.Exists(q => q.questId == questEvent.questId))
             {
-                ActiveQuests.First(quest => quest.questId == questEvent.questId).questEvents.Add(questEvent);
+                ActiveQuests.Add(quest);
+            }
+            
+            quest.questEvents.Add(questEvent);
+            
+            if (quest.IsCompleted)
+            {
+                StartCoroutine(CoroutineHelpers.DelayedAction(1.5f, () =>
+                {
+                    SceneEventBus.Emit(new NotificationEvent($"[Q] Completed: {quest.questName}"));
+                }));
             }
             else
             {
-                var quest = Quests.First(quest => quest.questId == questEvent.questId);
-                quest.questEvents.Add(questEvent);
-                ActiveQuests.Add(quest);
+                StartCoroutine(CoroutineHelpers.DelayedAction(1.5f, () =>
+                {
+                    SceneEventBus.Emit(new NotificationEvent($"[Q] Goal updated: {questEvent.eventName}"));
+                }));
+                
             }
         }
 

@@ -7,6 +7,7 @@ using Game.GrabSystem;
 using Game.HealthSystem;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
+using Game.Utils;
 using KinematicCharacterController.Examples;
 using UnityEngine;
 
@@ -88,6 +89,11 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             if (GrabNode == null && Character != null)
             {
                 GrabNode = Character.GetComponentInChildren<GrabNode>();
+            }
+            
+            if (Health == null && Character != null)
+            {
+                Health = Character.GetComponentInChildren<Health>();
             }
         }
 

@@ -1,6 +1,7 @@
 using System.Linq;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
+using Game.Utils;
 using UnityEngine;
 
 namespace Game.EquipmentSystem
