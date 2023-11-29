@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Game.DialogueSystem;
 using Game.EquipmentSystem;
+using Game.GameManager;
 using Game.GrabSystem;
 using Game.HealthSystem;
 using Game.InteractionSystem;
@@ -21,12 +24,22 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         public GameObject playerCharacterPrefab;
         public GameObject playerCameraPrefab;
         public GameObject gameUIPrefab;
-        
+        public GameManager gameManagerPrefab;
+
         public bool spawnOnStart = true;
         
+        
         public PlayerState _playerState;
+        
+        // Internal state and instances
         [ReadOnly]
         private KinematicPlayer _kinematicPlayerInstance;
+        [ReadOnly]
+        private DialoguePlayer _dialoguePlayerInstance;
+        [ReadOnly]
+        private DeathScreenUIController _deathScreenUIControllerInstance;
+        [ReadOnly]
+        private HealthBar _playerHealthBarInstance;
 
         private void Start()
         {
@@ -103,6 +116,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
             if (_playerState == null || !_playerState.IsInitialized)
             {
+                Debug.Log("Player state is not initialized. Initializing...");
                 _playerState = GlobalGameState.State.PlayerState = new PlayerState();
                 GlobalGameState.State.PlayerState.IsInitialized = true;
                 
@@ -111,6 +125,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             }
             else
             {
+                Debug.Log("Player state is initialized. Loading...");
                 health.SetHealth(_playerState.Health);
                 
                 var playerStateInventory = _playerState.Inventory;
@@ -129,26 +144,38 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 }
 
                 inventory.EquippedItems = _playerState.EquippedItems;
-                inventory.activelyHeldItem = inventory.ItemsInInventory[_playerState.HeldItemIndex];
+                inventory.activelyHeldItem = _playerState.HeldItemIndex >= 0 && _playerState.HeldItemIndex < inventory.ItemsInInventory.Count ? inventory.ItemsInInventory[_playerState.HeldItemIndex] : null;
             }
-
-            _kinematicPlayerInstance.Character.Motor.enabled = false;
-            _kinematicPlayerInstance.Character.transform.SetPositionAndRotation(GlobalGameState.State.PlayerPosition, Quaternion.Euler(GlobalGameState.State.PlayerRotation));
-            _kinematicPlayerInstance.Character.Motor.SetPositionAndRotation(GlobalGameState.State.PlayerPosition, Quaternion.Euler(GlobalGameState.State.PlayerRotation));
             
-            StartCoroutine(CoroutineHelpers.DelayedAction(0.5f, () =>
+            // Check if player location should be loaded or initialized
+            if (!GlobalGameState.State.PlayerLocationInitialized)
             {
-                _kinematicPlayerInstance.Character.Motor.enabled = true;
-            }));
+                SyncPlayerPosition();
+                Debug.Log("First time loading player location. Saving spawned position to serialized state.");
+            }
+            else
+            {
+                Debug.Log("Loading player location from serialized state.");
+                _kinematicPlayerInstance.Character.Motor.enabled = false;
+                _kinematicPlayerInstance.Character.transform.SetPositionAndRotation(GlobalGameState.State.PlayerPosition, Quaternion.Euler(GlobalGameState.State.PlayerRotation));
+                _kinematicPlayerInstance.Character.Motor.SetPositionAndRotation(GlobalGameState.State.PlayerPosition, Quaternion.Euler(GlobalGameState.State.PlayerRotation));
+            
+                StartCoroutine(CoroutineHelpers.DelayedAction(0.5f, () =>
+                {
+                    _kinematicPlayerInstance.Character.Motor.enabled = true;
+                }));
+            }
         }
 
         private void InitializeUI(KinematicPlayer kinematicPlayer)
         {
             var gameUI = Instantiate(gameUIPrefab);
+            var gameManager = GameManager.Singleton != null ? GameManager.Singleton : Instantiate(gameManagerPrefab);
+            gameManager.name = "Game Manager";
+
             var health = kinematicPlayer.Character.GetComponentInChildren<Health>();
-            
             gameUI.name = "Game User Interface";
-            
+
             // initialize player HUD
             var deathScreenUI = gameUI.GetComponentInChildren<DeathScreenUIController>();
             if (deathScreenUI != null)
@@ -174,6 +201,28 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             if (equippedUI != null)
                 equippedUI.Inventory = inventory;
             kinematicPlayer.InventoryContentUIController = inventoryUI;
+            
+            _dialoguePlayerInstance = gameUI.GetComponentInChildren<DialoguePlayer>();
+            _deathScreenUIControllerInstance = deathScreenUI;
+            _playerHealthBarInstance = playerHealthBar;
+
+            // Handle game manager state
+            gameManager.onPause.AddListener(HideUIOnPause);
+            gameManager.onResume.AddListener(ShowUIOnResume);
+        }
+
+        private void HideUIOnPause()
+        {
+            _dialoguePlayerInstance.gameObject.SetActive(false);
+            _deathScreenUIControllerInstance.gameObject.SetActive(false);
+            _playerHealthBarInstance.Hide();
+        }
+        
+        private void ShowUIOnResume()
+        {
+            _dialoguePlayerInstance.gameObject.SetActive(true);
+            _deathScreenUIControllerInstance.gameObject.SetActive(true);
+            _playerHealthBarInstance.Show();
         }
 
         private void InitializePlayer(KinematicPlayer kinematicPlayer, Examples.KinematicCharacterController kinematicCharacter, KinematicCharacterCamera kinematicCamera)
@@ -223,8 +272,19 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             GlobalGameState.State.PlayerState.Inventory = inventory.GetSerializedInventory();
             GlobalGameState.State.PlayerState.HeldItemIndex = inventory.ItemsInInventory.IndexOf(inventory.activelyHeldItem);
             GlobalGameState.State.PlayerState.EquippedItems = inventory.EquippedItems;
+            SyncPlayerPosition();
+        }
+
+        private void SyncPlayerPosition()
+        {
             GlobalGameState.State.PlayerPosition = _kinematicPlayerInstance.Character.transform.position;
             GlobalGameState.State.PlayerRotation = _kinematicPlayerInstance.Character.transform.rotation.eulerAngles;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Singleton.onPause.RemoveListener(HideUIOnPause);
+            GameManager.Singleton.onResume.RemoveListener(ShowUIOnResume);
         }
 
         private void OnDrawGizmos()

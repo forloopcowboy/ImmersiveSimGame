@@ -10,7 +10,8 @@ namespace Game.SaveUtility
         public int LevelNumber;
         public List<string> Events;
         public List<NPCState> NPCStates;
-        
+
+        public bool PlayerLocationInitialized;
         public Vector3 PlayerPosition;
         public Vector3 PlayerRotation;
 

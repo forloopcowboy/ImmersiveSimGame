@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2357063683841865175}
   - component: {fileID: 1929834143583422940}
+  - component: {fileID: 5790258723693487824}
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Untagged
@@ -44,6 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd872cda1f64dc39f05c07a7fe8768e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   spawnPoint: {fileID: 0}
   playerPrefab: {fileID: 7714594556552527390, guid: 2cc099dd6b9045e449b59b5d2793fce7,
     type: 3}
@@ -53,4 +63,47 @@ MonoBehaviour:
     type: 3}
   gameUIPrefab: {fileID: 8705063782588228273, guid: 1ce4cdf7f09dad04d9f0a196f357da4d,
     type: 3}
+  gameManagerPrefab: {fileID: 2425824921868755082, guid: 2486a179a115f044290aa728da5deea7,
+    type: 3}
   spawnOnStart: 1
+  _playerState:
+    Health: 100
+    Events: []
+    Inventory:
+    - Identifier: 733ac82a-50db-42a9-8cad-6123d1c44bcf
+      Quantity: 38
+    - Identifier: 84ada31b-d35b-41bc-a6f1-f8797b4650f5
+      Quantity: 5
+    HeldItemIndex: 1
+    EquippedItems: 00000000ffffffff01000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    IsInitialized: 0
+--- !u!114 &5790258723693487824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973497152528518075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c6b33886634b148d1e907814a304bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  GameItemAssets:
+  - {fileID: 11400000, guid: e2c565e8b16c3b641a93b4f23a866704, type: 2}
+  - {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+  - {fileID: 11400000, guid: 7510c6a09897a2345ac693d0da209b7d, type: 2}
+  - {fileID: 11400000, guid: 123e417668500a74d8003325d3a6825f, type: 2}
+  - {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
+  - {fileID: 11400000, guid: b4efd685d9290494181af9b5e98c6a3e, type: 2}
+  - {fileID: 11400000, guid: 7c3961aae39df4c47b2910e823ee0681, type: 2}
+  - {fileID: 11400000, guid: a82cf7bf7f76c2449ae3f4ec318ecbe3, type: 2}

@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Utils;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -25,7 +25,12 @@ namespace Game.GameManager
             if (_instance == null) _instance = this;
             else if (_instance != this) Destroy(gameObject);
             
-            if (pauseScreen) pauseScreen.SetActive(false);
+            DontDestroyOnLoad(gameObject);
+            
+            if (pauseScreen) 
+                pauseScreen.SetActive(false);
+            if (loadingScreen)
+                loadingScreen.SetActive(false);
         }
 
         public static bool IsPaused => Singleton._isPaused;
@@ -46,10 +51,7 @@ namespace Game.GameManager
             {
                 onPause?.Invoke();_isPaused = true;
                 Cursor.lockState = CursorLockMode.None;
-                if (pauseScreen != null)
-                {
-                    pauseScreen.SetActive(true);
-                }
+                TogglePauseScreen(true);
             
                 _timeScaleBeforePause = Time.timeScale;
                 Time.timeScale = 0;
@@ -64,7 +66,7 @@ namespace Game.GameManager
             
                 _isPaused = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                pauseScreen.SetActive(false);
+                TogglePauseScreen(false);
             
                 Time.timeScale = _timeScaleBeforePause;
             }
@@ -84,15 +86,18 @@ namespace Game.GameManager
 
         public void LoadScenes(LoadSceneMode mode, params int[] scenes)
         {
-            if (loadingScreen != null) loadingScreen.SetActive(true);
-            
-            var totalScenes = scenes.Length;
-            List<AsyncOperation> loadingProcesses = new List<AsyncOperation>(totalScenes);
+            ToggleLoadingScreen(true);
 
-            foreach (var sceneIndex in scenes)
-                loadingProcesses.Add(SceneManager.LoadSceneAsync(sceneIndex, mode));
+            StartCoroutine(CoroutineHelpers.DelayedAction(.75f, () =>
+            {
+                var totalScenes = scenes.Length;
+                List<AsyncOperation> loadingProcesses = new List<AsyncOperation>(totalScenes);
 
-            StartCoroutine(LoadScenesCoroutine(loadingProcesses, totalScenes));
+                foreach (var sceneIndex in scenes)
+                    loadingProcesses.Add(SceneManager.LoadSceneAsync(sceneIndex, mode));
+
+                StartCoroutine(LoadScenesCoroutine(loadingProcesses, totalScenes));
+            }));
         }
 
         private IEnumerator LoadScenesCoroutine(List<AsyncOperation> loadingProcesses, int totalScenes)
@@ -110,9 +115,26 @@ namespace Game.GameManager
 
                 yield return checkInterval;
             }
+
+            yield return new WaitForSeconds(0.75f);
             
-            if (loadingScreen != null) loadingScreen.SetActive(false);
+            ToggleLoadingScreen(false);
             onLoadingFinished?.Invoke();
+        }
+        
+        [Button]
+        private void ToggleLoadingScreen(bool value)
+        {
+            if (loadingScreen != null) loadingScreen.SetActive(value);
+        }
+        
+        [Button]
+        private void TogglePauseScreen(bool value)
+        {
+            if (pauseScreen != null)
+            {
+                pauseScreen.SetActive(value);
+            }
         }
         
         public void QuitApplication() => Application.Quit();

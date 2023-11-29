@@ -4,6 +4,7 @@ using System.IO;
 using Game.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.SaveUtility
 {
@@ -42,24 +43,41 @@ namespace Game.SaveUtility
         private void Awake()
         {
             LoadState();
+            DontDestroyOnLoad(gameObject);
+            SceneManager.activeSceneChanged += HandleSceneChanged;
+        }
+        
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            SceneManager.activeSceneChanged -= HandleSceneChanged;
+        }
+
+        private void HandleSceneChanged(Scene arg0, Scene arg1)
+        {
+            _gameState.CurrentLevel = arg1.buildIndex;
+            Debug.Log("Scene changed. Current level: " + _gameState.CurrentLevel);
         }
 
         [Button]
         public void InitializeGameState()
         {
+            Debug.Log("Initializing game state...");
             if (_gameState == null)
             {
                 _gameState = new GameState();
             }
             
             // Get current scene index
-            _gameState.CurrentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+            _gameState.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log("> Current level: " + _gameState.CurrentLevel);
                 
             // Initialize level states
-            for (var i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
+            for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
                 _gameState.LevelStates.Add(new LevelState(i, new List<string>(), new List<NPCState>()));
             }
+            Debug.Log("> Initialized " + SceneManager.sceneCountInBuildSettings + " level states.");
         }
 
         [Button]
@@ -88,6 +106,12 @@ namespace Game.SaveUtility
                 Debug.Log($"No current level found in save file {FilePath}. Initializing game state.");
                 InitializeGameState();
             }
+            
+            if (_gameState.CurrentLevel != SceneManager.GetActiveScene().buildIndex)
+            {
+                Debug.Log($"Current level in save file {FilePath} does not match current scene. Loading correct level.");
+                GameManager.GameManager.Singleton.LoadScene(_gameState.CurrentLevel);
+            }
 
             Debug.Log($"Loaded game state [{FileName}]. Current level: {_gameState.CurrentLevel}");
         }
@@ -102,16 +126,24 @@ namespace Game.SaveUtility
         
         public List<NPCState> NPCStates => LevelStates[CurrentLevel].NPCStates;
 
+        public bool PlayerLocationInitialized => LevelStates[CurrentLevel].PlayerLocationInitialized;
+        
         public Vector3 PlayerPosition
         {
             get => LevelStates[CurrentLevel].PlayerPosition;
-            set => LevelStates[CurrentLevel].PlayerPosition = value;
+            set {
+                LevelStates[CurrentLevel].PlayerLocationInitialized = true;
+                LevelStates[CurrentLevel].PlayerPosition = value;
+            }
         }
         
         public Vector3 PlayerRotation
         {
             get => LevelStates[CurrentLevel].PlayerRotation;
-            set => LevelStates[CurrentLevel].PlayerRotation = value;
+            set {
+                LevelStates[CurrentLevel].PlayerLocationInitialized = true;
+                LevelStates[CurrentLevel].PlayerRotation = value;
+            }
         }
     }
 }

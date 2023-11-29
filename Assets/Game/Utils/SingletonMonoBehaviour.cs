@@ -9,7 +9,6 @@ namespace Game.Utils
     {
         public static bool IsInitialized = false;
         
-
         private static T _instance;
         public static T Singleton
         {
@@ -35,7 +34,7 @@ namespace Game.Utils
             }
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             _instance = null;
         }
