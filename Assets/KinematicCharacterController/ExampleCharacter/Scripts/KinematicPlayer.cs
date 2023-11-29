@@ -2,7 +2,9 @@
 using Game.DialogueSystem;
 using Game.DoorSystem;
 using Game.EquipmentSystem;
+using Game.GameManager;
 using Game.GrabSystem;
+using Game.HealthSystem;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
 using KinematicCharacterController.Examples;
@@ -18,7 +20,8 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         public InventoryContentUIController InventoryContentUIController;
         public Interactor Interactor;
         public GrabNode GrabNode;
-
+        public Health Health;
+        
         private const string MouseXInput = "Mouse X";
         private const string MouseYInput = "Mouse Y";
         private const string MouseScrollInput = "Mouse ScrollWheel";
@@ -48,6 +51,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             
             Inventory = Character.gameObject.GetComponent<GameItemInventory>();
             if (!Inventory) throw new MissingComponentException("Missing GameItemInventory on Character.");
+            
+            Health = Character.gameObject.GetComponent<Health>();
+            if (!Health) throw new MissingComponentException("Missing Health on Character.");
             
             if (InventoryContentUIController == null) InventoryContentUIController = FindObjectOfType<InventoryContentUIController>();
             if (!InventoryContentUIController) throw new MissingComponentException("Missing InventoryContentUIController in scene.");
@@ -99,7 +105,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         {
             HandleInteractionInput();
 
-            if (!_isInDialogue)
+            if (!_isInDialogue && !GameManager.IsPaused && !Health.isDead)
             {
                 HandleCharacterInput();
                 HandleMouseInput();

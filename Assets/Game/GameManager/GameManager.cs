@@ -88,7 +88,7 @@ namespace Game.GameManager
         {
             ToggleLoadingScreen(true);
 
-            StartCoroutine(CoroutineHelpers.DelayedAction(.75f, () =>
+            StartCoroutine(CoroutineHelpers.DelayedAction(.15f, () =>
             {
                 var totalScenes = scenes.Length;
                 List<AsyncOperation> loadingProcesses = new List<AsyncOperation>(totalScenes);
@@ -116,7 +116,7 @@ namespace Game.GameManager
                 yield return checkInterval;
             }
 
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.25f);
             
             ToggleLoadingScreen(false);
             onLoadingFinished?.Invoke();

@@ -13,6 +13,7 @@ using Game.Utils;
 using KinematicCharacterController.Examples;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace KinematicCharacterController.ExampleCharacter.Scripts
 {
@@ -52,6 +53,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         [Button]
         public void SpawnPlayer()
         {
+            // TODO: pick spawn point from game state
             var position = spawnPoint != null ? spawnPoint.position : transform.position;
             var rotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
             
@@ -179,7 +181,18 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             // initialize player HUD
             var deathScreenUI = gameUI.GetComponentInChildren<DeathScreenUIController>();
             if (deathScreenUI != null)
+            {
+                var respawnBtn = deathScreenUI.GetComponentInChildren<Button>(true);
+                respawnBtn.onClick.AddListener(() =>
+                {
+                    // Reload scene
+                    gameManager.ReloadScene();
+                    // Load previous save
+                    GlobalGameState.Singleton.LoadState();
+                });
+                
                 deathScreenUI.health = health;
+            }
             var playerHealthBar = gameUI.GetComponentInChildren<HealthBar>();
             if (playerHealthBar != null)
                 playerHealthBar.health = health;
@@ -261,7 +274,6 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 projectileSpawnPointFollower.followRotation = true;
             }
         }
-
 
         public void SyncPlayerState()
         {

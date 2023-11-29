@@ -30,17 +30,17 @@ namespace Game.EquipmentSystem
         {
             if (Inventory == null)
             {
-                throw new System.NullReferenceException("Inventory is null. Initialize it in the inspector or assign it in code.");
+                Debug.LogError("Inventory is null. Initialize it in the inspector or assign it in code.");
             }
             
             if (thumbnailPrefab == null)
             {
-                throw new System.NullReferenceException("thumbnailPrefab is null. Initialize it in the inspector or assign it in code.");
+                Debug.LogError("thumbnailPrefab is null. Initialize it in the inspector or assign it in code.");
             }
             
             if (root == null)
             {
-                throw new System.NullReferenceException("root is null. Initialize it in the inspector or assign it in code.");
+                Debug.LogError("root is null. Initialize it in the inspector or assign it in code.");
             }
 
             StartCoroutine(HandleScrollingMenuDirectionCoroutine());
