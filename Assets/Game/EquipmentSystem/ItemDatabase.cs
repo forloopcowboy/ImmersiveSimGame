@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.EquipmentSystem;
 using Game.Utils;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Game.SaveUtility
 {
     public class ItemDatabase : SingletonMonoBehaviour<ItemDatabase>
     {
+        [InlineEditor(InlineEditorObjectFieldModes.Boxed)]
         public List<GameItemType> GameItemAssets = new ();
         
         public static T[] GetAllInstances<T>() where T : ScriptableObject

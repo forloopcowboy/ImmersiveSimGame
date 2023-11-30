@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 4498407939739275240}
   - component: {fileID: 3435136833521405857}
   - component: {fileID: 6896517214245909085}
+  - component: {fileID: 4949058562268298741}
   m_Layer: 18
   m_Name: Retaliatory AI
   m_TagString: Untagged
@@ -311,6 +312,9 @@ MonoBehaviour:
   shortcut: E
   interactionText: to speak to
   itemName: Trained Red Guy
+  OnInteracted:
+    m_PersistentCalls:
+      m_Calls: []
   speakerName: Trained Red Guy
   dialogue:
   - I just got back from deployment. Got a job as target practice assistant here
@@ -344,37 +348,7 @@ MonoBehaviour:
   - Inventory: {fileID: 6157632096871658302}
     Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 200
-  EquippedItems:
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
-  - Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  EquippedItems: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   activelyHeldItem:
     Inventory: {fileID: 0}
     Item: {fileID: 0}
@@ -530,3 +504,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e848ec62184b10a1e5198944729868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4949058562268298741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647469678655081537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d71e2a812de4e3db56844a849b3d403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Identifier: 1ee6aa67-94a2-4fe7-8ae8-eff94db5dfc4
+  Health: {fileID: 2256314817241439600}

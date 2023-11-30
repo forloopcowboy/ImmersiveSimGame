@@ -9,8 +9,8 @@ namespace Game.EquipmentSystem
     [CreateAssetMenu(fileName = "GameItemType", menuName = "GameItem/New GameItemType", order = 0)]
     public class GameItemType : SerializedScriptableObject, IHasIdentifier
     {
-        [ReadOnly, SerializeField]
-        private string _identifier = Guid.NewGuid().ToString();
+        [SerializeField]
+        private string _identifier = "None";
         public string ItemName;
         public Sprite ItemSprite;
         public float ItemValue;
@@ -37,6 +37,12 @@ namespace Game.EquipmentSystem
             IconSpriteGenerated = false;
         }
 
+        [Button]
+        public void GenerateIdentifier()
+        {
+            _identifier = Guid.NewGuid().ToString();
+        }
+        
 
         public string Identifier => _identifier;
     }
