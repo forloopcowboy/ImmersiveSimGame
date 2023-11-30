@@ -49,7 +49,8 @@ namespace Game.GameManager
         {
             if (!_isPaused)
             {
-                onPause?.Invoke();_isPaused = true;
+                onPause?.Invoke();
+                _isPaused = true;
                 Cursor.lockState = CursorLockMode.None;
                 TogglePauseScreen(true);
             

@@ -17,8 +17,11 @@ namespace Game.Utils
                 if (DontDestroyOnLoad)
                     DontDestroyOnLoad(gameObject);
             }
-            else
+            else if (_instance != this)
+            {
+                Debug.Log("Destroying duplicate singleton instance of " + typeof(T).Name);
                 Destroy(gameObject);
+            }
         }
 
         private static T _instance;

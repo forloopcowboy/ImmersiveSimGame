@@ -48,12 +48,10 @@ namespace Game.SaveUtility
             set => Singleton._playerSpawnState = value;
         }
         
-        protected override void Awake()
+        protected void Start()
         {
-            base.Awake();
             if (Singleton == this)
             {
-                LoadState();
                 DontDestroyOnLoad(gameObject);
                 SceneManager.activeSceneChanged += HandleSceneChanged;
             }
@@ -91,7 +89,7 @@ namespace Game.SaveUtility
             // Initialize level states
             for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
-                _gameState.LevelStates.Add(new LevelState(i, new List<SerializedEvent>(), new List<NPCState>()));
+                _gameState.LevelStates.Add(new LevelState(i, new List<SerializedEvent>(), new List<NPCState>(), new List<GameItemState>()));
             }
             Debug.Log("> Initialized " + SceneManager.sceneCountInBuildSettings + " level states.");
         }
@@ -166,6 +164,8 @@ namespace Game.SaveUtility
                 LevelStates[CurrentLevel].PlayerRotation = value;
             }
         }
+
+        public LevelState CurrentLevelState => LevelStates[CurrentLevel];
     }
     
     [Serializable]

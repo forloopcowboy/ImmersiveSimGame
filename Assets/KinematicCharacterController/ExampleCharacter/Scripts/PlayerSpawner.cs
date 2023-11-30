@@ -50,7 +50,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             spawnPoints = FindObjectsOfType<SpawnPoint>();
         }
 
-        private void Start()
+        private void Awake()
         {
             OnValidate();
             
@@ -146,6 +146,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 {
                     if (ItemDatabase.TryGetItem<GameItemType>(serializedItemData.Identifier, out var item))
                     {
+                        Debug.Log($"Restoring item {item.ItemName} ({item.Identifier})");
                         inventory.ItemsInInventory.Add(new GameItemInInventory {Item = item, Quantity = serializedItemData.Quantity, Inventory = inventory});
                     }
                     else
@@ -211,6 +212,12 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 {
                     // Load previous save
                     GlobalGameState.Singleton.LoadState();
+                    
+                    // Restart scene
+                    GameManager.Singleton.ReloadScene();
+                    
+                    // Hide death screen
+                    deathScreenUI.root.gameObject.SetActive(false);
                 });
                 
                 deathScreenUI.health = health;
@@ -248,9 +255,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void HideUIOnPause()
         {
-            _dialoguePlayerInstance.gameObject.SetActive(false);
-            _deathScreenUIControllerInstance.gameObject.SetActive(false);
-            _playerHealthBarInstance.Hide();
+            if (_dialoguePlayerInstance != null) _dialoguePlayerInstance.gameObject.SetActive(false);
+            if (_deathScreenUIControllerInstance != null) _deathScreenUIControllerInstance.gameObject.SetActive(false);
+            if (_playerHealthBarInstance != null) _playerHealthBarInstance.Hide();
         }
         
         private void ShowUIOnResume()
@@ -299,6 +306,11 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         public void SyncPlayerState()
         {
+            if (_kinematicPlayerInstance == null)
+            {
+                return;
+            }
+        
             var inventory = _kinematicPlayerInstance.Inventory;
             var health = _kinematicPlayerInstance.Health;
 
@@ -311,13 +323,18 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void SyncPlayerPosition()
         {
+            if (_kinematicPlayerInstance == null)
+            {
+                return;
+            }
+        
             GlobalGameState.State.PlayerPosition = _kinematicPlayerInstance.Character.transform.position;
             GlobalGameState.State.PlayerRotation = _kinematicPlayerInstance.Character.transform.rotation.eulerAngles;
         }
 
         private void Update()
         {
-            SyncPlayerState();
+            if (_kinematicPlayerInstance != null && !_kinematicPlayerInstance.Health.isDead) SyncPlayerState();
         }
 
         private void OnDestroy()

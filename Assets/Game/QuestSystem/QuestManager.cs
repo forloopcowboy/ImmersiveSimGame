@@ -12,8 +12,8 @@ namespace Game.QuestSystem
 {
     public class QuestManager : SingletonMonoBehaviour<QuestManager>
     {
-        public List<Quest> Quests;
-        public List<Quest> ActiveQuests;
+        public List<Quest> Quests = new ();
+        public List<Quest> ActiveQuests = new ();
         
         private Action _unsubscribe;
         
@@ -26,6 +26,8 @@ namespace Game.QuestSystem
         private void Start()
         {
             _unsubscribe = SceneEventBus.Subscribe<QuestEvent>(HandleQuestEvent);
+            
+            LoadState();
         }
 
         private void OnDisable()
@@ -45,7 +47,13 @@ namespace Game.QuestSystem
             // add all active quest events
             foreach (var quest in ActiveQuests)
             {
-                savedQuestEvents.AddRange(quest.questEvents);
+                savedQuestEvents.AddRange(quest.questEvents.Select(evt => new SerializedQuestEvent()
+                {
+                    questId = evt.QuestId,
+                    questEventId = evt.QuestEventId,
+                    eventName = evt.EventName,
+                    eventDescription = evt.EventDescription
+                }));
             }
             
             // remove all old quest events and replace them with the complete set
@@ -71,23 +79,32 @@ namespace Game.QuestSystem
 
             foreach (var questEvent in savedQuestEvents)
             {
-                HandleQuestEvent(questEvent);
+                ProcessQuestEvent(questEvent, false);
             }
+        }
+
+        private void HandleQuestEvent(QuestEvent questEvent)
+        {
+            ProcessQuestEvent(questEvent, true);
+            
+            // slight delay on saving after quest event to ensure that all quest events are processed
+            StartCoroutine(CoroutineHelpers.DelayedAction(1f, () => SaveState()));
         }
 
         /// <summary>
         /// Given a quest event, either appends quest with event ID to ActiveQuests or adds event to existing quest.
         /// </summary>
-        private void HandleQuestEvent(QuestEvent questEvent)
+        private void ProcessQuestEvent(IQuestEvent questEvent, bool notify)
         {
-            Quest quest = Quests.First(quest => quest.questId == questEvent.questId);
+            Quest quest = Quests.Find(quest => quest.questId == questEvent.QuestId);
             
-            if (!ActiveQuests.Exists(q => q.questId == questEvent.questId))
+            if (!ActiveQuests.Exists(q => q.questId == questEvent.QuestId))
             {
                 ActiveQuests.Add(quest);
             }
-            
             quest.questEvents.Add(questEvent);
+            
+            if (!notify) return;
             
             if (quest.IsCompleted)
             {
@@ -100,22 +117,21 @@ namespace Game.QuestSystem
             {
                 StartCoroutine(CoroutineHelpers.DelayedAction(1.5f, () =>
                 {
-                    SceneEventBus.Emit(new NotificationEvent($"[Q] Goal updated: {questEvent.eventName}"));
+                    SceneEventBus.Emit(new NotificationEvent($"[Q] Goal updated: {questEvent.EventName}"));
                 }));
-                
             }
         }
 
-        private HashSet<QuestEvent> LoadSavedQuestEvents()
+        private HashSet<SerializedQuestEvent> LoadSavedQuestEvents()
         {
             var serializedSavedEvents = GlobalGameState.State.Events;
-            var savedQuestEvents = new HashSet<QuestEvent>(
+            var savedQuestEvents = new HashSet<SerializedQuestEvent>(
                 serializedSavedEvents.Where(
                     serializedEvent => 
                         serializedEvent.EventType == QuestEvent.EVENT_TYPE
                 ).Select(
                     json => 
-                        JsonUtility.FromJson<QuestEvent>(json.EventData)
+                        JsonUtility.FromJson<SerializedQuestEvent>(json.EventData)
                 )
             );
 
@@ -130,7 +146,7 @@ namespace Game.QuestSystem
 
         public bool HasQuestEvent(QuestEventId questEventId)
         {
-            return ActiveQuests.Exists(quest => quest.questEvents.Exists(questEvent => questEvent.questEventId == questEventId));
+            return ActiveQuests.Exists(quest => quest.questEvents.Exists(questEvent => questEvent.QuestEventId == questEventId));
         }
     }
 }

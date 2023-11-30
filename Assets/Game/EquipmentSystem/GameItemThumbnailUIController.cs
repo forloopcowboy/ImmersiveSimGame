@@ -40,6 +40,7 @@ namespace Game.EquipmentSystem
             {
                 itemThumbnailImage.enabled = true;
                 quantityText.text = GameItemInInventory.Quantity.ToString();
+                GameItemInInventory.Item.GenerateIconSprite();
                 itemThumbnailImage.sprite = GameItemInInventory.Item.ItemSprite;
             }
 

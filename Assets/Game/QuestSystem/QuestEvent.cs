@@ -3,7 +3,7 @@ using System;
 namespace Game.QuestSystem
 {
     [Serializable]
-    public struct QuestEvent
+    public struct QuestEvent : IQuestEvent
     {
         public static string EVENT_TYPE = "QuestEvent";
         
@@ -11,33 +11,43 @@ namespace Game.QuestSystem
         public QuestEventId questEventId;
         public string eventName;
         public string eventDescription;
+
+        public SerializedQuestEvent ToSerialized()
+        {
+            return new SerializedQuestEvent
+            {
+                questId = questId.Value,
+                questEventId = questEventId.Value,
+                eventName = eventName,
+                eventDescription = eventDescription
+            };
+        }
+
+        public string QuestId => questId; 
+        public string QuestEventId => questEventId; 
+        public string EventName => eventName; 
+        public string EventDescription => eventDescription; 
+    }
+    
+    [Serializable]
+    public struct SerializedQuestEvent : IQuestEvent
+    {
+        public string questId;
+        public string questEventId;
+        public string eventName;
+        public string eventDescription;
         
-        // override equals operator to compare event name and quest ID
-        public static bool operator ==(QuestEvent a, QuestEvent b)
-        {
-            return a.eventName == b.eventName && a.questId == b.questId && a.questEventId.Value == b.questEventId.Value;
-        }
-
-        public static bool operator !=(QuestEvent a, QuestEvent b)
-        {
-            return !(a == b);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((QuestEvent) obj);
-        }
-
-        public bool Equals(QuestEvent other)
-        {
-            return Equals(questId, other.questId) && Equals(questEventId, other.questEventId);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(questId, questEventId);
-        }
+        public string QuestId => questId;
+        public string QuestEventId => questEventId;
+        public string EventName => eventName;
+        public string EventDescription => eventDescription;
+    }
+    
+    public interface IQuestEvent
+    {
+        public string QuestId { get; }
+        public string QuestEventId { get; }
+        public string EventName { get; }
+        public string EventDescription { get; }
     }
 }

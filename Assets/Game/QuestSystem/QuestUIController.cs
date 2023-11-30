@@ -34,7 +34,7 @@ namespace Game.QuestSystem
                 if (quest.IsCompleted)
                     text.text = "(Completed) ";
                 else text.text = "Goal: ";
-                text.text += quest.IsCompleted ? quest.questName : quest.questEvents.Count == 0 ? quest.questName : quest.questEvents[^1].eventName;
+                text.text += quest.IsCompleted ? quest.questName : quest.questEvents.Count == 0 ? quest.questName : quest.questEvents[^1].EventName;
             }
         }
     }
