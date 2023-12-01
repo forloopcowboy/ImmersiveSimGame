@@ -1,3 +1,6 @@
+using System;
+using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 namespace Game.QuestSystem
@@ -12,13 +15,52 @@ namespace Game.QuestSystem
     public class QuestEventComponent : MonoBehaviour
     {
         public TriggerMethod triggerMethod;
-        public QuestEventTrigger questEventTrigger = new QuestEventTrigger(true);
+                
+        [ShowInInspector]
+        public bool IsUsingPreset
+        {
+            get => questEventPreset != null;
+            set
+            {
+                if (value)
+                {
+                    if (questEventPreset == null)
+                    {
+                        questEventPreset = ScriptableObject.CreateInstance<QuestEventPreset>();
+                        questEventPreset.name = "New Quest Event";
+                        questEventPreset.questEventTrigger = questEventTrigger; // Auto initialize from current values to make it easier to transition to presets.
+
+#if UNITY_EDITOR
+                        try
+                        {
+                            var path = "Assets/Game/Quests/" + questEventPreset.name + ".asset";
+                            AssetDatabase.CreateAsset(questEventPreset, path);
+                            Selection.activeObject = questEventPreset;
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogError("Failed to create asset.");
+                            Console.WriteLine(e);
+                        }
+#endif
+                    }
+                    questEventTrigger = questEventPreset.questEventTrigger;
+                }
+            }
+        }
+        [SerializeField, InlineEditor(InlineEditorModes.FullEditor)]
+        protected QuestEventPreset questEventPreset;
+        [SerializeField, HideIf("IsUsingPreset")]
+        protected QuestEventTrigger questEventTrigger = new QuestEventTrigger(true);
+
+        public QuestEventTrigger QuestEventTrigger => questEventPreset != null ? questEventPreset.questEventTrigger : questEventTrigger;
+
         
         private void OnCollisionEnter(Collision other)
         {
             if (triggerMethod == TriggerMethod.Collision)
             {
-                questEventTrigger.Trigger();
+                Trigger();
             }
         }
         
@@ -26,13 +68,13 @@ namespace Game.QuestSystem
         {
             if (triggerMethod == TriggerMethod.Trigger)
             {
-                questEventTrigger.Trigger();
+                Trigger();
             }
         }
         
         public void Trigger()
         {
-            questEventTrigger.Trigger();
+            QuestEventTrigger.Trigger();
         }
     }
 }

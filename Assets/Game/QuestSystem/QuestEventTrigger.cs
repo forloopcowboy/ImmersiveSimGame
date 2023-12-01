@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.Src.EventBusModule;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.QuestSystem
 {
@@ -17,10 +18,11 @@ namespace Game.QuestSystem
         [BehaviorDesigner.Runtime.Tasks.Tooltip("The event to trigger."), TabGroup("Quest")]
         public QuestEvent questEvent;
 
-        [TabGroup("Quest")] public List<QuestId> requiredQuestsCompleted;
-        [TabGroup("Quest")] public List<QuestId> requiredQuestsNotCompleted;
-        [TabGroup("Quest")] public List<QuestEventId> requiredQuestEvents;
-        [TabGroup("Quest")] public List<QuestEventId> requiredQuestEventsNotCompleted;
+        [TabGroup("TriggerCondition", order: 10)] public List<QuestId> requiredQuestsCompleted;
+        [TabGroup("TriggerCondition", order: 10)] public List<QuestId> requiredQuestsActive;
+        [TabGroup("TriggerCondition", order: 10)] public List<QuestId> requiredQuestsNotCompleted;
+        [FormerlySerializedAs("requiredQuestEvents")] [TabGroup("TriggerCondition", order: 10)] public List<QuestEventId> requiredQuestEventsCompleted;
+        [TabGroup("TriggerCondition", order: 10)] public List<QuestEventId> requiredQuestEventsNotCompleted;
 
         public QuestEventTrigger(bool isEnabled)
         {
@@ -39,6 +41,14 @@ namespace Game.QuestSystem
                         return false;
                     }
                 }
+                foreach (var questId in requiredQuestsActive)
+                {
+                    if (!QuestManager.Singleton.IsQuestActive(questId))
+                    {
+                        Debug.Log($"Quest {questId} not active. Cannot trigger event {questEvent.eventName}.");
+                        return false;
+                    }
+                }
                 foreach (var questId in requiredQuestsNotCompleted)
                 {
                     if (QuestManager.Singleton.IsQuestCompleted(questId))
@@ -47,7 +57,7 @@ namespace Game.QuestSystem
                         return false;
                     }
                 }
-                foreach (var questEventId in requiredQuestEvents)
+                foreach (var questEventId in requiredQuestEventsCompleted)
                 {
                     if (!QuestManager.Singleton.HasQuestEvent(questEventId))
                     {

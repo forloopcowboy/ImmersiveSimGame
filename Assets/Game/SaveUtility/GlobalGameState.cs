@@ -56,7 +56,20 @@ namespace Game.SaveUtility
                 SceneManager.activeSceneChanged += HandleSceneChanged;
             }
         }
-        
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                SaveState();
+            }
+            if (Input.GetKeyDown(KeyCode.F6))
+            {
+                LoadState();
+                GameManager.GameManager.Singleton.ReloadScene();
+            }
+        }
+
         protected override void OnDestroy()
         {
             base.OnDestroy();

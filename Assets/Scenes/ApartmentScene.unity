@@ -2390,6 +2390,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa31823d38274a95afc3a2368feef6b, type: 3}
+--- !u!114 &143502469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49490255aaf1a2641a4c5771511bd253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _halfSpace: 1
+  _alignAxis: 0
+  _alignmentAxis: 1
+  _invertAlignmentAxis: 0
+  _projectAsUnit: 0
+  _embedInSurface: 1
+  _inFrontOffset: 0
+  _behindOffset: 0
 --- !u!114 &146118426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3714,6 +3734,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 197720976}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &200198846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _snapMode: 0
+  _snapHalfSpace: 0
+  _projectionSettings: {fileID: 0}
 --- !u!4 &201791678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4743308487934778, guid: a2d6e568d5f67e641bd0a96cef49e811,
@@ -5546,26 +5581,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5698ddb57096ee47935716e2b9db494, type: 3}
---- !u!114 &268888691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49490255aaf1a2641a4c5771511bd253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _halfSpace: 1
-  _alignAxis: 0
-  _alignmentAxis: 1
-  _invertAlignmentAxis: 0
-  _projectAsUnit: 0
-  _embedInSurface: 1
-  _inFrontOffset: 0
-  _behindOffset: 0
 --- !u!1001 &269842926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11913,8 +11928,9 @@ MonoBehaviour:
       eventName: Time to shower
       eventDescription: Go take a quick shower.
     requiredQuestsCompleted: []
+    requiredQuestsActive: []
     requiredQuestsNotCompleted: []
-    requiredQuestEvents: []
+    requiredQuestEventsCompleted: []
     requiredQuestEventsNotCompleted: []
 --- !u!1001 &515335333
 PrefabInstance:
@@ -12624,7 +12640,7 @@ MonoBehaviour:
   _extensionPlane:
     _refOBBFace: 4
   _heightPatternDirection: 0
-  _modularSnapSession: {fileID: 1958509477}
+  _modularSnapSession: {fileID: 1052553714}
   _mirrorGizmo: {fileID: 1060548405}
 --- !u!114 &550463078
 MonoBehaviour:
@@ -15924,7 +15940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8725edae6a1fd4408036dedaf0199f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectionSettings: {fileID: 268888691}
+  _projectionSettings: {fileID: 143502469}
   _dragAndDropGuide: {fileID: 0}
 --- !u!1001 &703204432
 PrefabInstance:
@@ -24505,6 +24521,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1051838919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1052553714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _snapMode: 0
+  _snapHalfSpace: 0
+  _projectionSettings: {fileID: 0}
 --- !u!1001 &1054852158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26300,21 +26331,6 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
---- !u!114 &1130096784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _snapMode: 0
-  _snapHalfSpace: 0
-  _projectionSettings: {fileID: 0}
 --- !u!1001 &1131326948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30544,8 +30560,9 @@ MonoBehaviour:
       eventName: Explore Serraland
       eventDescription: 
     requiredQuestsCompleted: []
+    requiredQuestsActive: []
     requiredQuestsNotCompleted: []
-    requiredQuestEvents: []
+    requiredQuestEventsCompleted: []
     requiredQuestEventsNotCompleted:
     - {fileID: 11400000, guid: 16b701dbdad07884183af4e08c41943f, type: 2}
 --- !u!1001 &1300250215
@@ -45753,7 +45770,7 @@ MonoBehaviour:
   _spawnGuide: {fileID: 1804464375}
   _extensionPlane:
     _refOBBFace: 4
-  _modularSnapSession: {fileID: 1130096784}
+  _modularSnapSession: {fileID: 200198846}
   _mirrorGizmo: {fileID: 2022743541}
 --- !u!4 &1929167063 stripped
 Transform:
@@ -46332,21 +46349,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7180621b3633c7146921a55e0baae9d4, type: 3}
---- !u!114 &1958509477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a40404d9721ed4f984030fbce11d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _snapMode: 0
-  _snapHalfSpace: 0
-  _projectionSettings: {fileID: 0}
 --- !u!1001 &1959489534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49115,6 +49117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crime Scene Guard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949058562268298741, guid: d7638c5bb967585409775074b1b542d4,
+        type: 3}
+      propertyPath: Identifier
+      value: 27960866-fb33-442c-8c41-c636368cd9fe
       objectReference: {fileID: 0}
     - target: {fileID: 4949058562268298741, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}

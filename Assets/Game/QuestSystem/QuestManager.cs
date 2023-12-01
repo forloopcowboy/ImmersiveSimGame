@@ -144,9 +144,14 @@ namespace Game.QuestSystem
         }
 
 
-        public bool HasQuestEvent(QuestEventId questEventId)
+        public bool HasQuestEvent(QuestEventId questEventId, Predicate<IQuestEvent> predicate = null)
         {
-            return ActiveQuests.Exists(quest => quest.questEvents.Exists(questEvent => questEvent.QuestEventId == questEventId));
+            return ActiveQuests.Exists(quest => quest.questEvents.Exists(questEvent => questEvent.QuestEventId == questEventId && (predicate == null || predicate(questEvent))));
+        }
+
+        public bool IsQuestActive(QuestId questId)
+        {
+            return ActiveQuests.Exists(quest => quest.questId == questId);
         }
     }
 }
