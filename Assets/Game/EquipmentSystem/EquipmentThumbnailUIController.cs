@@ -48,9 +48,16 @@ namespace Game.EquipmentSystem
                 throw new Exception("EquippedUiItems length is not 10. Make sure there are 10 children of the root.");
             }
             
-            unsubscribe = SceneEventBus.Subscribe<TryEquipItemEvent>(OnTryEquipItem);
+            var unsub1 = SceneEventBus.Subscribe<TryEquipItemEvent>(OnTryEquipItem);
+            var unsub2 = SceneEventBus.Subscribe<CancelEquipItemEvent>(OnCancelEquipItem);
+            
+            unsubscribe = () =>
+            {
+                unsub1();
+                unsub2();
+            };
         }
-
+        
         private void OnDisable()
         {
             unsubscribe?.Invoke();
@@ -61,6 +68,13 @@ namespace Game.EquipmentSystem
             isListeningForNumberInput = true;
             itemToEquip = obj.Item;
         }
+        
+        private void OnCancelEquipItem(CancelEquipItemEvent obj)
+        {
+            isListeningForNumberInput = false;
+            itemToEquip = null;
+        }
+
 
         public void Update()
         {
@@ -82,7 +96,7 @@ namespace Game.EquipmentSystem
                 uiItem.button.enabled = false;
                 uiItem.button.targetGraphic.enabled = false;
                 
-                if (item == Inventory.activelyHeldItem && item != null && item.Quantity > 0)
+                if (item == Inventory.ActivelyHeldItem && item != null && item.Quantity > 0)
                 {
                     uiItem.button.targetGraphic.enabled = true;
                 }
@@ -221,5 +235,10 @@ namespace Game.EquipmentSystem
         {
             Item = item;
         }
+    }
+    
+    public class CancelEquipItemEvent
+    {
+        
     }
 }

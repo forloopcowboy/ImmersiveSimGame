@@ -20,14 +20,12 @@ namespace Game.EquipmentSystem
 
         public void OnEnable()
         {
-            button = GetComponent<Button>();
+            if (button == null) button = GetComponent<Button>();
             if (button == null)
             {
                 throw new NullReferenceException("Button is null. Initialize it in the inspector or assign it in code.");
             }
-            
-            button.Select();
-        }
+        }   
 
         private void Update()
         {
@@ -61,6 +59,7 @@ namespace Game.EquipmentSystem
         {
             if (GameItemInInventory.Item is EquipableItemType equipableItemType)
                 equipableItemType.Equip(GameItemInInventory.Inventory);
+            
             else if (GameItemInInventory.Item is UsableItemType usableItemType)
             {
                 usableItemType.Use(GameItemInInventory.Inventory);

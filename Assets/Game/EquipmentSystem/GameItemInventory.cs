@@ -20,7 +20,11 @@ namespace Game.EquipmentSystem
         [SerializeField]
         public List<GameItemInInventory> ItemsInInventory = new();
         public int[] EquippedItems; // 10 slots for equipped items
-        public GameItemInInventory activelyHeldItem = null;
+        public GameItemInInventory ActivelyHeldItem => ItemsInInventory.FirstOrDefault(i => i.Item.Identifier == ActiveItemId);
+        public GameItemInInventory HighlightedItem => ItemsInInventory.FirstOrDefault(i => i.Item.Identifier == HighlightedItemId);
+        
+        public string ActiveItemId = null;
+        public string HighlightedItemId = null;
 
         [CanBeNull, Required("Interactor is null. Initialize it in the inspector or assign it in code. No interactor will prevent item pickup.", InfoMessageType.Info)] public Interactor interactor;
 
@@ -62,7 +66,7 @@ namespace Game.EquipmentSystem
 
         public void HoldItem(GameItemInInventory item)
         {
-            activelyHeldItem = item;
+            ActiveItemId = item.Item.Identifier;
         }
 
         public void AddItemToInventory(GameItem item)
@@ -96,7 +100,7 @@ namespace Game.EquipmentSystem
 
         public void UseItemInHand()
         {
-            var currentlyHeldItem = activelyHeldItem;
+            var currentlyHeldItem = ActivelyHeldItem;
             if (currentlyHeldItem != null && currentlyHeldItem.Item is UsableItemType equipableItem && currentlyHeldItem.Quantity > 0)
             {
                 equipableItem.Use(this);
@@ -130,5 +134,7 @@ namespace Game.EquipmentSystem
         public GameItemInventory Inventory;
         public GameItemType Item;
         public int Quantity;
+        
+        public bool IsHighlighted => Inventory.HighlightedItemId == Item.Identifier;
     }
 }

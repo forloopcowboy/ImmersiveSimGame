@@ -156,7 +156,10 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 }
 
                 inventory.EquippedItems = _playerState.EquippedItems;
-                inventory.activelyHeldItem = _playerState.HeldItemIndex >= 0 && _playerState.HeldItemIndex < inventory.ItemsInInventory.Count ? inventory.ItemsInInventory[_playerState.HeldItemIndex] : null;
+                inventory.ActiveItemId = 
+                    _playerState.HeldItemIndex >= 0 && _playerState.HeldItemIndex < inventory.ItemsInInventory.Count 
+                        ? inventory.ItemsInInventory[_playerState.HeldItemIndex].Item.Identifier
+                        : null;
             }
 
             Vector3 position;
@@ -316,7 +319,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
             GlobalGameState.State.PlayerState.Health = health.currentHealth;
             GlobalGameState.State.PlayerState.Inventory = inventory.GetSerializedInventory();
-            GlobalGameState.State.PlayerState.HeldItemIndex = inventory.ItemsInInventory.IndexOf(inventory.activelyHeldItem);
+            GlobalGameState.State.PlayerState.HeldItemIndex = inventory.ItemsInInventory.IndexOf(inventory.ActivelyHeldItem);
             GlobalGameState.State.PlayerState.EquippedItems = inventory.EquippedItems;
             SyncPlayerPosition();
         }

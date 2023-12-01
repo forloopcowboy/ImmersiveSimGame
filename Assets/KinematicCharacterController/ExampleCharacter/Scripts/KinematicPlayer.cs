@@ -111,12 +111,20 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         {
             HandleInteractionInput();
 
-            if (!_isInDialogue && !GameManager.IsPaused && !Health.isDead)
+            if (!_isInDialogue && !GameManager.IsPaused && !Health.isDead && !IsInventoryOpen)
             {
                 HandleCharacterInput();
                 HandleMouseInput();
             }
             else ResetCharacterInput();
+        }
+        
+        private void LateUpdate()
+        {
+            if (!GameManager.IsPaused && !Health.isDead && !IsInventoryOpen)
+            {
+                UpdateCamera();
+            }
         }
 
         private void HandleMouseInput()
@@ -131,12 +139,18 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void HandleInteractionInput()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (IsInventoryOpen)
+                    InventoryContentUIController.ToggleInventory();
+                else GameManager.TogglePauseState();
+            }
             if (Input.GetKeyDown(KeyCode.I))
             {
                 InventoryContentUIController.ToggleInventory();
-                
                 Debug.Log($"Inventory is now {(IsInventoryOpen ? "open" : "closed")}");
             }
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!IsInventoryOpen && Inventory.TryToPickUpItem(out var item))
@@ -189,7 +203,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.F))
+            if (!IsInventoryOpen && Input.GetKeyDown(KeyCode.F))
             {
                 if (GrabNode.isGrabbed)
                     GrabNode.Release();
@@ -198,18 +212,21 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             }
         }
 
-        private void LateUpdate()
+        private void UpdateCamera()
         {
             // Handle rotating the camera along with physics movers
             if (CharacterCamera.RotateWithPhysicsMover && Character.Motor.AttachedRigidbody != null)
             {
-                CharacterCamera.PlanarDirection = Character.Motor.AttachedRigidbody.GetComponent<PhysicsMover>().RotationDeltaFromInterpolation * CharacterCamera.PlanarDirection;
-                CharacterCamera.PlanarDirection = Vector3.ProjectOnPlane(CharacterCamera.PlanarDirection, Character.Motor.CharacterUp).normalized;
+                CharacterCamera.PlanarDirection =
+                    Character.Motor.AttachedRigidbody.GetComponent<PhysicsMover>().RotationDeltaFromInterpolation *
+                    CharacterCamera.PlanarDirection;
+                CharacterCamera.PlanarDirection =
+                    Vector3.ProjectOnPlane(CharacterCamera.PlanarDirection, Character.Motor.CharacterUp).normalized;
             }
 
             HandleCameraInput();
         }
-
+        
         private void HandleCameraInput()
         {
             // Create the look input vector for the camera

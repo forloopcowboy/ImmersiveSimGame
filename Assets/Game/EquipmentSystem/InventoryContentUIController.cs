@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game.InteractionSystem;
 using Game.Src.EventBusModule;
 using Game.Utils;
@@ -9,13 +10,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.EquipmentSystem
 {
-    public enum InventoryIndexingDirection
-    {
-        UP,
-        DOWN,
-        NONE
-    }
-    
+   
     public class InventoryContentUIController : MonoBehaviour
     {
         public GameItemInventory Inventory;
@@ -24,8 +19,6 @@ namespace Game.EquipmentSystem
         public Transform root;
         
         public bool IsOpen => root.gameObject.activeSelf;
-
-        private InventoryIndexingDirection _requestedDirection;
         
         private void Start()
         {
@@ -44,18 +37,52 @@ namespace Game.EquipmentSystem
                 Debug.LogError("root is null. Initialize it in the inspector or assign it in code.");
             }
 
-            StartCoroutine(HandleScrollingMenuDirectionCoroutine());
-            
             thumbnails = new List<GameItemThumbnailUIController>();
         }
 
-        public bool ToggleInventory()
+        public bool ToggleInventory(bool? valueToSet = null)
         {
-            bool value = !root.gameObject.activeSelf;
+            bool value = valueToSet.HasValue ? valueToSet.Value : !root.gameObject.activeSelf;
             root.gameObject.SetActive(value);
+            
+            HandleEquipItemLogic(value);
+            HandleCursorLogic(value);
+            
+            // If no item is highlighted, highlight the first one
+            if (value && Inventory.HighlightedItem == null)
+            {
+                var firstitem = Inventory.ItemsInInventory.FirstOrDefault();
+                if (firstitem != null)
+                    Inventory.HighlightedItemId = firstitem.Item.Identifier;
+            }
+
             return value;
         }
-        
+
+        private static void HandleCursorLogic(bool value)
+        {
+            // Lock cursor if opening inventory, unlock if closing
+            if (value)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+
+        private static void HandleEquipItemLogic(bool value)
+        {
+            // If hiding inventory, stop equipping item
+            if (!value)
+            {
+                SceneEventBus.Emit(new CancelEquipItemEvent());
+            }
+        }
+
         private void Update()
         {
             if (Inventory == null)
@@ -73,24 +100,7 @@ namespace Game.EquipmentSystem
                 ToggleInventory();
             }
 
-            if (IsOpen)
-            {
-                var direction = InventoryIndexingDirection.NONE;
-                var value = Input.GetAxis("Mouse ScrollWheel");
-                if (value > 0)
-                {
-                    direction = InventoryIndexingDirection.UP;
-                }
-                else if (value < 0)
-                {
-                    direction = InventoryIndexingDirection.DOWN;
-                }
-                
-                _requestedDirection = direction;
-            }
-            else _requestedDirection = InventoryIndexingDirection.NONE;
-
-            if (Inventory.ItemsInInventory.Count != thumbnails.Count)
+            if (IsOpen && Inventory.ItemsInInventory.Count != thumbnails.Count)
             {
                 foreach (var thumbnail in thumbnails)
                 {
@@ -103,76 +113,13 @@ namespace Game.EquipmentSystem
                 {
                     var thumbnail = Instantiate(thumbnailPrefab, root);
                     thumbnail.GameItemInInventory = item;
+                    if (thumbnail.GameItemInInventory.IsHighlighted)
+                    {
+                        thumbnail.button.Select();
+                    }
+                    
                     thumbnails.Add(thumbnail);
                 }
-            }
-        }
-
-        public IEnumerator HandleScrollingMenuDirectionCoroutine()
-        {
-            var interval = new WaitForSeconds(.01f);
-
-            while (true)
-            {
-                if (IsOpen)
-                {
-                    var nextIndex = -1;
-                    if (_requestedDirection != InventoryIndexingDirection.NONE)
-                    {
-                        // get current index
-                        var currentIndex = -1;
-                        for (var i = 0; i < thumbnails.Count; i++)
-                        {
-                            var thumbnail = thumbnails[i];
-                            if (thumbnail.button.gameObject == EventSystem.current.currentSelectedGameObject)
-                            {
-                                currentIndex = i;
-                                break;
-                            }
-                        }
-
-                        // get next index
-                        switch (_requestedDirection)
-                        {
-                            case InventoryIndexingDirection.DOWN:
-                                nextIndex = Mathf.Min(currentIndex + 1, thumbnails.Count - 1);
-                                break;
-                            case InventoryIndexingDirection.UP:
-                                nextIndex = Mathf.Max(currentIndex - 1, 0);
-                                break;
-                            case InventoryIndexingDirection.NONE:
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                    }
-
-                    Debug.Log($"NextIndex: {nextIndex}, Requested Direction: {_requestedDirection}");
-
-                    // set button active
-                    if (nextIndex != -1) for (var i = 0; i < thumbnails.Count; i++)
-                    {
-                        var thumbnail = thumbnails[i];
-                        if (thumbnail.GameItemInInventory?.Quantity <= 0)
-                        {
-                            nextIndex++;
-                        }
-                        
-                        if (i == nextIndex && thumbnail != null && thumbnail.GameItemInInventory?.Item != null)
-                        {
-                            Debug.Log($"Item to select: {thumbnail.GameItemInInventory.Item.name}");
-                            thumbnail.button.Select();
-                            SceneEventBus.Emit(new NotificationEvent(thumbnail.GameItemInInventory.Item.name));
-                        }
-                        else
-                        {
-                            thumbnail.button.OnDeselect(null);
-                        }
-                    }
-                }
-                else yield return null;
-
-                yield return interval;
             }
         }
 

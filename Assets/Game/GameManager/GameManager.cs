@@ -47,13 +47,20 @@ namespace Game.GameManager
 
         public void Pause()
         {
+            PauseSilently();
+            TogglePauseScreen(true);
+        }
+
+        /// <summary>
+        /// Pauses the game without showing the pause screen.
+        /// </summary>
+        public void PauseSilently()
+        {
             if (!_isPaused)
             {
                 onPause?.Invoke();
                 _isPaused = true;
                 Cursor.lockState = CursorLockMode.None;
-                TogglePauseScreen(true);
-            
                 _timeScaleBeforePause = Time.timeScale;
                 Time.timeScale = 0;
             }
@@ -61,14 +68,20 @@ namespace Game.GameManager
 
         public void Resume()
         {
+            ResumeSilently();
+            TogglePauseScreen(false);
+        }
+        
+        /// <summary>
+        /// Resumes the game without hiding the pause screen.
+        /// </summary>
+        public void ResumeSilently()
+        {
             if (_isPaused)
             {
                 onResume?.Invoke();
-            
                 _isPaused = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                TogglePauseScreen(false);
-            
                 Time.timeScale = _timeScaleBeforePause;
             }
         }
