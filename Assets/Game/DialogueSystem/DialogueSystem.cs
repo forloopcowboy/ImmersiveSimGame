@@ -12,7 +12,7 @@ using UnityEngine.Events;
 
 namespace Game.DialogueSystem
 {
-    public class DialoguePlayer : SingletonMonoBehaviour<DialoguePlayer>
+    public class DialogueSystem : SingletonMonoBehaviour<DialogueSystem>
     {
         [TabGroup("Dialogue")]
         public Queue<DialogueItem> dialogueQueue = new();

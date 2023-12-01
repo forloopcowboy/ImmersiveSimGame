@@ -21,10 +21,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemSprite: {fileID: 21300000, guid: 90c53d864f96bc946a6502cfdda8f9f9, type: 3}
+  _identifier: Pure-Fire-3e8951e5
   ItemName: Pure Fire
+  ItemSprite: {fileID: 21300000, guid: 90c53d864f96bc946a6502cfdda8f9f9, type: 3}
   ItemValue: 150
   IconPrefab: {fileID: 0}
+  IconSpriteGenerated: 0
   useMessage: ouch! it's hot
   consumable: 1
   prefab: {fileID: 3475214457611752613, guid: 184b2f534ad779a4c9c6b1f0d7ed0961, type: 3}

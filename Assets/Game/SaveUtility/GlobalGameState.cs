@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Game.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -157,7 +158,10 @@ namespace Game.SaveUtility
         
         public List<NPCState> NPCStates => LevelStates[CurrentLevel].NPCStates;
 
-        public List<SerializedEvent> Events => LevelStates[CurrentLevel].Events;
+        /// <summary>
+        /// Loads all level events.
+        /// </summary>
+        public List<SerializedEvent> Events => LevelStates.Select(ls => ls.Events).SelectMany(e => e).ToList();
         
         
         public Vector3 PlayerPosition

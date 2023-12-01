@@ -21,8 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemSprite: {fileID: 0}
+  _identifier: Magnifying-Glass-b921ad92
   ItemName: Magnifying Glass
+  ItemSprite: {fileID: 21300000, guid: 2a2087a11fab36241956460756812562, type: 3}
   ItemValue: 78
   IconPrefab: {fileID: 6577733111585298068, guid: 826a980efc168d14896e455899c76211,
     type: 3}
+  IconSpriteGenerated: 1

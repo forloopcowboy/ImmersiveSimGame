@@ -21,8 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemSprite: {fileID: 0}
+  _identifier: Hourglass-6c6b0652
   ItemName: Hourglass
+  ItemSprite: {fileID: 21300000, guid: 25b8bca051af69a4594245349b70e25f, type: 3}
   ItemValue: 37.65
   IconPrefab: {fileID: 6914184460143672092, guid: 1a8fc6fe719f4774996f2d8c0bad5b72,
     type: 3}
+  IconSpriteGenerated: 1

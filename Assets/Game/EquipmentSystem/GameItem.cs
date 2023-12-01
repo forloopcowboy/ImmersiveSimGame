@@ -28,8 +28,6 @@ namespace Game.EquipmentSystem
             
             if (ItemType != null && UseItemTypeName) itemName = ItemType.ItemName;
             interactionText = "to pick up";
-            
-            if (ItemType != null) ItemType.GenerateIconSprite();
         }
 
         protected override void OnInteract(Interactor interactor, dynamic input)

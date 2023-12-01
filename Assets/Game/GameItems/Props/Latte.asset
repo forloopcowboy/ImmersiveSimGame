@@ -21,8 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemSprite: {fileID: 0}
+  _identifier: Latte-daed5878
   ItemName: Latte
+  ItemSprite: {fileID: 21300000, guid: 6825ea2e94a39554eb9a73a35a34a641, type: 3}
   ItemValue: 5
   IconPrefab: {fileID: 8258834102368508610, guid: c517ef36326e4204dac58ed2cf59d5b2,
     type: 3}
+  IconSpriteGenerated: 1

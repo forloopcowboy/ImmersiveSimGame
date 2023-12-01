@@ -21,11 +21,13 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemSprite: {fileID: 21300000, guid: 65d9ef54ce0df334d89dc639e30f5132, type: 3}
+  _identifier: Full-Heal-4149cfcc
   ItemName: Full Heal
+  ItemSprite: {fileID: 21300000, guid: 68f60f0ae2128174aa162311d53f6dfa, type: 3}
   ItemValue: 100
   IconPrefab: {fileID: 3724442304341120697, guid: 528c00f756b246441bb76778574f8ad0,
     type: 3}
+  IconSpriteGenerated: 1
   useMessage: used $itemName
   consumable: 1
   healSettings: {fileID: 11400000, guid: a839badff24cc854882f68df274a6c79, type: 2}

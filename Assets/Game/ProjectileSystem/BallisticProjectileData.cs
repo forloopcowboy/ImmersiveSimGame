@@ -11,9 +11,9 @@ namespace Game.ProjectileSystem
     [CreateAssetMenu(fileName = "Untitled Ballistic Projectile", menuName = "GameItem/Projectile/Projectile Data", order = 0)]
     public class BallisticProjectileData : AbstractProjectileData
     {
-        public float launchSpeed;
-        public bool autoRepool = true;
-        [ShowIf("autoRepool")]
+        [TabGroup("Projectile")] public float launchSpeed;
+        [TabGroup("Object Pool")] public bool autoRepool = true;
+        [ShowIf("autoRepool"), TabGroup("Object Pool")]
         public float autoRepoolDelay = 5f;
 
         public string InstanceId => ItemName; // todo: give a better ID

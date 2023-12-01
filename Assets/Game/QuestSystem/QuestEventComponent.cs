@@ -36,6 +36,10 @@ namespace Game.QuestSystem
                             var path = "Assets/Game/Quests/" + questEventPreset.name + ".asset";
                             AssetDatabase.CreateAsset(questEventPreset, path);
                             Selection.activeObject = questEventPreset;
+                            
+                            EditorUtility.SetDirty(this);
+                            AssetDatabase.SaveAssets();
+                            AssetDatabase.Refresh();
                         }
                         catch (Exception e)
                         {

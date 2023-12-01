@@ -38,7 +38,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         [ReadOnly]
         private KinematicPlayer _kinematicPlayerInstance;
         [ReadOnly]
-        private DialoguePlayer _dialoguePlayerInstance;
+        private DialogueSystem _dialogueSystemInstance;
         [ReadOnly]
         private DeathScreenUIController _deathScreenUIControllerInstance;
         [ReadOnly]
@@ -244,7 +244,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 equippedUI.Inventory = inventory;
             kinematicPlayer.InventoryContentUIController = inventoryUI;
             
-            _dialoguePlayerInstance = gameUI.GetComponentInChildren<DialoguePlayer>();
+            _dialogueSystemInstance = gameUI.GetComponentInChildren<DialogueSystem>();
             _deathScreenUIControllerInstance = deathScreenUI;
             _playerHealthBarInstance = playerHealthBar;
 
@@ -255,14 +255,14 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void HideUIOnPause()
         {
-            if (_dialoguePlayerInstance != null) _dialoguePlayerInstance.gameObject.SetActive(false);
+            if (_dialogueSystemInstance != null) _dialogueSystemInstance.gameObject.SetActive(false);
             if (_deathScreenUIControllerInstance != null) _deathScreenUIControllerInstance.gameObject.SetActive(false);
             if (_playerHealthBarInstance != null) _playerHealthBarInstance.Hide();
         }
         
         private void ShowUIOnResume()
         {
-            _dialoguePlayerInstance.gameObject.SetActive(true);
+            _dialogueSystemInstance.gameObject.SetActive(true);
             _deathScreenUIControllerInstance.gameObject.SetActive(true);
             _playerHealthBarInstance.Show();
         }

@@ -5,7 +5,10 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Game.Utils;
+using Unity.EditorCoroutines.Editor;
+using UnityEditor;
 using UnityEngine;
 
 namespace Game.Src.IconGeneration
@@ -32,15 +35,22 @@ namespace Game.Src.IconGeneration
         }
 
         private Coroutine _printCoroutine = null;
+        private EditorCoroutine _printEditorCoroutine = null;
         
         public void StartPrinting()
         {
-            if (_printCoroutine == null)
+#if UNITY_EDITOR
+            if (_printEditorCoroutine == null && _printCoroutine != null)
+                _printEditorCoroutine = EditorCoroutineUtility.StartCoroutineOwnerless(PrintEnqueuedIcons());
+#endif
+            if (_printCoroutine == null && _printEditorCoroutine == null)
                 _printCoroutine = StartCoroutine(PrintEnqueuedIcons());
         }
         
         private IEnumerator PrintEnqueuedIcons()
         {
+            Debug.Log("Starting icon printing...");
+            
             var interval = new WaitForSeconds(printInterval);
             camera.enabled = true;
             
@@ -48,6 +58,7 @@ namespace Game.Src.IconGeneration
             {
                 var prefab = tuple.Item1;
                 var callback = tuple.Item2;
+                Debug.Log($"Printing icon for {prefab.name}...");
                 
                 var instance = Instantiate(prefab, root);
                 instance.transform.position = root.position;
@@ -55,14 +66,21 @@ namespace Game.Src.IconGeneration
                 instance.transform.localScale = root.localScale;
                 instance.layer = LayerMask.NameToLayer("Stage");
                 instance.transform.ForEachChild(child => child.gameObject.layer = LayerMask.NameToLayer("Stage"));
-
+                
                 yield return interval;
+                Debug.Log($"Framing {prefab.name}...");
                 camera.FrameObject(instance);
                 yield return interval;
-                camera.Render(); 
+                Debug.Log($"Rendering icon for {prefab.name}...");
+                camera.Render();
                 callback(camera.targetTexture.toTexture2D());
 
-                Destroy(instance);
+                Debug.Log($"Destroying temp instance of {prefab.name}...");
+                if (Application.isPlaying)
+                    Destroy(instance);
+                else
+                    DestroyImmediate(instance);
+                
                 yield return interval;
             }
 
@@ -87,6 +105,28 @@ namespace Game.Src.IconGeneration
 
             RenderTexture.active = old_rt;
             return tex;
+        }
+        
+        public static Sprite SaveSpriteToEditorPath (this Sprite sp, string path) {
+ 
+            string dir = Path.GetDirectoryName (path);
+ 
+            Directory.CreateDirectory (dir);
+ 
+            File.WriteAllBytes(path, sp.texture.EncodeToPNG());
+            
+            AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+ 
+            TextureImporter ti = AssetImporter.GetAtPath (path) as TextureImporter;
+ 
+            ti.spritePixelsPerUnit = sp.pixelsPerUnit;
+            ti.mipmapEnabled = false;
+            ti.textureType = TextureImporterType.Sprite;
+            EditorUtility.SetDirty (ti);
+            ti.SaveAndReimport ();
+ 
+            return AssetDatabase.LoadAssetAtPath(path, typeof (Sprite)) as Sprite;
         }
     }
 }

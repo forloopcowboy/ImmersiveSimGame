@@ -21,9 +21,11 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ItemSprite: {fileID: 0}
+  _identifier: Apartment-key-13ba4631
   ItemName: Apartment key
+  ItemSprite: {fileID: 21300000, guid: 9c895bcc054b46d4ebe600ddf1c07d7b, type: 3}
   ItemValue: 0
   IconPrefab: {fileID: 5672061600595218420, guid: 13a1cfe9d5f85804a9a60d10abee60bd,
     type: 3}
+  IconSpriteGenerated: 1
   password: {fileID: 11400000, guid: 0ecf0facaee033a43be04454c7d0b58c, type: 2}
