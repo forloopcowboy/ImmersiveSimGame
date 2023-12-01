@@ -42,24 +42,30 @@ namespace Game.EquipmentSystem
             }
         }
 
-        public bool TryToPickUpItem(out GameItem item)
+        public bool TryToPickUpItem(out GameItemInteractable itemInteractable)
         {
-            item = null;
-            
-            var found = interactor != null && interactor.TryToInteract<GameItem, bool>(out item);
-            if (found)
-            {
-                AddItemToInventory(item);
-            }
-
+            itemInteractable = null;
+            var found = interactor != null && interactor.TryToInteract<GameItemInteractable, Action<GameItemInteractable>>(out itemInteractable, AddItemToInventory);
             return found;
         }
         
-        public void EquipItem(GameItemInInventory item, int index)
+        public void EquipItem(GameItemInInventory item, int equipAtIndex)
         {
             if (item.Item is EquipableItemType)
             {
-                EquippedItems[index] = ItemsInInventory.IndexOf(item);
+                var itemIndex = ItemsInInventory.IndexOf(item);
+                
+                // Clear out all slots with this index, to avoid duplicate equipped items
+                for (var i = 0; i < EquippedItems.Length; i++)
+                {
+                    if (EquippedItems[i] == itemIndex)
+                    {
+                        EquippedItems[i] = -1;
+                    }
+                }
+                
+                // Equoip item
+                EquippedItems[equipAtIndex] = itemIndex;
             }
             else Debug.LogWarning("Item is not equipable.");
         }
@@ -69,19 +75,17 @@ namespace Game.EquipmentSystem
             ActiveItemId = item.Item.Identifier;
         }
 
-        public void AddItemToInventory(GameItem item)
+        public void AddItemToInventory(GameItemInteractable itemInteractable)
         {
-            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == item.ItemType.GetInstanceID());
+            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == itemInteractable.ItemType.GetInstanceID());
             if (itemInInventory == null)
             {
-                ItemsInInventory.Add(new GameItemInInventory {Item = item.ItemType, Quantity = Mathf.Clamp(item.Amount, 1, 999), Inventory = this});
+                ItemsInInventory.Add(new GameItemInInventory {Item = itemInteractable.ItemType, Quantity = Mathf.Clamp(itemInteractable.Amount, 1, 999), Inventory = this});
             }
             else
             {
-                itemInInventory.Quantity += Mathf.Clamp(item.Amount, 1, 999);
+                itemInInventory.Quantity += Mathf.Clamp(itemInteractable.Amount, 1, 999);
             }
-            
-            Destroy(item.gameObject);
         }
 
         public void ConsumeItem(GameItemType type, int quantity = 1)
@@ -136,5 +140,10 @@ namespace Game.EquipmentSystem
         public int Quantity;
         
         public bool IsHighlighted => Inventory.HighlightedItemId == Item.Identifier;
+
+        public void Highlight()
+        {
+            Inventory.HighlightedItemId = Item.Identifier;
+        }
     }
 }

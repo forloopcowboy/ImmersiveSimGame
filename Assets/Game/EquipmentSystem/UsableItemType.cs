@@ -1,4 +1,4 @@
-using Game.InteractionSystem;
+using System;
 using Game.Src.EventBusModule;
 using Game.Utils;
 using Sirenix.OdinInspector;
@@ -29,7 +29,7 @@ namespace Game.EquipmentSystem
         
         public void EmitUseMessage()
         {
-            SceneEventBus.Emit(new NotificationEvent(useMessage.Replace("$itemName", ItemName)));
+            if (!String.IsNullOrEmpty(useMessage)) SceneEventBus.Emit(new NotificationEvent(useMessage.Replace("$itemName", ItemName)));
         }
     }
 }

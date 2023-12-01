@@ -13,15 +13,34 @@ namespace Game.EquipmentSystem
         private string _identifier = "None";
         [TabGroup("Info")]
         public string ItemName;
+        [TabGroup("Info"), TextArea(1, 3)]
+        public string ItemDescription = "A common $itemName.";
         [TabGroup("Thumbnail")]
         public Sprite ItemSprite;
         [TabGroup("Info")]
         public float ItemValue;
         
+        [TabGroup("Interaction"), InfoBox("If defined, when the item is picked up, this dialogue will be shown. Use $itemType to refer to this item's name.")]
+        public string PickUpDialogue = "";
+        [TabGroup("Interaction"), InfoBox("If defined, when the item is picked up, this notification will be shown. Use $itemType to refer to this item's name.")]
+        public string PickUpNotification = "Picked up $itemName";
+        
+        [TabGroup("Interaction"), Button("Default")]
+        public void SetDefaultInteractionText() => PickUpNotification = "Picked up $ItemName";
+        
         [TabGroup("Thumbnail"), Required("IconPrefab is required to generate IconSprite. If none is provided, ItemSprite will be used. This object should represent the item in the world, but not necessarily have all functions of the object.", InfoMessageType.Warning)] 
         public GameObject IconPrefab;
         [TabGroup("Thumbnail"), SerializeField, ReadOnly]
         internal bool IconSpriteGenerated;
+        
+        public string GetPickUpDialogue() => PickUpDialogue.Replace("$itemName", ItemName)
+            .Replace("$ItemName", ItemName);
+        
+        public string GetPickUpNotification() => PickUpNotification.Replace("$itemName", ItemName)
+            .Replace("$ItemName", ItemName);
+        
+        public string GetItemDescription() => ItemDescription.Replace("$itemName", ItemName)
+            .Replace("$ItemName", ItemName);
         
         [Button]
         public void InitializeItem()

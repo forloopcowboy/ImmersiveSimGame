@@ -3,17 +3,15 @@ using Game.DialogueSystem;
 using Game.InteractionSystem;
 using Game.SaveUtility;
 using Game.Src.EventBusModule;
-using Game.Src.IconGeneration;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.EquipmentSystem
 {
-    public class GameItem : InteractableObject
+    public class GameItemInteractable : InteractableObject
     {
         [TabGroup("GameItem"), ReadOnly] public string ItemId = Guid.NewGuid().ToString();
         [TabGroup("GameItem")] public GameItemType ItemType;
-        [TabGroup("GameItem")] public string PickUpDialogue = "";
         [TabGroup("GameItem")] public int Amount = 1;
         [TabGroup("GameItem")] public bool UseItemTypeName = true;
 
@@ -32,12 +30,26 @@ namespace Game.EquipmentSystem
 
         protected override void OnInteract(Interactor interactor, dynamic input)
         {
-            GlobalGameState.State.CurrentLevelState.SetItemPickedUp(ItemId);
+            // Adds item to Interactor inventory
+            Action<GameItemInteractable> handlePickUp;
             
-            if (PickUpDialogue.Length > 0)
+            if (input is Action<GameItemInteractable> action)
+                handlePickUp = action;
+            else if (interactor.TryGetComponent(out GameItemInventory inventory))
+                handlePickUp = inventory.AddItemToInventory;
+            else
             {
-                SceneEventBus.Emit(new DialogueEvent(new DialogueItem("", PickUpDialogue.Replace("$itemName", itemName).Replace("$ItemName", itemName))));
+                Debug.LogError("Could not interact with GameItemInteractable. No GameItemInventory found on Interactor.");
+                return;
             }
+            
+            handlePickUp(this);
+            
+            // Save item as picked up
+            GlobalGameState.State.CurrentLevelState.SetItemPickedUp(ItemType.Identifier);
+            
+            // Destroy self
+            Destroy(gameObject);
         }
     }
 }

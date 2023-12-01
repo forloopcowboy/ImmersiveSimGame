@@ -63,6 +63,13 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         [Button]
         public void SpawnPlayer()
         {
+            // Initialize game manager if not already initialized
+            if (GameManager.Singleton == null)
+            {
+                Debug.Log("PlayerSpawner: Initializing GameManager.");
+                Instantiate(gameManagerPrefab);
+            }
+            
             Vector3 position = transform.position;
             Quaternion rotation = transform.rotation;
 
@@ -200,8 +207,6 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         private void InitializeUI(KinematicPlayer kinematicPlayer)
         {
             var gameUI = Instantiate(gameUIPrefab);
-            var gameManager = GameManager.Singleton != null ? GameManager.Singleton : Instantiate(gameManagerPrefab);
-            gameManager.name = "Game Manager";
 
             var health = kinematicPlayer.Character.GetComponentInChildren<Health>();
             gameUI.name = "Game User Interface";
@@ -252,8 +257,8 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             _playerHealthBarInstance = playerHealthBar;
 
             // Handle game manager state
-            gameManager.onPause.AddListener(HideUIOnPause);
-            gameManager.onResume.AddListener(ShowUIOnResume);
+            GameManager.Singleton.onPause.AddListener(HideUIOnPause);
+            GameManager.Singleton.onResume.AddListener(ShowUIOnResume);
         }
 
         private void HideUIOnPause()

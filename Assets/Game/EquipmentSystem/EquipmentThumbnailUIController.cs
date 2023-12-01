@@ -124,98 +124,40 @@ namespace Game.EquipmentSystem
 
         private void HandleEquipItemInput()
         {
-            if (isListeningForNumberInput)
-            {
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    Inventory.EquipItem(itemToEquip, 0);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    Inventory.EquipItem(itemToEquip, 1);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    Inventory.EquipItem(itemToEquip, 2);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha4))
-                {
-                    Inventory.EquipItem(itemToEquip, 3);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha5))
-                {
-                    Inventory.EquipItem(itemToEquip, 4);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha6))
-                {
-                    Inventory.EquipItem(itemToEquip, 5);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha7))
-                {
-                    Inventory.EquipItem(itemToEquip, 6);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha8))
-                {
-                    Inventory.EquipItem(itemToEquip, 7);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha9))
-                {
-                    Inventory.EquipItem(itemToEquip, 8);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha0))
-                {
-                    Inventory.EquipItem(itemToEquip, 9);
-                    isListeningForNumberInput = false;
-                    itemToEquip = null;
-                }
-            }
-            else
-            {
-                var i = -1;
+            var i = -1;
                 
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                    i = 0;
-                else if (Input.GetKeyDown(KeyCode.Alpha2))
-                    i = 1;
-                else if (Input.GetKeyDown(KeyCode.Alpha3))
-                    i = 2;
-                else if (Input.GetKeyDown(KeyCode.Alpha4))
-                    i = 3;
-                else if (Input.GetKeyDown(KeyCode.Alpha5))
-                    i = 4;
-                else if (Input.GetKeyDown(KeyCode.Alpha6))
-                    i = 5;
-                else if (Input.GetKeyDown(KeyCode.Alpha7))
-                    i = 6;
-                else if (Input.GetKeyDown(KeyCode.Alpha8))
-                    i = 7;
-                else if (Input.GetKeyDown(KeyCode.Alpha9))
-                    i = 8;
-                else if (Input.GetKeyDown(KeyCode.Alpha0))
-                    i = 9;
-                
-                if (i > -1)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                i = 0;
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+                i = 1;
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+                i = 2;
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+                i = 3;
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+                i = 4;
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+                i = 5;
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
+                i = 6;
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
+                i = 7;
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
+                i = 8;
+            else if (Input.GetKeyDown(KeyCode.Alpha0))
+                i = 9;
+
+            if (i > -1) {
+                if (isListeningForNumberInput)
+                {
+                    Inventory.EquipItem(itemToEquip, i);
+                    isListeningForNumberInput = false;
+                    itemToEquip = null;
+                }
+                else
                 {
                     var itemIndex = Inventory.EquippedItems[i];
-                    
+
                     if (itemIndex > -1 && itemIndex < Inventory.ItemsInInventory.Count)
                         Inventory.HoldItem(Inventory.ItemsInInventory[itemIndex]);
                 }

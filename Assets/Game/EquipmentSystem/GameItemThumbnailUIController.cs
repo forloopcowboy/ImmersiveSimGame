@@ -1,8 +1,7 @@
 using System;
-using Game.InteractionSystem;
-using Game.Src.EventBusModule;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Game.EquipmentSystem
@@ -10,7 +9,7 @@ namespace Game.EquipmentSystem
     /// <summary>
     /// If quantity is zero, this item will destroy itself.
     /// </summary>
-    public class GameItemThumbnailUIController : MonoBehaviour
+    public class GameItemThumbnailUIController : MonoBehaviour, IPointerEnterHandler
     {
         public GameItemInInventory GameItemInInventory;
         public TMP_Text quantityText;
@@ -25,7 +24,13 @@ namespace Game.EquipmentSystem
             {
                 throw new NullReferenceException("Button is null. Initialize it in the inspector or assign it in code.");
             }
-        }   
+        }
+
+        private void OnMouseOver()
+        {
+            button.Select();
+            GameItemInInventory.Highlight();
+        }
 
         private void Update()
         {
@@ -67,8 +72,15 @@ namespace Game.EquipmentSystem
             }
             else
             {
-                Debug.Log($"{GameItemInInventory.Item.ItemName} is not usable.");
+                Debug.Log($"{GameItemInInventory.Item.ItemName} is not usable. Highlighting it instead.");
             }
+            
+            GameItemInInventory.Highlight();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            OnMouseOver();
         }
     }
 }

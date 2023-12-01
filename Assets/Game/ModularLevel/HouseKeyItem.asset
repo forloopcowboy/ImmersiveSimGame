@@ -23,8 +23,13 @@ MonoBehaviour:
     SerializationNodes: []
   _identifier: Apartment-key-13ba4631
   ItemName: Apartment key
+  ItemDescription: Key to apartment 418 in Residential B. I must keep this key on
+    me at all times, as described by the Security Protocols. Trespassing on Residential
+    buildings without a key is a very serious crime.
   ItemSprite: {fileID: 21300000, guid: 9c895bcc054b46d4ebe600ddf1c07d7b, type: 3}
   ItemValue: 0
+  PickUpDialogue: Can't forget my keys again.
+  PickUpNotification: Picked up $ItemName
   IconPrefab: {fileID: 5672061600595218420, guid: 13a1cfe9d5f85804a9a60d10abee60bd,
     type: 3}
   IconSpriteGenerated: 1

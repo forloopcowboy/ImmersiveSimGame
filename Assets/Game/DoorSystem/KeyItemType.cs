@@ -8,7 +8,7 @@ namespace Game.DoorSystem
     [CreateAssetMenu(fileName = "KeyItemType", menuName = "GameItem/New Key Type", order = 0)]
     public class KeyItemType : GameItemType
     {
-        [Required]
+        [Required, TabGroup("Key")]
         public StringConstant password;
         
         public static implicit operator string(KeyItemType key) => key.password;

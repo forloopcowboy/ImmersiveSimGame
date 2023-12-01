@@ -118,6 +118,11 @@ namespace Game.AIBehavior
 
         private bool IsMyIdUnique()
         {
+            if (GameManager.GameManager.Singleton == null)
+            {
+                Debug.LogWarning("GameManager not found. Cannot check for unique ID.");
+                return true;
+            }
             return GlobalGameState.State.NPCStates.FindAll(state => state.Identifier == Identifier).Count <= 1 && FindObjectsOfType<SerializedNPC>()?.Where(npc => npc.Identifier == Identifier).Count() <= 1;
         }
     }

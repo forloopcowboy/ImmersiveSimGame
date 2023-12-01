@@ -6,6 +6,7 @@ using Game.GameManager;
 using Game.GrabSystem;
 using Game.HealthSystem;
 using Game.InteractionSystem;
+using Game.SaveUtility;
 using Game.Src.EventBusModule;
 using Game.Utils;
 using KinematicCharacterController.Examples;
@@ -155,7 +156,18 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             {
                 if (!IsInventoryOpen && Inventory.TryToPickUpItem(out var item))
                 {
-                    SceneEventBus.Emit(new NotificationEvent($"Picked up {item.itemName}"));
+                    var pickUpDialogue = item.ItemType.GetPickUpDialogue();
+                    var pickUpNotification = item.ItemType.GetPickUpNotification();
+                    
+                    if (!String.IsNullOrEmpty(pickUpNotification))
+                    {
+                        SceneEventBus.Emit(new NotificationEvent(pickUpNotification));
+                    }
+            
+                    if (!String.IsNullOrEmpty(pickUpDialogue))
+                    {
+                        SceneEventBus.Emit(new DialogueEvent(new DialogueItem("", pickUpDialogue)));
+                    }
                 }
                 else if (IsInventoryOpen)
                 {

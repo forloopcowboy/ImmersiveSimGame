@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game.InteractionSystem;
 using Game.Src.EventBusModule;
-using Game.Utils;
+using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Game.EquipmentSystem
 {
@@ -14,9 +11,13 @@ namespace Game.EquipmentSystem
     public class InventoryContentUIController : MonoBehaviour
     {
         public GameItemInventory Inventory;
+        public DetailedItemUIController DetailedItemUiController;
+        
         public GameItemThumbnailUIController thumbnailPrefab;
         public List<GameItemThumbnailUIController> thumbnails;
-        public Transform root;
+        
+        [Required] public Transform root;
+        [Required] public Transform contentRoot;
         
         public bool IsOpen => root.gameObject.activeSelf;
         
@@ -36,6 +37,13 @@ namespace Game.EquipmentSystem
             {
                 Debug.LogError("root is null. Initialize it in the inspector or assign it in code.");
             }
+
+            if (DetailedItemUiController == null)
+            {
+                Debug.LogError(
+                    "DetailedItemUiController is null. Initialize it in the inspector or assign it in code.");
+            }
+            else DetailedItemUiController.Inventory = Inventory;
 
             thumbnails = new List<GameItemThumbnailUIController>();
         }
@@ -111,7 +119,7 @@ namespace Game.EquipmentSystem
                 
                 foreach (var item in Inventory.ItemsInInventory)
                 {
-                    var thumbnail = Instantiate(thumbnailPrefab, root);
+                    var thumbnail = Instantiate(thumbnailPrefab, contentRoot);
                     thumbnail.GameItemInInventory = item;
                     if (thumbnail.GameItemInInventory.IsHighlighted)
                     {
