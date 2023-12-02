@@ -114,11 +114,6 @@ namespace Game.EquipmentSystem
                 if (uiItem == null)
                     continue;
 
-                if (item == Inventory.ActivelyHeldItem && item != null && item.Quantity > 0)
-                {
-                    uiItem.button.targetGraphic.enabled = true;
-                }
-
                 if (isListeningForNumberInput)
                 {
                     uiItem.equipIndicatorText.enabled = true;
@@ -136,6 +131,11 @@ namespace Game.EquipmentSystem
                     // Disable button functionality to control highlight image to show active equipped item.
                     uiItem.button.enabled = false;
                     uiItem.button.targetGraphic.enabled = false;
+                }
+                
+                if (item == Inventory.ActivelyHeldItem && item != null && item.Quantity > 0)
+                {
+                    uiItem.button.targetGraphic.enabled = true;
                 }
 
                 if (item == null)

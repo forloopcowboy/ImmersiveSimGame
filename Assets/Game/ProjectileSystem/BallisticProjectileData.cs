@@ -39,7 +39,7 @@ namespace Game.ProjectileSystem
             
             // Ignore collisions between the projectile and the user (considering all colliders) for a brief period of time
             // Then re-enable collisions
-            GenericCollisionHandler.IgnoreCollisionsForSeconds(userGameObj, projectile, 0.1f);
+            GenericCollisionHandler.IgnoreCollisionsForSeconds(userGameObj, projectile, 0.55f);
             
             projectile.transform.position = spawnPoint.position;
             projectile.transform.rotation = spawnPoint.rotation;
