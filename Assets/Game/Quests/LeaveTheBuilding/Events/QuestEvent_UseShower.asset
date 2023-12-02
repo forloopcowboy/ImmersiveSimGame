@@ -19,10 +19,13 @@ MonoBehaviour:
       questEventId: {fileID: 11400000, guid: 8f4189c9a99db394a87ec0cd4017eb0d, type: 2}
       eventName: Exit the building and explore the city
       eventDescription: 
-    requiredQuestsCompleted: []
-    requiredQuestsActive: []
-    requiredQuestsNotCompleted:
-    - {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
-    requiredQuestEventsCompleted: []
-    requiredQuestEventsNotCompleted:
-    - {fileID: 11400000, guid: 8f4189c9a99db394a87ec0cd4017eb0d, type: 2}
+    questCondition:
+      requiredQuestsCompleted: []
+      requiredQuestsActive:
+      - {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+      requiredQuestsNotCompleted:
+      - {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+      requiredQuestEventsCompleted:
+      - {fileID: 11400000, guid: b15c2883fc2af3e40b845dcdf6995c74, type: 2}
+      requiredQuestEventsNotCompleted:
+      - {fileID: 11400000, guid: 8f4189c9a99db394a87ec0cd4017eb0d, type: 2}

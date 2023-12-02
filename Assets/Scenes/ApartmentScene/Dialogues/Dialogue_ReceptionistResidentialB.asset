@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f635bc44ca5e4dbe98b9f58575d33515, type: 3}
+  m_Name: Dialogue_ReceptionistResidentialB
+  m_EditorClassIdentifier: 
+  Dialogues:
+  - DialogueId: {fileID: 11400000, guid: 6ca55e8235147384889f14074a9c7a34, type: 2}
+    PlayConditions:
+      Skippable: 0
+      RequiredNpcEvents: []
+      RequiredNpcEventsNotOcurred:
+      - NpcId: 1ee6aa67-94a2-4fe7-8ae8-eff94db5dfc4
+        Event: {fileID: 11400000, guid: 6ca55e8235147384889f14074a9c7a34, type: 2}
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted: []
+    _dialogueLines:
+    - Hey there, resident.
+    - I hear you are new to this town. Welcome to Serraland.
+    - Oh, it's your first day working on the Grand Crystalizer?
+    - I'm sure you've been informed already, but on their first day, employees are
+      allowed to explore the town! You know, get your bearings, socialize. I hear
+      there's some studies that say it improves Employee morale.
+    - "Your colleagues at the Grand Crystalizer normally congregate at the Colinas
+      caf\xE9 or the Tabacarium."
+    - Be sure to register for the Nightly Callout at 7pm. You must be early to bed
+      to enjoy a productive day at the factory tomorrow!
+  - DialogueId: {fileID: 11400000, guid: 03c9cb712d941d747a251fb603c773c7, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents:
+      - NpcId: 1ee6aa67-94a2-4fe7-8ae8-eff94db5dfc4
+        Event: {fileID: 11400000, guid: 6ca55e8235147384889f14074a9c7a34, type: 2}
+      RequiredNpcEventsNotOcurred: []
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted: []
+    _dialogueLines:
+    - Hi again!
+    - I'll be here if you have any further questions.
+  - DialogueId: {fileID: 11400000, guid: 4d7662606b7ef244081716d2d23eaf5b, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents:
+      - NpcId: 1ee6aa67-94a2-4fe7-8ae8-eff94db5dfc4
+        Event: {fileID: 11400000, guid: 6ca55e8235147384889f14074a9c7a34, type: 2}
+      RequiredNpcEventsNotOcurred:
+      - NpcId: 1ee6aa67-94a2-4fe7-8ae8-eff94db5dfc4
+        Event: {fileID: 11400000, guid: 4d7662606b7ef244081716d2d23eaf5b, type: 2}
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive:
+        - {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+        requiredQuestsNotCompleted:
+        - {fileID: 11400000, guid: 199827248cbbb7d459815a61164d4711, type: 2}
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted:
+        - {fileID: 11400000, guid: 8f4189c9a99db394a87ec0cd4017eb0d, type: 2}
+    _dialogueLines:
+    - Whew... Something smells horrible.
+    - On an unrelated note, showers are free to use for C-level Employees and above.
+    - You can find one at the end of the hallway on your floor. Doctors recommend
+      proper hygiene for all Employees to maintain a high level of productivity!

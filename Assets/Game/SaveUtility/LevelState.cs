@@ -46,5 +46,25 @@ namespace Game.SaveUtility
             NPCStates = npcStates;
             GameItemStates = itemStates;
         }
+
+        public bool HasNpcEventOccurred(string npcId, Predicate<SerializedEvent> eventId)
+        {
+            var npcState = NPCStates.Find(npc => npc.Identifier == npcId);
+
+            return npcState?.HasEventOccurred(eventId) ?? false;
+        }
+
+        public bool RecordNpcEvent(string npcId, SerializedEvent serializedEvent)
+        {
+            var npcState = NPCStates.Find(npc => npc.Identifier == npcId);
+
+            if (npcState == null)
+            {
+                NPCStates.Add(npcState = new NPCState());
+                npcState.Identifier = npcId;
+            }
+
+            return npcState.RecordEvent(serializedEvent);
+        }
     }
 }

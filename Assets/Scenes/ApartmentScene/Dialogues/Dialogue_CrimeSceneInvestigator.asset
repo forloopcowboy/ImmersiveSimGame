@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f635bc44ca5e4dbe98b9f58575d33515, type: 3}
+  m_Name: Dialogue_CrimeSceneInvestigator
+  m_EditorClassIdentifier: 
+  Dialogues:
+  - DialogueId: {fileID: 11400000, guid: e2adf06f68719524c989b3987fa1259b, type: 2}
+    PlayConditions:
+      Skippable: 0
+      RequiredNpcEvents: []
+      RequiredNpcEventsNotOcurred:
+      - NpcId: 27960866-fb33-442c-8c41-c636368cd9fe
+        Event: {fileID: 11400000, guid: e2adf06f68719524c989b3987fa1259b, type: 2}
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted: []
+    _dialogueLines:
+    - Greetings, citizen.
+    - The hallway up ahead cannot be accessed due to an incident that is under investigation.
+    - Yes, your residence is safe. No, I will not provide any more information.
+    - Now proceed on with your schedule. There's nothing to see here. Don't put yourself
+      in the sights of the law.
+    - Have a blessed day.
+  - DialogueId: {fileID: 11400000, guid: 5e97218a5e3499d4bbe237e5bb6b8057, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents:
+      - NpcId: 27960866-fb33-442c-8c41-c636368cd9fe
+        Event: {fileID: 11400000, guid: e2adf06f68719524c989b3987fa1259b, type: 2}
+      RequiredNpcEventsNotOcurred: []
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted: []
+    _dialogueLines:
+    - Hey again.
+    - Did you already forget what I said?
+    - There's nothing to see here. Proceed with your day.

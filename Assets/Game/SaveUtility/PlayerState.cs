@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Game.SaveUtility
 {
@@ -6,7 +7,7 @@ namespace Game.SaveUtility
     public class PlayerState
     {
         public float Health;
-        public string[] Events;
+        public List<SerializedEvent> Events = new ();
         public SerializedItemData[] Inventory;
         public int HeldItemIndex;
         public int[] EquippedItems;

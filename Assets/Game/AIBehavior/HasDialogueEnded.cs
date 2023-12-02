@@ -11,7 +11,7 @@ namespace Game.AIBehavior
     
         public override void OnStart()
         {
-            Owner.RegisterEvent(DialogueInteractor.BehaviorEvents.DialogueEnded.ToString(), OnDialogueEnded);
+            Owner.RegisterEvent(DialogueInteractable.BehaviorEvents.DialogueEnded.ToString(), OnDialogueEnded);
         }
 
         public override TaskStatus OnUpdate()
@@ -32,7 +32,7 @@ namespace Game.AIBehavior
 
         public override void OnReset()
         {
-            Owner.UnregisterEvent(DialogueInteractor.BehaviorEvents.DialogueEnded.ToString(), OnDialogueEnded);
+            Owner.UnregisterEvent(DialogueInteractable.BehaviorEvents.DialogueEnded.ToString(), OnDialogueEnded);
             _hasDialogueEnded = false;
         }
     }

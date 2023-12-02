@@ -10,7 +10,7 @@ namespace Game.AIBehavior
     /// <summary>
     /// Handles loading and saving of AI behavior.
     /// </summary>
-    public class SerializedNPC : SerializedMonoBehaviour
+    public class SerializedNPC : SerializedMonoBehaviour, ISerializedActor
     {
         public string Identifier = "none";
         
@@ -124,6 +124,11 @@ namespace Game.AIBehavior
                 return true;
             }
             return GlobalGameState.State.NPCStates.FindAll(state => state.Identifier == Identifier).Count <= 1 && FindObjectsOfType<SerializedNPC>()?.Where(npc => npc.Identifier == Identifier).Count() <= 1;
+        }
+
+        public string GetIdentifier()
+        {
+            return Identifier;
         }
     }
 }

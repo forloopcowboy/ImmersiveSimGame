@@ -199,7 +199,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                         doorController.PushDoor(Character.transform);
                     }
                 }
-                else if (Interactor.TryPeekInteractionQueue(out DialogueInteractor dialogueInteractor))
+                else if (Interactor.TryPeekInteractionQueue(out DialogueInteractable dialogueInteractor))
                 {
                     if (dialogueInteractor.enabled)
                         Interactor.TryToInteract(out dialogueInteractor, "");
@@ -346,7 +346,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                     {
                         GameControlsUIController.Display("Grab", KeyCode.F.ToString());
                     }
-                    else if (interactable is DialogueInteractor)
+                    else if (interactable is DialogueInteractable)
                     {
                         GameControlsUIController.Display("Talk", KeyCode.E.ToString());
                     }

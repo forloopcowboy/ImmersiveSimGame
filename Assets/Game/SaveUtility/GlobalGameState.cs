@@ -161,7 +161,7 @@ namespace Game.SaveUtility
         /// <summary>
         /// Loads all level events.
         /// </summary>
-        public List<SerializedEvent> Events => LevelStates.Select(ls => ls.Events).SelectMany(e => e).ToList();
+        public List<SerializedEvent> QuestEvents => PlayerState.Events;
         
         
         public Vector3 PlayerPosition
@@ -183,6 +183,16 @@ namespace Game.SaveUtility
         }
 
         public LevelState CurrentLevelState => LevelStates[CurrentLevel];
+        
+        public bool HasNpcEventOccurred(string npcId, Predicate<SerializedEvent> predicate)
+        {
+            return LevelStates[CurrentLevel].HasNpcEventOccurred(npcId, predicate);
+        }
+        
+        public void RecordNpcEvent(string npcId, SerializedEvent serializedEvent)
+        {
+            LevelStates[CurrentLevel].RecordNpcEvent(npcId, serializedEvent);
+        }
     }
     
     [Serializable]

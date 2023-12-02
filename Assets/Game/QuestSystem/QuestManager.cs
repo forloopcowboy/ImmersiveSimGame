@@ -41,9 +41,16 @@ namespace Game.QuestSystem
         [Button]
         public void SaveState()
         {
-            var serializedSavedEvents = GlobalGameState.State.Events;
-            var savedQuestEvents = LoadSavedQuestEvents(); 
-            
+            SyncQuestState();
+
+            GlobalGameState.Singleton.SaveState();
+        }
+
+        private void SyncQuestState()
+        {
+            var savedQuestEvents = LoadSavedQuestEvents();
+            Debug.Log("Syncing quest state... Current quest events: " + savedQuestEvents.Count);
+
             // add all active quest events
             foreach (var quest in ActiveQuests)
             {
@@ -55,20 +62,21 @@ namespace Game.QuestSystem
                     eventDescription = evt.EventDescription
                 }));
             }
-            
-            // remove all old quest events and replace them with the complete set
-            serializedSavedEvents.RemoveAll(
-                serializedEvent => 
-                    serializedEvent.EventType == QuestEvent.EVENT_TYPE
-                );
 
-            serializedSavedEvents.AddRange(savedQuestEvents.Select(questEvent => new SerializedEvent
-            {
-                EventType = QuestEvent.EVENT_TYPE,
-                EventData = JsonUtility.ToJson(questEvent)
-            }));
-            
-            GlobalGameState.Singleton.SaveState();
+            // remove all old quest events and replace them with the complete set
+            GlobalGameState.State.QuestEvents.RemoveAll(
+                serializedEvent =>
+                    serializedEvent.EventType == QuestEvent.EVENT_TYPE
+            );
+
+
+            GlobalGameState.State.QuestEvents.AddRange(savedQuestEvents.Select(questEvent => new SerializedEvent(
+                QuestEvent.EVENT_TYPE,
+                JsonUtility.ToJson(questEvent))
+            ));
+
+            Debug.Log("Serialized JSON.");
+            Debug.Log("Synced quest state... New quest events: " + savedQuestEvents.Count);
         }
 
         [Button]
@@ -88,7 +96,7 @@ namespace Game.QuestSystem
             ProcessQuestEvent(questEvent, true);
             
             // slight delay on saving after quest event to ensure that all quest events are processed
-            StartCoroutine(CoroutineHelpers.DelayedAction(1f, () => SaveState()));
+            StartCoroutine(CoroutineHelpers.DelayedAction(1f, SaveState));
         }
 
         /// <summary>
@@ -124,7 +132,7 @@ namespace Game.QuestSystem
 
         private HashSet<SerializedQuestEvent> LoadSavedQuestEvents()
         {
-            var serializedSavedEvents = GlobalGameState.State.Events;
+            var serializedSavedEvents = GlobalGameState.State.QuestEvents;
             var savedQuestEvents = new HashSet<SerializedQuestEvent>(
                 serializedSavedEvents.Where(
                     serializedEvent => 
