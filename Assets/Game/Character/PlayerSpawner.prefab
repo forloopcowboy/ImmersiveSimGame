@@ -67,6 +67,8 @@ MonoBehaviour:
     type: 3}
   gameManagerPrefab: {fileID: 2425824921868755082, guid: 2486a179a115f044290aa728da5deea7,
     type: 3}
+  globalUIPrefabs:
+  - {fileID: 5342408909258964601, guid: 757cfbd1a4490494dace5b26ea904f1c, type: 3}
   spawnOnStart: 1
   _playerState:
     Health: 100

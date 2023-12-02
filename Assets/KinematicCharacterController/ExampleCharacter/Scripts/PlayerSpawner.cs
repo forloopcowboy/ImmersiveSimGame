@@ -29,6 +29,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         public GameObject playerCameraPrefab;
         public GameObject gameUIPrefab;
         public GameManager gameManagerPrefab;
+        public GameObject[] globalUIPrefabs;
 
         public bool spawnOnStart = true;
         
@@ -63,13 +64,8 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         [Button]
         public void SpawnPlayer()
         {
-            // Initialize game manager if not already initialized
-            if (GameManager.Singleton == null)
-            {
-                Debug.Log("PlayerSpawner: Initializing GameManager.");
-                Instantiate(gameManagerPrefab);
-            }
-            
+            InitializeGlobalUI();
+
             Vector3 position = transform.position;
             Quaternion rotation = transform.rotation;
 
@@ -106,9 +102,25 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             _kinematicPlayerInstance = kinematicPlayer;
             
             InitializePlayer(kinematicPlayer, kinematicCharacter, kinematicCamera);
-            InitializeUI(kinematicPlayer);
+            InitializePlayerUI(kinematicPlayer);
             
             LoadPlayerState();
+        }
+
+        private void InitializeGlobalUI()
+        {
+            // Initialize game manager if not already initialized
+            if (GameManager.Singleton == null)
+            {
+                Debug.Log("PlayerSpawner: Initializing GameManager.");
+                Instantiate(gameManagerPrefab);
+            }
+            
+            // Initialize global UI - singletons must self destroy if already initialized
+            foreach (var globalUIPrefab in globalUIPrefabs)
+            {
+                Instantiate(globalUIPrefab);
+            }
         }
 
         [Button]
@@ -154,7 +166,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                     if (ItemDatabase.TryGetItem<GameItemType>(serializedItemData.Identifier, out var item))
                     {
                         Debug.Log($"Restoring item {item.ItemName} ({item.Identifier})");
-                        inventory.ItemsInInventory.Add(new GameItemInInventory {Item = item, Quantity = serializedItemData.Quantity, Inventory = inventory});
+                        inventory.ItemsInInventory.Add(new GameItemInInventory {ItemType = item, Quantity = serializedItemData.Quantity, Inventory = inventory});
                     }
                     else
                     {
@@ -165,7 +177,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 inventory.EquippedItems = _playerState.EquippedItems;
                 inventory.ActiveItemId = 
                     _playerState.HeldItemIndex >= 0 && _playerState.HeldItemIndex < inventory.ItemsInInventory.Count 
-                        ? inventory.ItemsInInventory[_playerState.HeldItemIndex].Item.Identifier
+                        ? inventory.ItemsInInventory[_playerState.HeldItemIndex].ItemType.Identifier
                         : null;
             }
 
@@ -204,7 +216,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
             }));
         }
 
-        private void InitializeUI(KinematicPlayer kinematicPlayer)
+        private void InitializePlayerUI(KinematicPlayer kinematicPlayer)
         {
             var gameUI = Instantiate(gameUIPrefab);
 

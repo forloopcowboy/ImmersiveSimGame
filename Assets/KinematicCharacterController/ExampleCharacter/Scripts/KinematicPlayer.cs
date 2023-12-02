@@ -2,6 +2,7 @@
 using Game.DialogueSystem;
 using Game.DoorSystem;
 using Game.EquipmentSystem;
+using Game.GameControls;
 using Game.GameManager;
 using Game.GrabSystem;
 using Game.HealthSystem;
@@ -110,6 +111,7 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
 
         private void Update()
         {
+            SyncActiveControls();
             HandleInteractionInput();
 
             if (!_isInDialogue && !GameManager.IsPaused && !Health.isDead && !IsInventoryOpen)
@@ -151,7 +153,6 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 InventoryContentUIController.ToggleInventory();
                 Debug.Log($"Inventory is now {(IsInventoryOpen ? "open" : "closed")}");
             }
-            
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!IsInventoryOpen && Inventory.TryToPickUpItem(out var item))
@@ -178,9 +179,9 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                     if (doorController.isLocked)
                     {
                         Debug.Log("Door is locked. Looking for key...");
-                        var key = Inventory.ItemsInInventory.Find(item => item.Item is KeyItemType key && doorController.CanUnlock(key.password));
+                        var key = Inventory.ItemsInInventory.Find(item => item.ItemType is KeyItemType key && doorController.CanUnlock(key.password));
                         
-                        if (key != null && key.Item is KeyItemType password)
+                        if (key != null && key.ItemType is KeyItemType password)
                         {
                             if (!String.IsNullOrEmpty(doorController.unlockedMessage)) 
                                 SceneEventBus.Emit(new NotificationEvent(doorController.unlockedMessage.Replace("$itemName", doorController.itemName)));
@@ -208,10 +209,18 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 {
                     // interact with any other interactable type
                 }
-                else
+            }
+            
+            // Handle dialogue controls
+            if (_isInDialogue)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("Pressed E but inventory is closed. And no item is selected and no interactable in range. Emitting next dialog event in case there is one.");
                     SceneEventBus.Emit(new NextDialogueEvent());
+                }
+                else if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    SceneEventBus.Emit(new SkipDialogueEvent());
                 }
             }
 
@@ -297,6 +306,65 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
         {
             PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
             Character.SetInputs(ref characterInputs);
+        }
+        
+        /// <summary>
+        /// Displays the currently active control bindings to UI based on player state.
+        /// </summary>
+        private void SyncActiveControls()
+        {
+            // Esc to pause, unless inventory is open
+            if (IsInventoryOpen)
+            {
+                GameControlsUIController.Display("Close inventory", KeyCode.Escape.ToString());
+                
+                // E can either use or equip item
+                if (Inventory.HighlightedItem != null && Inventory.HighlightedItem.ItemType is EquipableItemType)
+                    GameControlsUIController.Display("Equip", KeyCode.E.ToString());
+                else
+                    GameControlsUIController.Display("Use", KeyCode.E.ToString());
+            }
+            else if (!_isInDialogue)
+            {
+                // Space to jump
+                GameControlsUIController.Display("Jump", KeyCode.Space.ToString());
+                
+                // Shift to sprint
+                GameControlsUIController.Display("Sprint", KeyCode.LeftShift.ToString());
+                
+                // If interactable is close, E to interact
+                if (Interactor.TryPeekInteractionQueue(out InteractableObject interactable))
+                {
+                    if (interactable is DoorController doorController)
+                    {
+                        if (doorController.isLocked)
+                            GameControlsUIController.Display("Unlock", KeyCode.E.ToString());
+                        else
+                            GameControlsUIController.Display("Open", KeyCode.E.ToString());
+                    }
+                    else if (interactable is GrabbableObject)
+                    {
+                        GameControlsUIController.Display("Grab", KeyCode.F.ToString());
+                    }
+                    else if (interactable is DialogueInteractor)
+                    {
+                        GameControlsUIController.Display("Talk", KeyCode.E.ToString());
+                    }
+                    else
+                    {
+                        GameControlsUIController.Display("Interact", KeyCode.E.ToString());
+                    }
+                }
+                
+                if (Inventory.ActivelyHeldItem != null && Inventory.ActivelyHeldItem.ItemType is UsableItemType)
+                    GameControlsUIController.Display("Use item", "Left click");
+            }
+            else if (_isInDialogue)
+            {
+                GameControlsUIController.Display("Next", KeyCode.E.ToString());
+                if (DialogueSystem.CanSkipDialogue())
+                    GameControlsUIController.Display("Skip", KeyCode.Tab.ToString());
+            }
         }
     }
 }

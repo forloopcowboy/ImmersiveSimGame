@@ -71,7 +71,7 @@ namespace Game.EquipmentSystem
                 {
                     if (isListeningForNumberInput && itemToEquip != null)
                     {
-                        Debug.Log($"Equipping {itemToEquip.Item.ItemName} @ slot {uiIndex + 1} via click.");
+                        Debug.Log($"Equipping {itemToEquip.ItemType.ItemName} @ slot {uiIndex + 1} via click.");
                         Inventory.EquipItem(itemToEquip, uiIndex);
                         isListeningForNumberInput = false;
                         itemToEquip = null;
@@ -142,7 +142,7 @@ namespace Game.EquipmentSystem
                 {
                     uiItem.GameItemInInventory = null;
                 }
-                else if (item.Item is EquipableItemType equipableItem)
+                else if (item.ItemType is EquipableItemType equipableItem)
                 {
                     uiItem.GameItemInInventory = item;
                 }

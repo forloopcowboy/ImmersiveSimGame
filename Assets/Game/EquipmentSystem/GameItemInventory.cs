@@ -6,6 +6,7 @@ using Game.SaveUtility;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.EquipmentSystem
 {
@@ -20,13 +21,14 @@ namespace Game.EquipmentSystem
         [SerializeField]
         public List<GameItemInInventory> ItemsInInventory = new();
         public int[] EquippedItems; // 10 slots for equipped items
-        public GameItemInInventory ActivelyHeldItem => ItemsInInventory.FirstOrDefault(i => i.Item.Identifier == ActiveItemId);
-        public GameItemInInventory HighlightedItem => ItemsInInventory.FirstOrDefault(i => i.Item.Identifier == HighlightedItemId);
+        public GameItemInInventory ActivelyHeldItem => ItemsInInventory.FirstOrDefault(i => i.ItemType.Identifier == ActiveItemId);
+        public GameItemInInventory HighlightedItem => ItemsInInventory.FirstOrDefault(i => i.ItemType.Identifier == HighlightedItemId);
         
         public string ActiveItemId = null;
         public string HighlightedItemId = null;
 
-        [CanBeNull, Required("Interactor is null. Initialize it in the inspector or assign it in code. No interactor will prevent item pickup.", InfoMessageType.Info)] public Interactor interactor;
+        [CanBeNull, Required("Interactor is null. Initialize it in the inspector or assign it in code. No interactor will prevent item pickup.", InfoMessageType.Info)] 
+        public Interactor interactor;
 
         private void Start()
         {
@@ -51,7 +53,7 @@ namespace Game.EquipmentSystem
         
         public void EquipItem(GameItemInInventory item, int equipAtIndex)
         {
-            if (item.Item is EquipableItemType)
+            if (item.ItemType is EquipableItemType)
             {
                 var itemIndex = ItemsInInventory.IndexOf(item);
                 
@@ -72,15 +74,15 @@ namespace Game.EquipmentSystem
 
         public void HoldItem(GameItemInInventory item)
         {
-            ActiveItemId = item.Item.Identifier;
+            ActiveItemId = item.ItemType.Identifier;
         }
 
         public void AddItemToInventory(GameItemInteractable itemInteractable)
         {
-            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == itemInteractable.ItemType.GetInstanceID());
+            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.ItemType.GetInstanceID() == itemInteractable.ItemType.GetInstanceID());
             if (itemInInventory == null)
             {
-                ItemsInInventory.Add(new GameItemInInventory {Item = itemInteractable.ItemType, Quantity = Mathf.Clamp(itemInteractable.Amount, 1, 999), Inventory = this});
+                ItemsInInventory.Add(new GameItemInInventory {ItemType = itemInteractable.ItemType, Quantity = Mathf.Clamp(itemInteractable.Amount, 1, 999), Inventory = this});
             }
             else
             {
@@ -92,7 +94,7 @@ namespace Game.EquipmentSystem
         {
             if (quantity < 1) throw new Exception("Quantity must be at least 1.");
             
-            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item.GetInstanceID() == type.GetInstanceID());
+            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.ItemType.GetInstanceID() == type.GetInstanceID());
             if (itemInInventory != null)
             {
                 itemInInventory.Quantity -= quantity;
@@ -105,7 +107,7 @@ namespace Game.EquipmentSystem
         public void UseItemInHand()
         {
             var currentlyHeldItem = ActivelyHeldItem;
-            if (currentlyHeldItem != null && currentlyHeldItem.Item is UsableItemType equipableItem && currentlyHeldItem.Quantity > 0)
+            if (currentlyHeldItem != null && currentlyHeldItem.ItemType is UsableItemType equipableItem && currentlyHeldItem.Quantity > 0)
             {
                 equipableItem.Use(this);
                 equipableItem.EmitUseMessage();
@@ -116,10 +118,10 @@ namespace Game.EquipmentSystem
         {
             itemType = null;
             
-            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.Item is TItemType);
+            var itemInInventory = ItemsInInventory.FirstOrDefault(i => i.ItemType is TItemType);
             if (itemInInventory != null)
             {
-                itemType = itemInInventory.Item as TItemType;
+                itemType = itemInInventory.ItemType as TItemType;
                 return true;
             }
 
@@ -128,7 +130,7 @@ namespace Game.EquipmentSystem
 
         public SerializedItemData[] GetSerializedInventory()
         {
-            return ItemsInInventory.Select(i => new SerializedItemData(i.Item.Identifier, i.Quantity)).ToArray();
+            return ItemsInInventory.Select(i => new SerializedItemData(i.ItemType.Identifier, i.Quantity)).ToArray();
         }
     }
 
@@ -136,14 +138,14 @@ namespace Game.EquipmentSystem
     public class GameItemInInventory
     {
         public GameItemInventory Inventory;
-        public GameItemType Item;
+        [FormerlySerializedAs("Item")] public GameItemType ItemType;
         public int Quantity;
         
-        public bool IsHighlighted => Inventory.HighlightedItemId == Item.Identifier;
+        public bool IsHighlighted => Inventory.HighlightedItemId == ItemType.Identifier;
 
         public void Highlight()
         {
-            Inventory.HighlightedItemId = Item.Identifier;
+            Inventory.HighlightedItemId = ItemType.Identifier;
         }
     }
 }

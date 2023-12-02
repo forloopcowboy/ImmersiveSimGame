@@ -35,7 +35,7 @@ namespace Game.EquipmentSystem
 
         private void Update()
         {
-            if (GameItemInInventory == null || GameItemInInventory.Item == null || GameItemInInventory.Quantity <= 0)
+            if (GameItemInInventory == null || GameItemInInventory.ItemType == null || GameItemInInventory.Quantity <= 0)
             {
                 quantityText.transform.parent.gameObject.SetActive(false);
                 itemThumbnailImage.enabled = false;
@@ -44,7 +44,7 @@ namespace Game.EquipmentSystem
             {
                 itemThumbnailImage.enabled = true;
                 quantityText.text = GameItemInInventory.Quantity.ToString();
-                itemThumbnailImage.sprite = GameItemInInventory.Item.ItemSprite;
+                itemThumbnailImage.sprite = GameItemInInventory.ItemType.ItemSprite;
             }
 
             if (GameItemInInventory != null && GameItemInInventory.Quantity <= 0)

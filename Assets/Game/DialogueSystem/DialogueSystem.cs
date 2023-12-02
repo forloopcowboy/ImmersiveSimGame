@@ -22,11 +22,7 @@ namespace Game.DialogueSystem
         public TMP_Text speakerText;
         [Required, TabGroup("Settings")]
         public TMP_Text dialogueText;
-        [Required, TabGroup("Settings")]
-        public TMP_Text skipShortcutText;
-        [Required, TabGroup("Settings")]
-        public KeyCode skipShortcut = KeyCode.Tab;
-        
+
         [TabGroup("Dialogue")]
         public int charactersPerSecond = 25;
         [TabGroup("Dialogue")]
@@ -64,6 +60,11 @@ namespace Game.DialogueSystem
                 _isAnimating = false;
             }
         }
+        
+        public static bool CanSkipDialogue()
+        {
+            return Singleton.dialogueQueue.Count > 0 && Singleton.dialogueQueue.Peek().skippable;
+        }
 
         private void InitializeEventBus()
         {
@@ -84,8 +85,6 @@ namespace Game.DialogueSystem
                 unsub3();
                 unsub4();
             };
-            
-            skipShortcutText.text = dialogueQueue.TryPeek(out var dialogueItem) && dialogueItem.skippable ? $"[{skipShortcut}] Skip" : "";
         }
 
         private void OnDialogueEnded(EndDialogueEvent obj)
@@ -93,14 +92,6 @@ namespace Game.DialogueSystem
             Time.timeScale = 1f;
             // update physics time scale
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(skipShortcut))
-            {
-                SkipDialogue();
-            }
         }
 
         private void SkipDialogue(SkipDialogueEvent obj = null)
@@ -175,7 +166,6 @@ namespace Game.DialogueSystem
             }
             
             speakerText.text = dialogueItem.speaker;
-            skipShortcutText.text = dialogueItem.skippable ? $"[{skipShortcut}] skip" : "";
             
             _currentDialogueText = dialogueItem.text;
             _renderDialogueLettersCoroutine = StartCoroutine(RenderDialogueLetters());

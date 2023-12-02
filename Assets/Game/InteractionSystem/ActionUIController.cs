@@ -38,7 +38,7 @@ namespace Game.EquipmentSystem
 
         private void SetShortcutText(string shortcut)
         {
-            ShortcutText.text = "[" + shortcut + "]";
+            ShortcutText.text = shortcut;
         }
 
         private void SetActionText(string actionName)

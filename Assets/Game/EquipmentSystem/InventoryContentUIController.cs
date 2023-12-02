@@ -61,7 +61,7 @@ namespace Game.EquipmentSystem
             {
                 var firstitem = Inventory.ItemsInInventory.FirstOrDefault();
                 if (firstitem != null)
-                    Inventory.HighlightedItemId = firstitem.Item.Identifier;
+                    Inventory.HighlightedItemId = firstitem.ItemType.Identifier;
             }
 
             return value;
@@ -144,17 +144,17 @@ namespace Game.EquipmentSystem
                     return;
                 }
 
-                if (item.Item is EquipableItemType equipableItemType)
+                if (item.ItemType is EquipableItemType equipableItemType)
                     equipableItemType.Equip(Inventory);
 
-                else if (item.Item is UsableItemType usableItemType)
+                else if (item.ItemType is UsableItemType usableItemType)
                 {
                     usableItemType.Use(item.Inventory);
                     usableItemType.EmitUseMessage();
                 }
                 else
                 {
-                    Debug.Log($"{item.Item.ItemName} is not usable. Highlighting it instead.");
+                    Debug.Log($"{item.ItemType.ItemName} is not usable. Highlighting it instead.");
                 }
 
                 item.Highlight();

@@ -11,11 +11,11 @@ namespace Game.EquipmentSystem
     {
         public void Equip(GameItemInventory user)
         {
-            var gameItemInInventory = user.ItemsInInventory.First(i => i.Item.GetInstanceID() == GetInstanceID());
+            var gameItemInInventory = user.ItemsInInventory.First(i => i.ItemType.GetInstanceID() == GetInstanceID());
             if (gameItemInInventory == null) throw new System.Exception("Item not found in inventory. Can only equip items from inventory.");
             
             SceneEventBus.Emit(new TryEquipItemEvent(gameItemInInventory));
-            SceneEventBus.Emit(new NotificationEvent($"Press number 1...9 to equip {gameItemInInventory.Item.ItemName}."));
+            SceneEventBus.Emit(new NotificationEvent($"Press number 1...9 to equip {gameItemInInventory.ItemType.ItemName}."));
             
             user.HoldItem(gameItemInInventory);
         }

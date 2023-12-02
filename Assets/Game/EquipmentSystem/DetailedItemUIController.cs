@@ -31,9 +31,9 @@ namespace Game.EquipmentSystem
             
             ToggleDetailedItem(true);
             
-            if (itemNameText) itemNameText.text = item.Item.ItemName;
-            if (itemDescriptionText) itemDescriptionText.text = item.Item.GetItemDescription();
-            if (itemValueText) itemValueText.text = item.Item.ItemValue.ToString();
+            if (itemNameText) itemNameText.text = item.ItemType.ItemName;
+            if (itemDescriptionText) itemDescriptionText.text = item.ItemType.GetItemDescription();
+            if (itemValueText) itemValueText.text = item.ItemType.ItemValue.ToString();
         }
 
         private void Update()
