@@ -16,7 +16,7 @@ namespace Game.ProjectileSystem
         [ShowIf("autoRepool"), TabGroup("Object Pool")]
         public float autoRepoolDelay = 5f;
 
-        public string InstanceId => ItemName; // todo: give a better ID
+        public string InstanceId => Identifier;
         
         /// <summary>
         /// Launches projectile from the given spawn point, with the given launch velocity,
