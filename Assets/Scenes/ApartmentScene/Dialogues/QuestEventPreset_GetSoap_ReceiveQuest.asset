@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cf5240356242c0b7b1af767bae3a94, type: 3}
+  m_Name: QuestEventPreset_GetSoap_ReceiveQuest
+  m_EditorClassIdentifier: 
+  questEventTrigger:
+    isEnabled: 1
+    questEvent:
+      questId: {fileID: 11400000, guid: e0ec093c1e72e3d4dac27a84a660fa28, type: 2}
+      questEventId: {fileID: 11400000, guid: 806c45d495d33024686536a132301ed8, type: 2}
+      eventName: Get some soap
+      eventDescription: 
+    questCondition:
+      requiredQuestsCompleted: []
+      requiredQuestsActive: []
+      requiredQuestsNotCompleted: []
+      requiredQuestEventsCompleted: []
+      requiredQuestEventsNotCompleted:
+      - {fileID: 11400000, guid: 806c45d495d33024686536a132301ed8, type: 2}

@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f635bc44ca5e4dbe98b9f58575d33515, type: 3}
+  m_Name: Dialogue_BathroomGuy
+  m_EditorClassIdentifier: 
+  Dialogues:
+  - DialogueId: {fileID: 11400000, guid: 20e0d889dec46d24ab71aa2b663f42fa, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents: []
+      RequiredNpcEventsNotOcurred:
+      - NpcId: 14b0bb6a-def5-4297-afeb-f00894d89b64
+        Event: {fileID: 11400000, guid: 20e0d889dec46d24ab71aa2b663f42fa, type: 2}
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted: []
+    TriggersQuestEvent: 0
+    QuestEventPreset: {fileID: 0}
+    _dialogueLines:
+    - Do I know you?
+    - Well, I don't care who you are. Let me shower in peace.
+  - DialogueId: {fileID: 11400000, guid: 1878cd6234fc18948add45f6f0ca5a35, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents:
+      - NpcId: 14b0bb6a-def5-4297-afeb-f00894d89b64
+        Event: {fileID: 11400000, guid: 20e0d889dec46d24ab71aa2b663f42fa, type: 2}
+      RequiredNpcEventsNotOcurred: []
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted: []
+    TriggersQuestEvent: 0
+    QuestEventPreset: {fileID: 0}
+    _dialogueLines:
+    - ...
+  - DialogueId: {fileID: 11400000, guid: c74632290f4766141a5d27cafa758ea7, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents:
+      - NpcId: 14b0bb6a-def5-4297-afeb-f00894d89b64
+        Event: {fileID: 11400000, guid: 1878cd6234fc18948add45f6f0ca5a35, type: 2}
+      RequiredNpcEventsNotOcurred: []
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted: []
+        requiredQuestEventsCompleted: []
+        requiredQuestEventsNotCompleted:
+        - {fileID: 11400000, guid: ee85d20d2c6ffc64e90e217b3c7182f9, type: 2}
+    TriggersQuestEvent: 1
+    QuestEventPreset: {fileID: 11400000, guid: 660bee9361661744599f9356e3b18518, type: 2}
+    _dialogueLines:
+    - Could you get me some soap?
+    - I mean, you're standing right there...
+    - Hand me over some soap.
+  - DialogueId: {fileID: 11400000, guid: b19ed3b3b87d93642882e219055a219d, type: 2}
+    PlayConditions:
+      Skippable: 1
+      RequiredNpcEvents:
+      - NpcId: 14b0bb6a-def5-4297-afeb-f00894d89b64
+        Event: {fileID: 11400000, guid: c74632290f4766141a5d27cafa758ea7, type: 2}
+      RequiredNpcEventsNotOcurred: []
+      QuestCondition:
+        requiredQuestsCompleted: []
+        requiredQuestsActive: []
+        requiredQuestsNotCompleted:
+        - {fileID: 11400000, guid: e0ec093c1e72e3d4dac27a84a660fa28, type: 2}
+        requiredQuestEventsCompleted:
+        - {fileID: 11400000, guid: ee85d20d2c6ffc64e90e217b3c7182f9, type: 2}
+        requiredQuestEventsNotCompleted: []
+    TriggersQuestEvent: 1
+    QuestEventPreset: {fileID: 11400000, guid: db3e6e0a7e5c9964d86a35c6b50e1812, type: 2}
+    _dialogueLines:
+    - Hey!
+    - There you are! Did you bring some soap?
+    - Oh! You even managed to get some on your hands! Good job!
+    - Thanks for the soap, friend.

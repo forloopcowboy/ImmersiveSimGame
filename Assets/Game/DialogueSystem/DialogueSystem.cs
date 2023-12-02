@@ -179,13 +179,18 @@ namespace Game.DialogueSystem
             dialogueText.text = _currentDialogueItem.text;
             _isAnimating = false;
             
+            _currentDialogueItem.onPlayed?.Invoke();
+            
             // emit events
             var npcComponent = _currentDialogueItem.speakerAvatar != null ? _currentDialogueItem.speakerAvatar.GetComponentInChildren<ISerializedActor>() : null;
             if (npcComponent != null && !String.IsNullOrEmpty(npcComponent.GetIdentifier()))
             {
                 foreach (var npcEvent in _currentDialogueItem.EmitNpcEvents)
                 {
-                    GlobalGameState.State.RecordNpcEvent(npcComponent.GetIdentifier(), new SerializedEvent(npcEvent, ""));
+                    GlobalGameState.State.RecordNpcEvent(
+                        npcComponent.GetIdentifier(),
+                        new SerializedEvent("DialogueEvent", npcEvent)
+                    );
                 }
             }
         }
@@ -225,6 +230,8 @@ namespace Game.DialogueSystem
         public GameObject speakerAvatar;
         
         public List<string> EmitNpcEvents = new List<string>();
+        
+        public UnityEvent onPlayed = new UnityEvent();
 
         public DialogueItem(string speakerName, string text, bool skippable = true, GameObject speakerAvatar = null)
         {

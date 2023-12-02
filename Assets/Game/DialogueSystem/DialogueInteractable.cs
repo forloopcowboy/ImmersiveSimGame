@@ -39,11 +39,14 @@ namespace Game.DialogueSystem
 
                     if (allLines.Length == 0)
                     {
-                        Debug.LogWarning($"No dialogue items for {speakerName}:{playableDialogue.DialogueId.Value}.");
+                        Debug.LogWarning($"No dialogue items for {speakerName}:{playableDialogue.DialogueId.Value}. YOU SHOULD PROBABLY WRITE SOME DIALOGUE.");
                         continue;
                     }
                     
-                    allLines[^1].EmitNpcEvents.Add(playableDialogue.DialogueId);
+                    var lastDialogueLine = allLines[^1];
+                    
+                    lastDialogueLine.EmitNpcEvents.Add(playableDialogue.DialogueId);
+                    lastDialogueLine.onPlayed.AddListener(playableDialogue.TriggerQuestEvent);
 
                     foreach (var dialogueItem in allLines)
                     {

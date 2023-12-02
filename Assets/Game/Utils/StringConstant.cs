@@ -15,5 +15,10 @@ namespace Game.Utils
         {
             info.AddValue("Value", Value);
         }
+
+        public override string ToString()
+        {
+            return Value;
+        }
     }
 }

@@ -13,6 +13,9 @@ namespace Game.DialogueSystem
     {
         public StringConstant DialogueId;
         public PlayConditions PlayConditions = new();
+
+        public bool TriggersQuestEvent;
+        [ShowIf("TriggersQuestEvent"), InlineEditor(InlineEditorModes.FullEditor)] public QuestEventPreset QuestEventPreset;
         
         [SerializeField, TextArea(1, 5), InfoBox("The dialogue lines to be played when this dialogue is triggered. You may use the following tags to insert data into the dialogue: $speakerName")]
         private string[] _dialogueLines = Array.Empty<string>();
@@ -27,6 +30,18 @@ namespace Game.DialogueSystem
             foreach (var dialogueLine in _dialogueLines)
             {
                 yield return dialogueLine.Replace("$speakerName", speakerName);
+            }
+        }
+        
+        public void TriggerQuestEvent()
+        {
+            if (TriggersQuestEvent)
+            {
+                if (QuestEventPreset.questEventTrigger.CanTrigger)
+                    Debug.Log($"Triggering {QuestEventPreset.questEventTrigger.questEvent.eventName} QuestEvent from dialogue.");
+                else Debug.Log($"Cannot trigger {QuestEventPreset.questEventTrigger.questEvent.eventName} QuestEvent from dialogue.");
+                
+                QuestEventPreset.questEventTrigger.Trigger();
             }
         }
     }
@@ -78,7 +93,7 @@ namespace Game.DialogueSystem
         public string NpcId;
         public StringConstant Event;
         
-        public Predicate<SerializedEvent> EventCondition => serializedEvent => { return serializedEvent.EventType == Event.Value; };
+        public Predicate<SerializedEvent> EventCondition => serializedEvent => { return serializedEvent.EventType == "DialogueEvent" && serializedEvent.EventData == Event.Value; };
         
         [Button]
         public void GetIdFromActor(ISerializedActor actor)

@@ -113,6 +113,12 @@ MonoBehaviour:
       place.
     requiredToComplete:
     - {fileID: 11400000, guid: 16b701dbdad07884183af4e08c41943f, type: 2}
+  - questId: {fileID: 11400000, guid: e0ec093c1e72e3d4dac27a84a660fa28, type: 2}
+    questName: Get some soap for the guy
+    questDescription: I talked to a guy in the bathroom and now he wants me to get
+      some soap and hand it out to him.
+    requiredToComplete:
+    - {fileID: 11400000, guid: f3dc750897960c74dab4fd3f0842bf5b, type: 2}
   ActiveQuests: []
 --- !u!114 &8276280798504524174
 MonoBehaviour:

@@ -208,6 +208,18 @@ namespace KinematicCharacterController.ExampleCharacter.Scripts
                 else if (Interactor.TryToInteract(out InteractableObject unknownInteractable, 0))
                 {
                     // interact with any other interactable type
+                    var dialogue = unknownInteractable.GetInteractDialogue();
+                    var notification = unknownInteractable.GetInteractNotification();
+                    
+                    if (!String.IsNullOrEmpty(notification))
+                    {
+                        SceneEventBus.Emit(new NotificationEvent(notification));
+                    }
+                    
+                    if (!String.IsNullOrEmpty(dialogue))
+                    {
+                        SceneEventBus.Emit(new DialogueEvent(new DialogueItem("", dialogue)));
+                    }
                 }
             }
             
