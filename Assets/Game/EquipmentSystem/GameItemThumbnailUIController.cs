@@ -7,7 +7,8 @@ using UnityEngine.UI;
 namespace Game.EquipmentSystem
 {
     /// <summary>
-    /// If quantity is zero, this item will destroy itself.
+    /// Shows high level information about a game item.
+    /// Includes logic for highlighting the item when the mouse is over it.
     /// </summary>
     public class GameItemThumbnailUIController : MonoBehaviour, IPointerEnterHandler
     {
