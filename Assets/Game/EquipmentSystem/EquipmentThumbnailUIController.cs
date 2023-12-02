@@ -51,13 +51,35 @@ namespace Game.EquipmentSystem
             var unsub1 = SceneEventBus.Subscribe<TryEquipItemEvent>(OnTryEquipItem);
             var unsub2 = SceneEventBus.Subscribe<CancelEquipItemEvent>(OnCancelEquipItem);
             
+            AddListenerToEquipItemOnClick();
+
             unsubscribe = () =>
             {
                 unsub1();
                 unsub2();
             };
         }
-        
+
+        private void AddListenerToEquipItemOnClick()
+        {
+            // Subscribe to clicks on equipped item thumbnails to allow equipping via clicks
+            for (int i = 0; i < EquippedUiItems.Length; i++)
+            {
+                var uiIndex = i;
+                var uiItem = EquippedUiItems[uiIndex];
+                uiItem.button.onClick.AddListener(() =>
+                {
+                    if (isListeningForNumberInput && itemToEquip != null)
+                    {
+                        Debug.Log($"Equipping {itemToEquip.Item.ItemName} @ slot {uiIndex + 1} via click.");
+                        Inventory.EquipItem(itemToEquip, uiIndex);
+                        isListeningForNumberInput = false;
+                        itemToEquip = null;
+                    }
+                });
+            }
+        }
+
         private void OnDisable()
         {
             unsubscribe?.Invoke();
@@ -91,11 +113,7 @@ namespace Game.EquipmentSystem
                 
                 if (uiItem == null)
                     continue;
-                
-                // Disable button functionality to control highlight image to show active equipped item.
-                uiItem.button.enabled = false;
-                uiItem.button.targetGraphic.enabled = false;
-                
+
                 if (item == Inventory.ActivelyHeldItem && item != null && item.Quantity > 0)
                 {
                     uiItem.button.targetGraphic.enabled = true;
@@ -105,10 +123,19 @@ namespace Game.EquipmentSystem
                 {
                     uiItem.equipIndicatorText.enabled = true;
                     uiItem.equipIndicatorText.text = (i + 1 == 10 ? 0 : i + 1).ToString();
+                    
+                    // Enable button functionality to be able to equip item via click.
+                    uiItem.button.enabled = true;
+                    uiItem.button.targetGraphic.enabled = true;
+                    
                 }
                 else
                 {
                     uiItem.equipIndicatorText.enabled = false;
+                    
+                    // Disable button functionality to control highlight image to show active equipped item.
+                    uiItem.button.enabled = false;
+                    uiItem.button.targetGraphic.enabled = false;
                 }
 
                 if (item == null)

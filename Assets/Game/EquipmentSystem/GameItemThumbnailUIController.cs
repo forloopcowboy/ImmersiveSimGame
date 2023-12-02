@@ -29,7 +29,7 @@ namespace Game.EquipmentSystem
         private void OnMouseOver()
         {
             button.Select();
-            GameItemInInventory.Highlight();
+            if (GameItemInInventory != null) GameItemInInventory.Highlight();
         }
 
         private void Update()
@@ -58,24 +58,6 @@ namespace Game.EquipmentSystem
             {
                 quantityText.transform.parent.gameObject.SetActive(false);
             }
-        }
-        
-        public void OnClick()
-        {
-            if (GameItemInInventory.Item is EquipableItemType equipableItemType)
-                equipableItemType.Equip(GameItemInInventory.Inventory);
-            
-            else if (GameItemInInventory.Item is UsableItemType usableItemType)
-            {
-                usableItemType.Use(GameItemInInventory.Inventory);
-                usableItemType.EmitUseMessage();
-            }
-            else
-            {
-                Debug.Log($"{GameItemInInventory.Item.ItemName} is not usable. Highlighting it instead.");
-            }
-            
-            GameItemInInventory.Highlight();
         }
 
         public void OnPointerEnter(PointerEventData eventData)

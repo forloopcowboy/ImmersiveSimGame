@@ -121,6 +121,9 @@ namespace Game.EquipmentSystem
                 {
                     var thumbnail = Instantiate(thumbnailPrefab, contentRoot);
                     thumbnail.GameItemInInventory = item;
+                    
+                    ListenToThumbnailClickEvents(item, thumbnail);
+
                     if (thumbnail.GameItemInInventory.IsHighlighted)
                     {
                         thumbnail.button.Select();
@@ -129,6 +132,35 @@ namespace Game.EquipmentSystem
                     thumbnails.Add(thumbnail);
                 }
             }
+        }
+
+        private void ListenToThumbnailClickEvents(GameItemInInventory item, GameItemThumbnailUIController thumbnail)
+        {
+            void OnClick()
+            {
+                if (item == null)
+                {
+                    Debug.LogError("Item is null. This should not happen.");
+                    return;
+                }
+
+                if (item.Item is EquipableItemType equipableItemType)
+                    equipableItemType.Equip(Inventory);
+
+                else if (item.Item is UsableItemType usableItemType)
+                {
+                    usableItemType.Use(item.Inventory);
+                    usableItemType.EmitUseMessage();
+                }
+                else
+                {
+                    Debug.Log($"{item.Item.ItemName} is not usable. Highlighting it instead.");
+                }
+
+                item.Highlight();
+            }
+
+            thumbnail.button.onClick.AddListener(OnClick);
         }
 
         public bool TryGetSelectedItem(out GameItemInInventory item)
