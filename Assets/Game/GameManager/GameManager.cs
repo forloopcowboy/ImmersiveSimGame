@@ -61,6 +61,7 @@ namespace Game.GameManager
                 onPause?.Invoke();
                 _isPaused = true;
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 _timeScaleBeforePause = Time.timeScale;
                 Time.timeScale = 0;
             }
@@ -82,6 +83,7 @@ namespace Game.GameManager
                 onResume?.Invoke();
                 _isPaused = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 Time.timeScale = _timeScaleBeforePause;
             }
         }

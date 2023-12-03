@@ -15,6 +15,7 @@ namespace Game.AIBehavior
         public SharedVector3 offset = new Vector3(0f, 1.5f, 0f);
         public SharedFloat projectileSpeed;
         public SharedFloat projectileHighArcThreshold = 20f;
+        public SharedBallisticTrajectory defaultBallisticTrajectory = BallisticTrajectory.Min;
         
         private GameItemInventory _inventory;
         private AimComponent _aimComponent;
@@ -46,7 +47,7 @@ namespace Game.AIBehavior
                 {
                     var strategy = Vector3.Distance(_aimComponent.elevate.position, target.Value.transform.position) > projectileHighArcThreshold.Value
                         ? BallisticTrajectory.LowEnergy
-                        : BallisticTrajectory.Min;
+                        : defaultBallisticTrajectory.Value;
                     
                     projectileSpeed.Value = ballisticProjectile.launchSpeed;
                     

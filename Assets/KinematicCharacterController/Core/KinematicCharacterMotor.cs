@@ -170,13 +170,13 @@ namespace KinematicCharacterController
         /// </summary>
         [SerializeField]
         [Tooltip("Radius of the Character Capsule")]
-        private float CapsuleRadius = 0.5f;
+        private float CapsuleRadius = 0.35f;
         /// <summary>
         /// Height of the character's capsule
         /// </summary>
         [SerializeField]
         [Tooltip("Height of the Character Capsule")]
-        private float CapsuleHeight = 2f;
+        private float CapsuleHeight = 1.75f;
         /// <summary>
         /// Local y position of the character's capsule center
         /// </summary>

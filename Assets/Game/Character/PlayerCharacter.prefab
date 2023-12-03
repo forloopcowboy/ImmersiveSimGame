@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf774b4c734b1d04e9fbf6d71e964591, type: 2}
+  - {fileID: 2100000, guid: 7d937c04fbb734546b29eb971936bb5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -314,8 +314,8 @@ Transform:
   m_GameObject: {fileID: 6867034088863377061}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.75, y: 1, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0.866, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.85908, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3852757772343462660}
@@ -349,7 +349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf774b4c734b1d04e9fbf6d71e964591, type: 2}
+  - {fileID: 2100000, guid: 700ae469e5be9ac4095d29b97116027a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -432,9 +432,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.35
-  m_Height: 1.85
+  m_Height: 1.65
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &31585803439870811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,8 +493,8 @@ MonoBehaviour:
     SerializationNodes: []
   Capsule: {fileID: 3904414539052447468}
   CapsuleRadius: 0.35
-  CapsuleHeight: 1.85
-  CapsuleYOffset: 1
+  CapsuleHeight: 1.65
+  CapsuleYOffset: 0.9
   CapsulePhysicsMaterial: {fileID: 0}
   GroundDetectionExtraDistance: 0
   MaxStableSlopeAngle: 60
@@ -592,16 +592,14 @@ MonoBehaviour:
     SerializationNodes: []
   ItemsInInventory:
   - Inventory: {fileID: 8966574204990463280}
-    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    ItemType: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 65
   - Inventory: {fileID: 8966574204990463280}
-    Item: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
+    ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
     Quantity: 5
   EquippedItems: 
-  activelyHeldItem:
-    Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  ActiveItemId: 
+  HighlightedItemId: 
   interactor: {fileID: 0}
 --- !u!114 &702145712085287764
 MonoBehaviour:

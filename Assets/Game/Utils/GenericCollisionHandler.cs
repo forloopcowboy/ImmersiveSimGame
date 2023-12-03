@@ -24,8 +24,8 @@ namespace Game.Utils
 
         public static void SetCollisionHandling(GameObject thisGameObject, GameObject otherGameObject, bool ignore)
         {
-            var otherColliders = otherGameObject.GetComponentsInChildren<Collider>();
-            var thisColliders = thisGameObject.GetComponentsInChildren<Collider>();
+            var otherColliders = otherGameObject.transform.root.GetComponentsInChildren<Collider>();
+            var thisColliders = thisGameObject.transform.root.GetComponentsInChildren<Collider>();
 
             if (ignore)
                 Debug.Log($"[{thisGameObject.name}:Generic] Ignoring collisions with {otherGameObject.name}");

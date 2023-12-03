@@ -21,8 +21,11 @@ namespace Game.GrabSystem
         public void Grab(GameObject targetGrab)
         {
             if (isGrabbed) return;
-            
-            GenericCollisionHandler.SetCollisionHandling(transform.root.gameObject, targetGrab, true);
+
+            var collisionHandler = transform.root.GetComponentInChildren<ICollisionHandler>();
+            if (collisionHandler != null)
+                collisionHandler.IgnoreCollidersIn(targetGrab);
+            else Debug.LogWarning("No collision handler found on root object");
 
             isGrabbed = true;
             grabObject = targetGrab;
@@ -40,8 +43,14 @@ namespace Game.GrabSystem
                 rb.useGravity = true;
             }
             
-            if (stopIgnoringCollisions) 
-                GenericCollisionHandler.SetCollisionHandling(transform.root.gameObject, grabObject, false);
+            if (stopIgnoringCollisions)
+            {
+                var collisionHandler = transform.root.GetComponentInChildren<ICollisionHandler>();
+                
+                if (collisionHandler != null)
+                    collisionHandler.StopIgnoringCollidersIn(grabObject);
+                else Debug.LogWarning("No collision handler found on root object");
+            }
 
             grabObject = null;
         }

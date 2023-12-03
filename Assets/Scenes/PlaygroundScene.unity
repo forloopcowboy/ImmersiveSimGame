@@ -1022,9 +1022,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 91ea523b-308e-4732-921c-320383665fb9
   ItemType: {fileID: 11400000, guid: a82cf7bf7f76c2449ae3f4ec318ecbe3, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!1001 &202999986
@@ -1232,9 +1233,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 3bc06032-25a9-4ea5-9604-f119caf07631
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &242422055
@@ -1879,9 +1881,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: f4e5717a-ef6b-4585-828a-48af3754f97b
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &401183827
@@ -2047,9 +2050,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: f61a4c6c-5a5d-4b3a-8441-b1c4ab23d965
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &409239834
@@ -2483,9 +2487,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 14b04388-7bb8-44d4-8909-c13b58803880
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &434664841
@@ -4167,9 +4172,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: f43a0dc8-8906-4070-b41e-4d0ef0061e2e
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &763878040
@@ -4376,7 +4382,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mBehaviorSource.mTaskData.JSONSerialization
       value: '{"Variables":[{"Type":"Game.AIBehavior.SharedDamageReactionAttackMethod","Name":"AttackReaction","IsShared":true,"DamageReactionAttackMethodmValue":"ATTACK"},{"Type":"Game.AIBehavior.SharedDamageReactionMovementMethod","Name":"AttackMovementReaction","IsShared":true,"DamageReactionMovementMethodmValue":"CHASE"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"DamageSource","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"Intruders","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Should
-        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":20}]}'
+        Wander?","IsShared":true,"BooleanmValue":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ProjectileSpeed","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"ResetBehavior","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinAttackCooldownSeconds","IsShared":true,"SinglemValue":0.25},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxAttackCooldownSeconds","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"AimOffset","IsShared":true,"Vector3mValue":"(0,0.5,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"RestrictedZone","IsShared":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"HighArcDistanceThreshold","IsShared":true,"SinglemValue":20},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"FOVAngle","IsShared":true,"SinglemValue":100},{"Type":"Game.AIBehavior.SharedAimingMethod","Name":"AimingMethod","IsShared":true,"AimingMethodmValue":"BallisticWhenInvisible"},{"Type":"Game.AIBehavior.SharedBallisticTrajectory","Name":"DefaultBallisticTrajectory","IsShared":true,"BallisticTrajectorymValue":"Min"}]}'
       objectReference: {fileID: 0}
     - target: {fileID: 2700340833657339979, guid: d7638c5bb967585409775074b1b542d4,
         type: 3}
@@ -4680,13 +4686,11 @@ MonoBehaviour:
     SerializationNodes: []
   ItemsInInventory:
   - Inventory: {fileID: 789740412}
-    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    ItemType: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 2
   EquippedItems: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  activelyHeldItem:
-    Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  ActiveItemId: 
+  HighlightedItemId: 
   interactor: {fileID: 0}
 --- !u!114 &789740413
 MonoBehaviour:
@@ -4716,6 +4720,8 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   speakerName: Blue Guy
   dialogue:
   - Hello, stranger! I'm Blue Guy!
@@ -4724,6 +4730,8 @@ MonoBehaviour:
   - I still don't know how to operate these so called "Doors" or "Door" or "Keys"
   - I hear you can Unloop... I mean... Unlock them. Using the DoorHandle? No... Keys?
   - All this vocabulary is so complicated.
+  skippable: 1
+  dialoguePreset: {fileID: 0}
 --- !u!114 &789740414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5402,9 +5410,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 5ef70681-e7ab-4136-a29b-cd245c694bdb
   ItemType: {fileID: 11400000, guid: a82cf7bf7f76c2449ae3f4ec318ecbe3, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!1001 &952675659
@@ -5648,10 +5657,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 41d6ea7f-ce63-4c9f-839c-f72b0ea45573
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: Press I, select Ice Projectile, and press E to equip it in inventory.
-    Press number to hold equipped item.
   Amount: 1
   UseItemTypeName: 1
 --- !u!1001 &985276062
@@ -6439,13 +6448,11 @@ MonoBehaviour:
     SerializationNodes: []
   ItemsInInventory:
   - Inventory: {fileID: 1239365309}
-    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    ItemType: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 2
   EquippedItems: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  activelyHeldItem:
-    Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  ActiveItemId: 
+  HighlightedItemId: 
   interactor: {fileID: 0}
 --- !u!114 &1239365310
 MonoBehaviour:
@@ -6475,12 +6482,16 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   speakerName: Blue Guy
   dialogue:
   - Hello, stranger! I'm Blue Guy!
   - I have such a fun job here, great benefits!
   - My whole purpose is to be target practice for you! It's nice as long as you don't
     shoot me to death. If you try, I'm gonna get the fuck out of here
+  skippable: 1
+  dialoguePreset: {fileID: 0}
 --- !u!114 &1239365311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6900,13 +6911,11 @@ MonoBehaviour:
     SerializationNodes: []
   ItemsInInventory:
   - Inventory: {fileID: 1258215030}
-    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    ItemType: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 2
   EquippedItems: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  activelyHeldItem:
-    Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  ActiveItemId: 
+  HighlightedItemId: 
   interactor: {fileID: 0}
 --- !u!114 &1258215031
 MonoBehaviour:
@@ -6936,6 +6945,8 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   speakerName: Lost Blue Guy
   dialogue:
   - Hello, stranger! I'm Blue Guy!
@@ -6943,6 +6954,8 @@ MonoBehaviour:
   - All I remember was taking that 19th shot at the burger joint... That weird guy
     Kurger or something gave it to me... Then darkness...
   - I think I know why I came all the way here... The memories... Oh no
+  skippable: 1
+  dialoguePreset: {fileID: 0}
 --- !u!114 &1258215032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7965,6 +7978,8 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   levelIndex: 1
   loadSceneMode: 0
   spawnPointId: {fileID: 11400000, guid: 74b7bd90c0efe2147bef88e0e30ddf51, type: 2}
@@ -8371,9 +8386,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: df3bb872-5fce-4817-9fc1-d94cf6b64a39
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &1701717815
@@ -8553,9 +8569,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: a9a66058-b068-4a52-b6b5-6c5bf368b7bb
   ItemType: {fileID: 11400000, guid: ef1d56d67409be44aa4f5ce2db9b6c0d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!65 &1732776530
@@ -8842,9 +8859,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: b35d7938-7f71-4049-a2ba-2486180d7372
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &1778018988
@@ -9056,9 +9074,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 3caea488-d936-4ecf-9f20-3ce8516c4bdf
   ItemType: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
-  PickUpDialogue: sucked up the entire fireplace
   Amount: 100
   UseItemTypeName: 1
 --- !u!1 &1836216353
@@ -9491,9 +9510,10 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   ItemId: 62814ccd-3cd7-47ae-abf4-cd58e14b712e
   ItemType: {fileID: 11400000, guid: e3a71c30f96d3914c8fb8831f9e8731d, type: 2}
-  PickUpDialogue: 
   Amount: 1
   UseItemTypeName: 1
 --- !u!54 &1897734003
@@ -10191,13 +10211,11 @@ MonoBehaviour:
     SerializationNodes: []
   ItemsInInventory:
   - Inventory: {fileID: 2085330300}
-    Item: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
+    ItemType: {fileID: 11400000, guid: c6e3330feebb8fc41a5d78b9c62101a6, type: 2}
     Quantity: 2
   EquippedItems: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  activelyHeldItem:
-    Inventory: {fileID: 0}
-    Item: {fileID: 0}
-    Quantity: 0
+  ActiveItemId: 
+  HighlightedItemId: 
   interactor: {fileID: 0}
 --- !u!114 &2085330301
 MonoBehaviour:
@@ -10227,11 +10245,15 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls: []
+  InteractNotification: 
+  InteractDialogue: 
   speakerName: Blue Guy
   dialogue:
   - Hello, stranger! I'm Blue Guy!
   - I love to wander around... This place is beautiful!
   - I hope I don't get fireballed in the process.
+  skippable: 1
+  dialoguePreset: {fileID: 0}
 --- !u!114 &2085330302
 MonoBehaviour:
   m_ObjectHideFlags: 0

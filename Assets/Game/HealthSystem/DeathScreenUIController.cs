@@ -13,7 +13,11 @@ namespace Game.HealthSystem
         private void Update()
         {
             root.gameObject.SetActive(health.isDead);
-            if (health.isDead) Cursor.lockState = CursorLockMode.None;
+            if (health.isDead)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 }
